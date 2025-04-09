@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('media_posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('media_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
