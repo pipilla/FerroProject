@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Comments extends Model
+class Comment extends Model
 {
     /** @use HasFactory<\Database\Factories\CommentsFactory> */
     use HasFactory;
@@ -16,12 +16,12 @@ class Comments extends Model
 
     public function comment(): BelongsTo
     {
-        return $this->belongsTo(Comments::class);
+        return $this->belongsTo(Comment::class);
     }
 
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Posts::class);
+        return $this->belongsTo(Post::class);
     }
 
     public function user(): BelongsTo
@@ -31,6 +31,6 @@ class Comments extends Model
 
     public function commentChild(): HasMany
     {
-        return $this->hasMany(Comments::class);
+        return $this->hasMany(Comment::class);
     }
 }

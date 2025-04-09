@@ -15,10 +15,10 @@ class Media extends Model
     protected $fillable = ['title', 'src', 'category_id'];
 
     public function category(): BelongsTo{
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function posts(): BelongsToMany{
-        return $this->belongsToMany(Posts::class);
+        return $this->belongsToMany(Post::class);
     }
 }

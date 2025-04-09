@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Posts extends Model
+class Post extends Model
 {
     /** @use HasFactory<\Database\Factories\PostsFactory> */
     use HasFactory;
@@ -24,7 +24,7 @@ class Posts extends Model
     }
 
     public function comments(): HasMany{
-        return $this->hasMany(Comments::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function tags(): BelongsToMany{
