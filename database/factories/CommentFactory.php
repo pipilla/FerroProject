@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,7 +19,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         $post = Post::get()->random();
-        $commentPost = (random_int(0, 2)) ? ($post->comments()->random()->id) : null;
+        $commentPost = (random_int(0, 2)) ? (($post->comments()->count()) ? $post->comments()->get()->random()->id : null) : null;
         return [
             'message' => fake()->text(),
             'comment_id' => $commentPost,

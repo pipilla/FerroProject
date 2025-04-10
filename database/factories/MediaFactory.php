@@ -20,7 +20,7 @@ class MediaFactory extends Factory
         fake()->addProvider(new \Mmo\Faker\PicsumProvider(fake()));
         return [
             'title' => fake()->sentence(4),
-            'src' => 'media/' . fake()->picsum('public/storage/media', 640, 480, false),
+            'src' => 'media/'.fake()->picsum('public/storage/media', 640, 480, false),
             'category_id' => Category::get()->random()->id,
         ];
     }

@@ -19,7 +19,7 @@ class PostSeeder extends Seeder
         $media = Media::all()->pluck('id')->toArray();
         $tags = Tag::all()->pluck('id')->toArray();
         foreach($posts as $post){
-            $post->tags()->attach($this->getArrayRandomId($media));
+            $post->media()->attach($this->getArrayRandomId($media));
             $post->tags()->attach($this->getArrayRandomId($tags));
         }
     }
