@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(15)->create();
-        Media::factory(8)->create();
+        Media::factory(30)->create();
         $this->call(PostSeeder::class);
         Comment::factory(50)->create();
         Task::factory(30)->create();
