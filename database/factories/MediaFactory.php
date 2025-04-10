@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class MediaFactory extends Factory
      */
     public function definition(): array
     {
+        fake()->addProvider(new \Mmo\Faker\PicsumProvider(fake()));
         return [
-            //
+            'title' => fake()->sentence(4),
+            'src' => 'media/' . fake()->picsum('public/storage/media', 640, 480, false),
+            'category_id' => Category::get()->random()->id,
         ];
     }
 }

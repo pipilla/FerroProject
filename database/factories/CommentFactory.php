@@ -19,10 +19,12 @@ class CommentFactory extends Factory
      */
     public function definition(): array
     {
+        $post = Post::get()->random();
+        $commentPost = (random_int(0, 2)) ? ($post->comments()->random()->id) : null;
         return [
             'message' => fake()->text(),
-            'comment_id' => (random_int(0, 2)) ? (Comment::get()->random()->id) : null,
-            'post_id' => Post::get()->random()->id,
+            'comment_id' => $commentPost,
+            'post_id' => $post->id,
             'user_id' => User::get()->random()->id,
         ];
     }
