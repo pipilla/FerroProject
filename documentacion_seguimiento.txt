@@ -1,0 +1,16 @@
+Grado de desarrollo del proyecto: 10%
+
+De momento solo llevo hecha parte de la base de datos con los factories y seeders. 
+
+    ** Hay que explicar las restricciones que existen. 
+    ** En la documentación, explicaré que hace cada archivo, así que iré explicándolo uno por uno.
+
+Partes que faltan de la base de datos:
+
+- El chat. No sé aún como lo voy a hacer, pero obviamente será necesario modificar la base de datos.
+
+- Las facturas. Interesará guardarlas, lo haré también con la base de datos.
+
+- Otras. A lo largo del proyecto, seguramente será necesario ir modificándola, tanto para implementar cosas nuevas como para mejorarla.
+
+De momento me voy a enfocar en tener lo básico (supongo que será el 50 o 60% del proyecto), y a partir de ahí implementar las funcionalidades más complicadas, diseño y despliegue.

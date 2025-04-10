@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ShowMedia;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +16,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+Route::get('/galeria', ShowMedia::class)->name('galeria');
