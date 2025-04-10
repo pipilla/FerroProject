@@ -14,14 +14,16 @@ class ShowMedia extends Component
     public function render()
     {
         $categories = Category::orderBy('name')->get();
-        $media = Media::with('category')
-        ->where('category_id', $this->category_id)
-        ->orderBy('updated_at')
-        ->paginate(12);
+        $mediaQuery = Media::with('category')->orderBy('updated_at');
+        if(!$this->showAll) {
+            $mediaQuery->where('category_id', $this->category_id);
+        }
+        $media = $mediaQuery->paginate(12);
         return view('livewire.show-media', compact('media', 'categories'));
     }
 
     public function buscar(int $id) {
         $this->category_id = $id;
+        $this->showAll = ($id <= 0);
     }
 }

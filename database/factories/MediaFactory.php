@@ -21,7 +21,7 @@ class MediaFactory extends Factory
         return [
             'title' => fake()->sentence(4),
             'src' => 'media/'.fake()->picsum('public/storage/media', 640, 480, false),
-            'category_id' => Category::get()->random()->id,
+            'category_id' => Category::all()->random()->id,
         ];
     }
 }
