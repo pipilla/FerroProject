@@ -9,12 +9,12 @@
         <x-slot name="content">
             <!-- Título -->
             <div class="relative mb-4">
-                <label for="titulo" class="sr-only">Título</label>
-                <input type="text" id="titulo" name="titulo" placeholder="Título del contenido"
-                    wire:model.live="cform.titulo"
+                <label for="title" class="sr-only">Título</label>
+                <input type="text" id="titulo" name="title" placeholder="Título del contenido"
+                    wire:model.live="cform.title"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <x-input-error for="cform.titulo" />
+                <x-input-error for="cform.title" />
             </div>
 
             <!-- Categoría -->
@@ -23,8 +23,8 @@
                 <select id="categoria" name="categoria" wire:model="cform.category_id"
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Selecciona una categoría</option>
-                    @foreach ($categoria as $category)
-                        <option value="{{ $category->id }}">{{ $category->nombre }}</option>
+                    @foreach ($categorias as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
                 <i class="fas fa-tag absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -33,7 +33,7 @@
 
             <!-- Media -->
             <div class="mt-4 w-full relative bg-slate-200 h-80">
-                <input type="file" accept="image/*" id="csrc" class="hidden" wire:loading.attr="disabled"
+                <input type="file" accept="image/*,video/*" id="csrc" class="hidden" wire:loading.attr="disabled"
                     wire:model="cform.src">
                 <label for="csrc"
                     class="absolute bottom-2 right-2 bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition duration-300">
