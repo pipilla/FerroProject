@@ -33,17 +33,25 @@
 
             <!-- Media -->
             <div class="mt-4 w-full relative bg-slate-200 h-80">
-                <input type="file" accept="image/*,video/*" id="csrc" class="hidden" wire:loading.attr="disabled"
-                    wire:model="cform.src">
+                <input type="file" accept="image/*,video/*" id="csrc" class="hidden"
+                    wire:loading.attr="disabled" wire:model="cform.src">
                 <label for="csrc"
                     class="absolute bottom-2 right-2 bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition duration-300">
                     <i class="fas fa-upload mr-2"></i>Subir
                 </label>
                 @isset($cform->src)
-                    <img src="{{ $cform->src->temporaryUrl() }}"
-                        class="size-full object-cover object-no-repeat object-center">
+                    @if (str_starts_with($cform->src->getMimeType(), 'image/'))
+                        <img src="{{ $cform->src->temporaryUrl() }}"
+                            class="size-full object-cover object-no-repeat object-center">
+                    @elseif(str_starts_with($cform->src->getMimeType(), 'video/'))
+                        <video controls>
+                            <source src="{{ $cform->src->temporaryUrl() }}">
+                            Tu navegador no soporta el video.
+                        </video>
+                    @endif
                 @endisset
             </div>
+            <x-input-error for="cform.src" />
 
         </x-slot>
         <x-slot name="footer">

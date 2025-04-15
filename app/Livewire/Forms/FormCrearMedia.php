@@ -15,7 +15,7 @@ class FormCrearMedia extends Form
     #[Rule(['required', 'string', 'min:4', 'max:50'])]
     public string $title = "";
 
-    #[Rule(['required', 'file', 'mimes:png,jpg,jpeg,mp4'])]
+    #[Rule(['required', 'file', 'mimes:jpg,jpeg,png,gif,mp4,mov,avi,webm', 'max:20480'])]
     public $src;
 
     #[Rule(['required', 'integer', 'exists:categories,id'])]
@@ -27,6 +27,7 @@ class FormCrearMedia extends Form
         Media::create([
             'title' => $this->title,
             'src' => $this->src->store('media'),
+            'file_type' => $this->src->getMimeType(),
             'category_id' => $this->category_id,
         ]);
     }

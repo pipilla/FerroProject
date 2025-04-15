@@ -12,7 +12,7 @@ class Media extends Model
     /** @use HasFactory<\Database\Factories\MediaFactory> */
     use HasFactory;
 
-    protected $fillable = ['title', 'src', 'category_id'];
+    protected $fillable = ['title', 'src', 'file_type', 'category_id'];
 
     public function category(): BelongsTo{
         return $this->belongsTo(Category::class);

@@ -22,10 +22,17 @@
 
     {{-- Contenido multimedia --}}
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        @foreach ($media as $image)
+        @foreach ($media as $item)
             <div>
-                <img class="h-auto max-w-full rounded-lg" src="{{ Storage::url($image->src) }}"
-                    alt="{{ $image->title }}">
+                @if (str_starts_with($item->file_type, 'image/'))
+                    <img class="h-auto max-w-full rounded-lg" src="{{ Storage::url($item->src) }}"
+                        alt="{{ $item->title }}">
+                @elseif(str_starts_with($item->file_type, 'video/'))
+                    <video class="h-full w-full object-cover rounded-lg">
+                        <source src="{{  Storage::url($item->src) }}" type="{{ $item->file_type }}">
+                        Tu navegador no soporta el video.
+                    </video>
+                @endif
             </div>
         @endforeach
     </div>

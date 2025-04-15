@@ -14,7 +14,7 @@ class ShowMedia extends Component
     public function render()
     {
         $categories = Category::orderBy('name')->get();
-        $mediaQuery = Media::with('category')->orderBy('updated_at');
+        $mediaQuery = Media::with('category')->orderBy('updated_at', 'desc');
         if(!$this->showAll) {
             $mediaQuery->where('category_id', $this->category_id);
         }
