@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\FormShowMedia;
 use App\Models\Category;
 use App\Models\Media;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ShowMedia extends Component
@@ -11,6 +13,10 @@ class ShowMedia extends Component
     public int $category_id = 0;
     public bool $showAll = true;
 
+    public FormShowMedia $sform;
+    public bool $openShow = false;
+
+    #[On('contenidoSubido')]
     public function render()
     {
         $categories = Category::orderBy('name')->get();
@@ -25,5 +31,15 @@ class ShowMedia extends Component
     public function buscar(int $id) {
         $this->category_id = $id;
         $this->showAll = ($id <= 0);
+    }
+
+    public function show(int $id){
+        $media = Media::findOrFail($id);
+        $this->sform->setMedia($media);
+        $this->openShow = true;
+    }
+
+    public function cerrarShow(){
+        $this->openShow = false;
     }
 }
