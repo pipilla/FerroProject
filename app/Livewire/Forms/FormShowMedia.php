@@ -23,4 +23,8 @@ class FormShowMedia extends Form
         $this->category_id = $media->category_id;
         $this->category_name = $media->category->name;
     }
+
+    public function resetShow(){
+        $this->reset();
+    }
 }

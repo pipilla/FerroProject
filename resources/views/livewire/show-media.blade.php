@@ -30,7 +30,6 @@
                 @elseif(str_starts_with($item->file_type, 'video/'))
                     <video class="h-full w-full object-cover rounded-lg">
                         <source src="{{ Storage::url($item->src) }}" type="{{ $item->file_type }}">
-                        Tu navegador no soporta el video.
                     </video>
                 @endif
             </button>
@@ -59,17 +58,27 @@
                         </video>
                     @endif
 
-                    <div class="text-center mt-4">
+                    <div class="flex justify-between text-center mt-4">
                         <button type="button" wire:click="buscar({{ $sform->category_id }})"
                             class='text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center me-3 dark:text-white dark:focus:ring-gray-800 font-bold'>{{ $sform->category_name }}</button>
-                    </div>
 
-                    {{ $sform->file_type }}
+                        @if (Auth::user() && Auth::user()->role >= 2)
+                            <div class="flex gap-2">
+                                <button class="hover:scale-125 transition-transform duration-200 text-green-900">
+                                    <i class="fas fa-edit text-xl"></i>
+                                </button>
+                                <button class="hover:scale-125 transition-transform duration-200 text-red-900" wire:click="confirmarBorrar({{ $sform->media->id }})">
+                                    <i class="fas fa-trash text-xl"></i>
+                                </button>
+                            </div>
+                        @endif
+
+                    </div>
                 </x-slot>
                 <x-slot name="footer">
                     <div class="flex flex-row-reverse">
                         <button type="button" wire:click="cerrarShow"
-                            class="mr-4 bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
+                            class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
                             <i class="fas fa-xmark mr-2"></i>Cerrar
                         </button>
                     </div>
