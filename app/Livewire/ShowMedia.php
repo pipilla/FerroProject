@@ -3,19 +3,26 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\FormShowMedia;
+use App\Livewire\Forms\FormUpdateMedia;
 use App\Models\Category;
 use App\Models\Media;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ShowMedia extends Component
 {
+    use WithFileUploads;
+
     public int $category_id = 0;
     public bool $showAll = true;
 
     public FormShowMedia $sform;
     public bool $openShow = false;
+
+    public FormUpdateMedia $uform;
+    public bool $openUpdate = false;
 
     #[On('contenidoSubido')]
     public function render()
@@ -50,6 +57,7 @@ class ShowMedia extends Component
     public function confirmarBorrar(int $id)
     {
         $media = Media::findOrFail($id);
+        $this->authorize('delete', $media);
         $this->dispatch('confirmarBorrarMedia', $id);
     }
 
@@ -57,10 +65,34 @@ class ShowMedia extends Component
     public function borrar(int $id)
     {
         $media = Media::findOrFail($id);
+        $this->authorize('delete', $media);
         $this->openShow = false;
         $this->sform->resetShow();
         Storage::delete($media->src);
         $media->delete();
         $this->dispatch('mensaje', 'Contenido eliminado');
+    }
+
+    public function edit(int $id)
+    {
+        $media = Media::findOrFail($id);
+        $this->authorize('update', $media);
+        $this->uform->setMedia($media);
+        $this->openShow = false;
+        $this->openUpdate = true;
+    }
+
+    public function update()
+    {
+        $this->uform->updateMedia();
+        $this->cancelar();
+        $this->openUpdate = false;;
+        $this->dispatch('mensaje', 'Contenido editado');
+    }
+
+    public function cancelar()
+    {
+        $this->openUpdate = false;;
+        $this->uform->formReset();
     }
 }
