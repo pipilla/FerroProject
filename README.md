@@ -28,3 +28,8 @@ El usuario tiene un campo **rol**, que otorgará diferentes permisos dependiendo
 - **1**: Trabajador
 - **2**: Trabajador con + permisos
 - **3**: Admin
+
+#
+Las tareas tienen un campo "**priority**", siendo **5** la más importante y **0** la menos. 
+
+También, un campo "**done**", que indicará si la tarea se ha realizado o no.
