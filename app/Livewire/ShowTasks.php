@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\FormCrearTask;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -9,6 +10,9 @@ use Livewire\Component;
 class ShowTasks extends Component
 {
     public bool $nuevaTarea = false;
+    public FormCrearTask $cform;
+
+    public bool $showEdit = false;
 
     public function render()
     {
@@ -19,6 +23,12 @@ class ShowTasks extends Component
     }
 
     public function create(){
-        $this->nuevaTarea = true;
+        $this->cform->storeTask();
+        $this->descartar();
+    }
+
+    public function descartar(){
+        $this->nuevaTarea = false;
+        $this->cform->formReset();
     }
 }
