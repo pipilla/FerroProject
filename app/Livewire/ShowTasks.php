@@ -17,18 +17,24 @@ class ShowTasks extends Component
     public function render()
     {
         $tasks = Task::where('user_id', Auth::id())
-        ->orderBy('priority', 'desc')
-        ->get();
+            ->orderBy('priority', 'desc')
+            ->get();
         return view('livewire.show-tasks', compact('tasks'));
     }
 
-    public function create(){
+    public function create()
+    {
         $this->cform->storeTask();
         $this->descartar();
     }
 
-    public function descartar(){
+    public function descartar()
+    {
         $this->nuevaTarea = false;
         $this->cform->formReset();
+    }
+
+    public function ocultar(int $id) {
+        
     }
 }

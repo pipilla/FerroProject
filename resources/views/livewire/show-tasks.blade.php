@@ -7,6 +7,7 @@
         <ul class="grid w-full gap-6 md:grid-cols-3">
             @foreach ($tasks as $item)
                 <li>
+
                     <div @class([
                         'inline-flex items-center justify-between w-full text-black p-5 border-2 border-gray-200 rounded-lg cursor-pointer dark:border-gray-700 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 hover:scale-105 transition-transform duration-200' => true,
                         'bg-green-300' => $item->priority == 0,
@@ -40,11 +41,11 @@
                             ])>
                             <div class="w-full text-sm">{{ $item->description }}</div>
                             <div class="text-center items-center">
-                                <div class="flex justify-between">
-                                    <button class="hover:scale-125 transition-transform duration-200 text-green-600">
+                                <div class="flex justify-end gap-3">
+                                    <button class="hover:scale-125 transition-transform duration-200 text-gray-600 hover:text-black">
                                         <i class="fas fa-edit text-xl"></i>
                                     </button>
-                                    <button class="hover:scale-125 transition-transform duration-200 text-red-600">
+                                    <button class="hover:scale-125 transition-transform duration-200 text-gray-600 hover:text-black">
                                         <i class="fas fa-trash text-xl"></i>
                                     </button>
                                 </div>
