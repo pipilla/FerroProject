@@ -73,6 +73,21 @@
                 }
             });
         });
+        Livewire.on('confirmarBorrarTask', (id) => {
+            Swal.fire({
+                title: "¿Borrar tarea?",
+                text: "Una vez eliminada no podrás recuperarla",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, borrarla"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('show-tasks', 'borrarOk', id);
+                }
+            });
+        });
     </script>
 </body>
 
