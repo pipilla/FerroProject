@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ShowInvoices;
 use App\Livewire\ShowMedia;
 use App\Livewire\ShowTasks;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +18,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/tareas', ShowTasks::class)->name('tareas');
+    Route::get('/facturas', ShowInvoices::class)->name('facturas');
 });
 Route::get('/galeria', ShowMedia::class)->name('galeria');

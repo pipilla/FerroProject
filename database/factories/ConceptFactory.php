@@ -21,6 +21,7 @@ class ConceptFactory extends Factory
         return [
             'description' => fake()->sentence(4),
             'price' => fake()->randomFloat(2, 0.25, 100000),
+            'quantity' => fake()->randomNumber(3),
             'tax_id' => Tax::all()->random()->id,
             'invoice_id' => Invoice::all()->random()->id,
         ];
