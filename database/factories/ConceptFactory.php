@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Invoice;
+use App\Models\Tax;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class ConceptFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'description' => fake()->sentence(4),
+            'price' => fake()->randomFloat(2, 0.25, 100000),
+            'tax_id' => Tax::all()->random()->id,
+            'invoice_id' => Invoice::all()->random()->id,
         ];
     }
 }

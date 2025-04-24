@@ -17,7 +17,10 @@ class InvoiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'from' => fake()->name(),
+            'to' => fake()->name(),
+            'date' => fake()->date(),
+            'details' => (random_int(0,3)) ? fake()->text() : "",
         ];
     }
 }
