@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         Comment::factory(50)->create();
         Task::factory(50)->create();
         
-        Invoice::factory(30)->create();
+        Invoice::factory(20)->create();
         $this->call(TaxSeeder::class);
         Concept::factory(70)->create();
     }

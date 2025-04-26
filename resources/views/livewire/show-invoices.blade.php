@@ -21,52 +21,52 @@
         {{ $invoices->links() }}
     </div>
 
-    @if ($invoice != null)
+    @if ($openShow && $sform->invoice != null)
         <div>
             <x-dialog-modal maxWidth="5xl" wire:model="openShow">
                 <x-slot name="title">
-                    Factura Nº: {{ $invoice->id }}
+                    Factura Nº: {{ $sform->invoice->id }}
                 </x-slot>
                 <x-slot name="content">
                     <div>
                         <div class="inline-flex justify-between w-full mb-2">
-                            <h1 class="inline-flex">De: <p class="text-xl font-bold ml-2">{{ $invoice->from }}</p>
+                            <h1 class="inline-flex">De: <p class="text-xl font-bold ml-2">{{ $sform->invoice->from }}
+                                </p>
                             </h1>
-                            <h1 class="inline-flex">Fecha: <p class="text-xl font-bold ml-2">{{ $invoice->date }}</p>
+                            <h1 class="inline-flex">Fecha: <p class="text-xl font-bold ml-2">{{ $sform->invoice->date }}
+                                </p>
                             </h1>
                         </div>
-                        <h1 class="inline-flex">Para: <p class="text-xl font-bold ml-2">{{ $invoice->to }}</p>
+                        <h1 class="inline-flex">Para: <p class="text-xl font-bold ml-2">{{ $sform->invoice->to }}</p>
                         </h1>
                     </div>
-                    <div class="relative overflow-x-auto my-4">
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead
-                                class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                    <div class="relative overflow-x-auto my-8">
+                        <table class="w-full text-sm text-left text-gray-700 border border-gray-300">
+                            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 rounded-s-lg">
+                                    <th scope="col" class="px-6 py-4 rounded-tl-lg border-b border-gray-300">
                                         Descripción
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-4 border-b border-gray-300">
                                         Cantidad
                                     </th>
-                                    <th scope="col" class="px-6 py-3 rounded-e-lg">
+                                    <th scope="col" class="px-6 py-4 border-b border-gray-300">
                                         Impuesto %
                                     </th>
-                                    <th scope="col" class="px-6 py-3 rounded-e-lg">
-                                        Precio sin impuestos
+                                    <th scope="col" class="px-6 py-4 border-b border-gray-300">
+                                        Precio unidad
                                     </th>
-                                    <th scope="col" class="px-6 py-3 rounded-e-lg">
+                                    <th scope="col" class="px-6 py-4 rounded-tr-lg border-b border-gray-300">
                                         Precio
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($invoice->concepts as $concept)
-                                    <tr class="bg-white dark:bg-gray-800">
-                                        <th scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <tbody class="bg-white">
+                                @foreach ($sform->concepts as $concept)
+                                    <tr class="border-b border-gray-200">
+                                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             {{ $concept->description }}
-                                        </th>
+                                        </td>
                                         <td class="px-6 py-4">
                                             {{ $concept->quantity }}
                                         </td>
@@ -77,22 +77,35 @@
                                             {{ number_format($concept->price, 2) }} €
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ number_format($concept->price + $concept->price * ($concept->tax->value / 100), 2) }}
-                                            €
+                                            {{ number_format(($concept->price * $concept->quantity) + ($concept->price * $concept->quantity) * ($concept->tax->value / 100), 2) }} €
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
-                            <tfoot>
-                                <tr class="font-semibold text-gray-900 dark:text-white">
-                                    <th scope="row" class="px-6 py-3 text-base">Total</th>
-                                    <td class="px-6 py-3">3</td>
-                                    <td class="px-6 py-3">21,000</td>
+                            <tfoot class="bg-gray-50">
+                                <tr class="font-semibold text-gray-900">
+                                    <th scope="row" class="px-6 py-4 text-base text-right" colspan="4">Subtotal</th>
+                                    <td class="px-6 py-4">{{ number_format($sform->subtotal, 2) }} €</td>
+                                </tr>
+                                @foreach ($sform->taxes as $tax)
+                                    <tr class="font-semibold text-gray-900">
+                                        <th scope="row" class="px-6 py-4 text-base text-right" colspan="4">{{ $tax['name'] }}</th>
+                                        <td class="px-6 py-4">+ {{ number_format($tax['price'], 2) }} €</td>
+                                    </tr>
+                                @endforeach
+                                <tr class="font-bold text-gray-900">
+                                    <th scope="row" class="px-6 py-4 text-xl text-right" colspan="4">Total</th>
+                                    <td class="px-6 py-4 text-xl">{{ number_format($sform->total, 2) }} €</td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
+                    @if ($sform->invoice->details != "")
+                    <div>
+                        <p class="text-left font-bold text-lg">Detalles:</p>
+                        <p>{{$sform->invoice->details}}</p>
+                    </div>
+                    @endif
                 </x-slot>
                 <x-slot name="footer">
                     <div class="flex flex-row-reverse">

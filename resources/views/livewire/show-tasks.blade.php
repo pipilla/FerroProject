@@ -40,12 +40,12 @@
 
                         <div @class([
                             'inline-flex items-center justify-between w-full text-black p-5 border-2 border-gray-200 rounded-lg cursor-pointer dark:border-gray-700 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 hover:scale-105 transition-transform duration-200' => true,
-                            'bg-green-300' => $item->priority == 0,
-                            'bg-blue-300' => $item->priority == 1,
-                            'bg-blue-500' => $item->priority == 2,
-                            'bg-yellow-500' => $item->priority == 3,
-                            'bg-orange-500' => $item->priority == 4,
-                            'bg-red-500' => $item->priority == 5,
+                            'bg-green-300' => $item->priority == 0 && !$item->done,
+                            'bg-blue-300' => $item->priority == 1 && !$item->done,
+                            'bg-blue-500' => $item->priority == 2 && !$item->done,
+                            'bg-yellow-500' => $item->priority == 3 && !$item->done,
+                            'bg-orange-500' => $item->priority == 4 && !$item->done,
+                            'bg-red-500' => $item->priority == 5 && !$item->done,
                             'bg-gray-400' => $item->done,
                         ])>
                             <div class="w-full">
@@ -69,12 +69,12 @@
                                 <hr @class([
                                     'my-4',
                                     'border-gray-600' => $item->done,
-                                    'border-green-500' => $item->priority == 0,
-                                    'border-blue-500' => $item->priority == 1,
-                                    'border-blue-700' => $item->priority == 2,
-                                    'border-yellow-700' => $item->priority == 3,
-                                    'border-orange-700' => $item->priority == 4,
-                                    'border-red-700' => $item->priority == 5,
+                                    'border-green-500' => $item->priority == 0 && !$item->done,
+                                    'border-blue-500' => $item->priority == 1 && !$item->done,
+                                    'border-blue-700' => $item->priority == 2 && !$item->done,
+                                    'border-yellow-700' => $item->priority == 3 && !$item->done,
+                                    'border-orange-700' => $item->priority == 4 && !$item->done,
+                                    'border-red-700' => $item->priority == 5 && !$item->done,
                                 ])>
                                 <div class="w-full text-sm">{{ $item->description }}</div>
                                 <div class="text-center items-center">

@@ -18,13 +18,14 @@ class ShowInvoices extends Component
     }
 
     public function show(int $id){
-        $this->reset();
         $invoice = Invoice::findOrFail($id);
         $this->sform->setInvoice($invoice);
         $this->openShow = true;
     }
 
     public function cerrarShow(){
+        $this->openShow = false;
+        $this->sform->resetForm();
         $this->reset();
     }
 }
