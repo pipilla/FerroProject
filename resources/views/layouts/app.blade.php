@@ -18,6 +18,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
     <!-- Styles -->
     @livewireStyles
@@ -69,7 +70,22 @@
                 confirmButtonText: "Sí, borrarlo"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.dispatchTo('show-media', 'borrarOk', id);
+                    Livewire.dispatchTo('show-media', 'borrarMediaOk', id);
+                }
+            });
+        });
+        Livewire.on('confirmarBorrarCategoria', (id) => {
+            Swal.fire({
+                title: "¿Borrar categoría?",
+                text: "¡Se eliminarán todos los vídeos e imágenes que pertenezcan a la misma!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, borrarla"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('crud-category', 'borrarCategoriaOk', id);
                 }
             });
         });

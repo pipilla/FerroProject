@@ -18,13 +18,18 @@ class FormUpdateMedia extends Form
     #[Rule(['required', 'string', 'min:4', 'max:50'])]
     public string $title = "";
 
-    #[Rule(['required', 'file', 'mimes:jpg,jpeg,png,gif,mp4,mov,avi,webm', 'max:20480'])]
     public $src;
 
     public string $file_type = "";
 
     #[Rule(['required', 'integer', 'exists:categories,id'])]
     public int $category_id = 0;
+
+    public function rules(): array {
+        return [
+            'src' => ($this->src) ? ['required', 'file', 'mimes:jpg,jpeg,png,gif,mp4,mov,avi,webm', 'max:20480'] : [],
+        ];
+    }
 
     public function setMedia(Media $media) {
         $this->media = $media;

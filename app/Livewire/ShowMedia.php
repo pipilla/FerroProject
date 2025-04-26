@@ -61,7 +61,7 @@ class ShowMedia extends Component
         $this->dispatch('confirmarBorrarMedia', $id);
     }
 
-    #[On('borrarOk')]
+    #[On('borrarMediaOk')]
     public function borrar(int $id)
     {
         $media = Media::findOrFail($id);
