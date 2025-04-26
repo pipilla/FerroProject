@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->integer('priority')->default(0);
-            $table->boolean('done')->default(false);
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('from');
+            $table->string('to');
+            $table->date('date');
+            $table->decimal('subtotal')->default(0);
+            $table->decimal('total')->default(0);
+            $table->text('details');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('invoices');
     }
 };

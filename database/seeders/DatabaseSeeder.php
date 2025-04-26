@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
+use App\Models\Concept;
+use App\Models\Invoice;
 use App\Models\Media;
 use App\Models\Task;
+use App\Models\Tax;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,9 +34,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(15)->create();
-        Media::factory(30)->create();
+        Media::factory(4)->create();
         $this->call(PostSeeder::class);
         Comment::factory(50)->create();
-        Task::factory(30)->create();
+        Task::factory(50)->create();
+        
+        Invoice::factory(30)->create();
+        $this->call(TaxSeeder::class);
+        Concept::factory(70)->create();
     }
 }
