@@ -11,13 +11,15 @@ class Concept extends Model
     /** @use HasFactory<\Database\Factories\ConceptFactory> */
     use HasFactory;
 
-    protected $fillable=['description', 'price', 'quantity', 'tax_id', 'invoice_id'];
+    protected $fillable = ['description', 'price', 'quantity', 'tax_id', 'invoice_id'];
 
-    public function invoice(): BelongsTo{
-        return $this->belongsTo(Invoice::class);
+    public function tax(): BelongsTo
+    {
+        return $this->belongsTo(Tax::class);
     }
 
-    public function tax(): BelongsTo{
-        return $this->belongsTo(Tax::class);
+    public function invoice(): BelongsTo
+    {
+        return $this->belongsTo(Invoice::class);
     }
 }
