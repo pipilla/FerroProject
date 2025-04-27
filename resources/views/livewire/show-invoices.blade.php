@@ -3,6 +3,8 @@
     <h1 class="mb-6 text-3xl text-center font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
             class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">Facturas</span></h1>
 
+            @livewire('crear-invoice')
+
     <div class="grid w-full gap-6 md:grid-cols-3">
         @foreach ($invoices as $item)
             <div wire:click="show({{ $item->id }})"
@@ -11,8 +13,6 @@
                     <h1 class="text-xl font-bold">{{ $item->to }}</h1>
                     <h3>{{ $item->date }}</h3>
                 </div>
-                <h3 class="text-center inline-flex">Precio:<p class="font-bold ml-2">{{ $item->total }} €</p>
-                </h3>
             </div>
         @endforeach
     </div>

@@ -1,6 +1,6 @@
 @props(['id' => null, 'maxWidth' => null, 'closeOnClickOutside' => true])
 
-<x-modal :id="$id" :maxWidth="$maxWidth" :close-on-click-outside="$closeOnClickOutside" {{ $attributes }} >
+<x-modal :id="$id" :maxWidth="$maxWidth" :closeOnClickOutside="$closeOnClickOutside" {{ $attributes }} >
     <div class="px-6 py-4">
         <div class="text-lg font-medium text-gray-900">
             {{ $title }}
