@@ -15,7 +15,7 @@ class ShowInvoices extends Component
     #[On('facturaSubida')]
     public function render()
     {
-        $invoices = Invoice::orderBy('date', 'desc')->paginate(24);
+        $invoices = Invoice::orderBy('updated_at', 'desc')->paginate(24);
         return view('livewire.show-invoices', compact('invoices'));
     }
 

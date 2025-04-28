@@ -17,11 +17,14 @@ class FormCrearInvoice extends Form
     #[Rule(['required', 'string', 'min:4', 'max:70'])]
     public string $to = "";
 
-    #[Rule(['required', 'date', new Date('todayOrBefore')])]
+    #[Rule(['required', 'date'])]
     public string $date = "";
 
-    #[Rule(['required', 'string', 'min:0', 'max:255'])]
+    #[Rule(['string', 'min:0', 'max:255'])]
     public string $details = "";
+
+    public float $subtotal = 0;
+    public float $total = 0;
 
     public ?Invoice $invoice = null;
 
@@ -40,7 +43,7 @@ class FormCrearInvoice extends Form
         $this->invoice->update([
             'from' => $this->from,
             'to' => $this->to,
-            'date' => $this->date,
+            'date' =>$this->date, 'Y-m-d',
             'details' => $this->details,
         ]);
     }

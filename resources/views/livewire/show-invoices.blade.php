@@ -108,11 +108,23 @@
                     @endif
                 </x-slot>
                 <x-slot name="footer">
-                    <div class="flex flex-row-reverse">
-                        <button type="button" wire:click="cerrarShow"
-                            class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
-                            <i class="fas fa-xmark mr-2"></i>Cerrar
-                        </button>
+                    <div class="flex justify-between w-full">
+                        <div class="text-left">
+                            <button type="button" wire:click="cerrarShow"
+                                class="bg-blue-500 text-white font-bold p-3 rounded-lg hover:bg-blue-600 transition duration-300">
+                                <i class="fas fa-edit mr-2"></i>Editar
+                            </button>
+                            <button type="button" wire:click="cerrarShow"
+                                class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
+                                <i class="fas fa-edit mr-2"></i>Borrar
+                            </button>
+                        </div>
+                        <div class="flex flex-row-reverse">
+                            <button type="button" wire:click="cerrarShow"
+                                class="bg-gray-500 text-white font-bold p-3 rounded-lg hover:bg-gray-600 transition duration-300">
+                                <i class="fas fa-xmark mr-2"></i>Cerrar
+                            </button>
+                        </div>
                     </div>
                 </x-slot>
             </x-dialog-modal>

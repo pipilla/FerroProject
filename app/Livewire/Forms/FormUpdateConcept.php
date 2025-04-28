@@ -3,15 +3,14 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Concept;
-use App\Models\Invoice;
-use App\Models\Tax;
-use Exception;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class FormCrearConcept extends Form
+class FormUpdateConcept extends Form
 {
+    public ?Concept $concept = null;
+
     #[Rule(['required', 'string', 'min:4', 'max:70'])]
     public string $description = "";
 
@@ -24,25 +23,22 @@ class FormCrearConcept extends Form
     #[Rule(['required', 'integer', 'exists:taxes,id'])]
     public int $tax_id = 1;
 
-    public float $total = 0;
-
-    public function calcularTotal()
-    {
-        $this->validate();
-        $this->total = number_format(($this->price * $this->quantity) + ($this->price * $this->quantity * (Tax::find($this->tax_id)->value / 100)), 2);
+    public function setConcept(int $id) {
+        $this->concept = Concept::findOrFail($id);
+        $this->description = $this->concept->description;
+        $this->price = $this->concept->price;
+        $this->quantity = $this->concept->quantity;
+        $this->tax_id = $this->concept->tax_id;
     }
 
-    public function storeConcept(int $id) {
-        Invoice::findOrFail($id);
-
+    public function updateConcept() {
         $this->validate();
 
-        Concept::create([
+        $this->concept->update([
             'description' => $this->description,
             'price' => $this->price,
             'quantity' => $this->quantity,
             'tax_id' => $this->tax_id,
-            'invoice_id' => $id,
         ]);
 
         $this->formReset();
