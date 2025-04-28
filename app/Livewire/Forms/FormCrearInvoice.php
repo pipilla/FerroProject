@@ -32,7 +32,7 @@ class FormCrearInvoice extends Form
         $this->invoice = Invoice::Create([
             'from' => "borrador",
             'to' => "borrador",
-            'date' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
             'details' => "",
         ]);
     }
@@ -43,7 +43,7 @@ class FormCrearInvoice extends Form
         $this->invoice->update([
             'from' => $this->from,
             'to' => $this->to,
-            'date' =>$this->date, 'Y-m-d',
+            'date' =>$this->date,
             'details' => $this->details,
         ]);
     }

@@ -24,14 +24,6 @@ class FormCrearConcept extends Form
     #[Rule(['required', 'integer', 'exists:taxes,id'])]
     public int $tax_id = 1;
 
-    public float $total = 0;
-
-    public function calcularTotal()
-    {
-        $this->validate();
-        $this->total = number_format(($this->price * $this->quantity) + ($this->price * $this->quantity * (Tax::find($this->tax_id)->value / 100)), 2);
-    }
-
     public function storeConcept(int $id) {
         Invoice::findOrFail($id);
 
