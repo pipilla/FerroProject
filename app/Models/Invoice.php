@@ -11,7 +11,7 @@ class Invoice extends Model
     /** @use HasFactory<\Database\Factories\InvoiceFactory> */
     use HasFactory;
 
-    protected $fillable=['from', 'to', 'date', 'subtotal', 'total', 'details'];
+    protected $fillable=['from', 'to', 'date', 'details'];
 
     public function concepts(): HasMany{
         return $this->hasMany(Concept::class);

@@ -26,20 +26,11 @@ class FormCrearConcept extends Form
 
     public float $total = 0;
 
-    /* public function updated($propertyName)
+    public function updated()
     {
         $this->validate();
-        $this->calculateTotal();
+        $this->total = number_format(($this->price * $this->quantity) + ($this->price * $this->quantity * (Tax::find($this->tax_id)->value / 100)), 2);
     }
-
-    public function calculateTotal()
-    {
-        try {
-            $this->total = number_format(($this->price * $this->quantity) + ($this->price * $this->quantity * (Tax::find($this->tax_id)->value / 100)), 2);
-        } catch (\Throwable $th) {
-            $this->total = 0;
-        }
-    } */
 
     public function storeConcept(int $id) {
         Invoice::findOrFail($id);
@@ -47,7 +38,7 @@ class FormCrearConcept extends Form
         $this->validate();
 
         Concept::create([
-            'decription' => $this->description,
+            'description' => $this->description,
             'price' => $this->price,
             'quantity' => $this->quantity,
             'tax_id' => $this->tax_id,

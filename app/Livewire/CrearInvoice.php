@@ -30,18 +30,27 @@ class CrearInvoice extends Component
 
     public function store()
     {
-        $this->cform->storeInvoice();
-        $this->dispatch('facturaSubida')->to(ShowMedia::class);
         $this->cancelar();
         $this->dispatch('mensaje', 'Factura Subida');
     }
 
-    public function crearConcepto(int $id) {
+    public function guardarConcepto(int $id) {
         Invoice::findOrFail($id);
         $this->conceptForm->storeConcept($id);
+        $this->crearConcepto = false;
+        $this->cform->updateInvoice();
+    }
+
+    public function cancelarConcepto() {
+        $this->crearConcepto = false;
+        $this->conceptForm->formReset();
     }
 
     public function cancelar() {
+        $this->cform->updateInvoice();
+        $this->dispatch('facturaSubida')->to(ShowInvoices::class);
+        $this->crearConcepto = false;
+        $this->conceptForm->formReset();
         $this->openCrear = false;
         $this->cform->formReset();
     }

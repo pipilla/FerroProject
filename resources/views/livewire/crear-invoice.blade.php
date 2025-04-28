@@ -7,19 +7,26 @@
             </span>
         </button>
     </div>
-    <x-dialog-modal maxWidth="5xl" closeOnClickOutside="false" wire:model="openCrear">
+    <x-dialog-modal maxWidth="5xl" wire:model="openCrear">
         <x-slot name="title">
             Nueva Factura
         </x-slot>
         <x-slot name="content">
             <div>
                 <div class="inline-flex justify-between w-full mb-2">
-                    <h1 class="inline-flex">De: <input type="text" class="text-xl font-bold ml-2" />
+                    <h1 class="inline-flex">De: <input type="text" class="text-xl font-bold ml-2 rounded-xl"
+                            placeholder="Nombre, dirección..." id="from" name="from"
+                            wire:model.live="cform.from" />
+                        <x-input-error for="cform.from" />
                     </h1>
-                    <h1 class="inline-flex">Fecha: <input class="text-xl font-bold ml-2" />
+                    <h1 class="inline-flex">Fecha: <input type="date" class="text-xl font-bold ml-2 rounded-xl"
+                            id="date" name="date" wire:model.live="cform.date" />
+                        <x-input-error for="cform.date" />
                     </h1>
                 </div>
-                <h1 class="inline-flex">Para: <input type="text" class="text-xl font-bold ml-2" />
+                <h1 class="inline-flex">Para: <input type="text" class="text-xl font-bold ml-2 rounded-xl"
+                        placeholder="Nombre, dirección..." id="to" name="to" wire:model.live="cform.to" />
+                    <x-input-error for="cform.to" />
                 </h1>
             </div>
             <div class="relative overflow-x-auto my-8">
@@ -44,59 +51,77 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white">
-                        {{-- @foreach ($cform->concepts as $concept)
-                            <tr class="border-b border-gray-200">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    {{ $concept->description }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $concept->quantity }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $concept->tax->value }}%
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ number_format($concept->price, 2) }} €
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ number_format($concept->price * $concept->quantity + $concept->price * $concept->quantity * ($concept->tax->value / 100), 2) }}
-                                    €
-                                </td>
-                            </tr>
-                        @endforeach --}}
-                        @if ($crearConcepto)
+                        @if ($cform->invoice != null)
+                            @foreach ($cform->invoice->concepts as $concept)
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $concept->description }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $concept->quantity }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $concept->tax->value }}%
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ number_format($concept->price, 2) }} €
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ number_format($concept->price * $concept->quantity + $concept->price * $concept->quantity * ($concept->tax->value / 100), 2) }}
+                                        €
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        @if ($openCrear && $crearConcepto)
                             <tr class="border-b border-gray-200">
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     <input type="text" placeholder="Concepto..." id="description" name="description"
-                                        wire:model.live="conceptForm.description">
+                                        class="rounded-xl w-full" wire:model.live="conceptForm.description">
                                     <x-input-error for="conceptForm.description" />
                                 </td>
+
                                 <td class="px-6 py-4">
                                     <input type="number" placeholder="1" id="quantity" name="quantity"
-                                        wire:model="conceptForm.quantity">
+                                        class="rounded-xl w-16 text-center" wire:model.lazy="conceptForm.quantity">
                                     <x-input-error for="conceptForm.quantity" />
                                 </td>
+
                                 <td class="px-6 py-4">
-                                    <select name="tax_id" id="tax_id" wire:model="conceptForm.tax_id">
+                                    <select name="tax_id" id="tax_id" wire:model.lazy="conceptForm.tax_id"
+                                        class="rounded-xl w-full">
                                         @foreach ($taxes as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                     <x-input-error for="conceptForm.tax_id" />
                                 </td>
+
                                 <td class="px-6 py-4">
-                                    <input type="number" placeholder="1" value="0" id="price" name="price"
-                                        wire:model="conceptForm.price"> €
+                                    <input type="number" placeholder="1" id="price" name="price"
+                                        class="rounded-xl w-24 text-center" wire:model.lazy="conceptForm.price">
                                     <x-input-error for="conceptForm.price" />
                                 </td>
-                                <td class="px-6 py-4">
-                                    {{ $conceptForm->total }} €
+
+                                <td class="px-6 py-4 font-semibold">
+                                    <input type="number" id="total" name="total" disabled
+                                        class="rounded-xl w-24 text-center" wire:model.lazy="conceptForm.total">
                                 </td>
                             </tr>
+
                             <tr class="border-b border-gray-200">
-                                <td class="px-6 py-4 text-center" colspan=5>
-                                    <button class="p-2 border-gray-500 border-2 bg-slate-200 rounded-lg"
-                                        wire:click="conceptForm.storeConcept('{{ $cform->invoice }}')">Guardar</button>
+                                <td class="px-6 py-4 text-center" colspan="5">
+                                    <button
+                                        class="p-2 border-gray-500 border-2 bg-slate-200 rounded-lg hover:bg-slate-300 transition"
+                                        wire:click="cancelarConcepto">
+                                        Cancelar
+                                    </button>
+
+                                    <button
+                                        class="p-2 ml-4 border-gray-500 border-2 bg-slate-200 rounded-lg hover:bg-slate-300 transition"
+                                        wire:click="store">
+                                        Guardar
+                                    </button>
                                 </td>
                             </tr>
                         @else
@@ -128,15 +153,19 @@
                     </tfoot>
                 </table>
             </div>
-            {{-- @if ($sform->invoice->details != '')
-                <div>
-                    <p class="text-left font-bold text-lg">Detalles:</p>
-                    <p>{{ $sform->invoice->details }}</p>
-                </div>
-            @endif --}}
+
+            <div>
+                <p class="text-left font-bold text-lg">Detalles:</p>
+                <textarea placeholder="Detalles de la factura..." class="w-full rounded-xl"></textarea>
+            </div>
+
         </x-slot>
         <x-slot name="footer">
             <div class="flex flex-row-reverse">
+                <button type="button" wire:click="store"
+                    class="bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition duration-300">
+                    <i class="fas fa-save mr-2"></i>Guardar
+                </button>
                 <button type="button" wire:click="cancelar"
                     class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
                     <i class="fas fa-xmark mr-2"></i>Cerrar

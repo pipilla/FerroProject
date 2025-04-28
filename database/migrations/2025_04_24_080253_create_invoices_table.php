@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('from');
             $table->string('to');
             $table->date('date');
-            $table->decimal('subtotal')->default(0);
-            $table->decimal('total')->default(0);
             $table->text('details');
             $table->timestamps();
         });

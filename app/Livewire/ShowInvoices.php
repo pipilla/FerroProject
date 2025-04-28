@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\FormShowInvoices;
 use App\Models\Invoice;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ShowInvoices extends Component
@@ -11,6 +12,7 @@ class ShowInvoices extends Component
     public bool $openShow = false;
     public FormShowInvoices $sform;
 
+    #[On('facturaSubida')]
     public function render()
     {
         $invoices = Invoice::orderBy('date', 'desc')->paginate(24);
