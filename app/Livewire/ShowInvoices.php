@@ -68,6 +68,7 @@ class ShowInvoices extends Component
         $invoice = Invoice::findOrFail($id);
         $this->conceptForm->storeConcept($id);
         $this->crearConcepto = false;
+        $this->sform->resetForm();
         $this->sform->setInvoice($invoice);
     }
 
@@ -86,8 +87,10 @@ class ShowInvoices extends Component
 
     public function editConcepto()
     {
+        $invoice = Invoice::findOrFail($this->conceptUpdateForm->concept->invoice_id);
         $this->conceptUpdateForm->updateConcept();
-        $this->sform->setInvoice($this->sform->invoice);
+        $this->sform->resetForm();
+        $this->sform->setInvoice($invoice);
         $this->cancelarUpdateConcepto();
     }
 

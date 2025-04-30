@@ -22,9 +22,10 @@ class FormShowInvoices extends Form
 
             $taxFound = false;
 
-            foreach ($this->taxes as $tax) { 
+            // Al poner &, me quedo con la referencia real del array, no con la copia de los valores
+            foreach ($this->taxes as &$tax) { 
                 if ($tax['id'] == $concept->tax_id) {
-                    $tax['price'] += ($concept->price * $concept->quantity) * ($tax['value'] / 100);
+                    $tax['price'] += ($concept->price * $concept->quantity) * ($concept->tax->value / 100);
                     $taxFound = true;
                     break;
                 }

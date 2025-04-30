@@ -34,6 +34,7 @@ class CrearInvoice extends Component
     public function createInvoice()
     {
         $this->cform->createInvoice();
+        $this->sform->resetForm();
         $this->openCrear = true;
     }
 
@@ -53,6 +54,7 @@ class CrearInvoice extends Component
         $invoice = Invoice::findOrFail($id);
         $this->conceptForm->storeConcept($id);
         $this->crearConcepto = false;
+        $this->sform->resetForm();
         $this->sform->setInvoice($invoice);
     }
 
@@ -71,8 +73,10 @@ class CrearInvoice extends Component
 
     public function editConcepto()
     {
-        $this->sform->setInvoice(Invoice::findOrFail($this->conceptUpdateForm->concept->invoice_id));
+        $invoice = Invoice::findOrFail($this->conceptUpdateForm->concept->invoice_id);
         $this->conceptUpdateForm->updateConcept();
+        $this->sform->resetForm();
+        $this->sform->setInvoice($invoice);
         $this->cancelarUpdateConcepto();
     }
 
