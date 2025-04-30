@@ -260,7 +260,8 @@
                                                 <td class="px-6 py-4">
                                                     <button wire:click="updateConcepto({{ $concept->id }})"><i
                                                             class="fas fa-edit"></i></button>
-                                                    <button><i class="fas fa-trash mx-4"></i></button>
+                                                    <button wire:click="borrarConcepto({{ $concept->id }})"><i
+                                                            class="fas fa-trash mx-4"></i></button>
                                                 </td>
                                             </tr>
                                         @endif
