@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    public function index(Chat $chat)
+    public function index(int $id)
     {
+        $chat = Chat::findOrFail($id);
         $this->authorizeChat($chat);
 
-        return $chat->messages()->with('sender')->latest()->take(50)->get()->reverse()->values();
+        return response()->json(Chat::with('messages.user')
+            ->whereHas('users', fn($q) => $q->where('user_id', Auth::id())) // seguridad
+            ->findOrFail($id)->messages);
     }
 
     public function store(Request $request)
@@ -25,12 +29,13 @@ class MessageController extends Controller
         $chat = Chat::findOrFail($request->chat_id);
         $this->authorizeChat($chat);
 
-        $message = $chat->messages()->create([
+        $message = Message::create([
             'sender_id' => Auth::id(),
+            'chat_id' => $chat->id,
             'content' => $request->content,
         ]);
 
-        return $message->load('sender');
+        return response()->json($message->content);
     }
 
     protected function authorizeChat(Chat $chat)

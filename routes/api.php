@@ -12,5 +12,8 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/chatList', [ChatController::class, 'chatList']);
 Route::get('/user', [ChatController::class, 'user']);
+Route::get('/users', [ChatController::class, 'getUsers']);
 
+Route::post('/chats', [MessageController::class, 'storeChat']);
+Route::get('/messages/{chat}', [MessageController::class, 'index']);
 Route::post('/messages', [MessageController::class, 'store']);

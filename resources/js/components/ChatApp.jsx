@@ -4,7 +4,7 @@ import ChatRoom from './ChatRoom';
 
 const ChatApp = () => {
     const [user, setUser] = useState(null);
-    const [chats, setChats] = useState([]);
+    const [chats, setChats] = useState(undefined);
     const [selectedChat, setSelectedChat] = useState(null);
 
     useEffect(() => {
