@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD:database/migrations/2025_04_30_100732_create_messages_table.php
             $table->foreignId('sender_id')->constrained('users')->cascadeOnDeleteonDelete();
             $table->foreignId('chat_id')->constrained()->cascadeOnDeleteonDelete();
+=======
+>>>>>>> f2aff96 (Cambios para que funcione react):database/migrations/2025_03_20_112158_create_messages_table.php
             $table->text('content');
             $table->timestamps();
         });

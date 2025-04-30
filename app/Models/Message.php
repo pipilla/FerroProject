@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Message extends Model
 {
+<<<<<<< HEAD
     protected $fillable = ['sender_id', 'chat_id', 'content'];
 
     public function sender(): BelongsTo
@@ -19,4 +20,7 @@ class Message extends Model
     {
         return $this->belongsTo(Chat::class);
     }
+=======
+    protected $fillable=['content'];
+>>>>>>> f2aff96 (Cambios para que funcione react)
 }
