@@ -74,6 +74,21 @@
                 }
             });
         });
+        Livewire.on('confirmarBorrarInvoice', (id) => {
+            Swal.fire({
+                title: "¿Borrar factura?",
+                text: "Una vez eliminada no podrás recuperar los datos",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, borrarla"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('show-invoices', 'borrarInvoiceOk', id);
+                }
+            });
+        });
         Livewire.on('confirmarBorrarCategoria', (id) => {
             Swal.fire({
                 title: "¿Borrar categoría?",

@@ -34,20 +34,23 @@ class ShowInvoices extends Component
         return view('livewire.show-invoices', compact('invoices', 'taxes'));
     }
 
-    public function show(int $id){
+    public function show(int $id)
+    {
         $invoice = Invoice::findOrFail($id);
         $this->sform->resetForm();
         $this->sform->setInvoice($invoice);
         $this->openShow = true;
     }
 
-    public function update() {
+    public function update()
+    {
         $this->uform->setInvoice($this->sform->invoice);
         $this->openEdit = true;
         $this->openShow = false;
     }
 
-    public function edit() {
+    public function edit()
+    {
         $this->uform->updateInvoice();
         $this->crearConcepto = false;
         $this->conceptForm->formReset();
@@ -56,7 +59,8 @@ class ShowInvoices extends Component
         $this->dispatch('mensaje', 'Factura Subida');
     }
 
-    public function cerrarEdit() {
+    public function cerrarEdit()
+    {
         $this->crearConcepto = false;
         $this->conceptForm->formReset();
         $this->uform->formReset();
@@ -100,14 +104,33 @@ class ShowInvoices extends Component
         $this->conceptUpdateForm->formReset();
     }
 
-    public function borrarConcepto(int $id) {
+    public function borrarConcepto(int $id)
+    {
+        $invoice = $this->sform->invoice;
         $concept = Concept::findOrFail($id);
         $concept->delete();
+        $this->sform->resetForm();
+        $this->sform->setInvoice($invoice);
     }
 
-    public function cerrarShow(){
+    public function cerrarShow()
+    {
         $this->openShow = false;
         $this->sform->resetForm();
         $this->reset();
+    }
+
+    public function confirmarBorrar(int $id) {
+        Invoice::findOrFail($id);
+        $this->dispatch('confirmarBorrarInvoice', $id);
+    }
+
+    #[On('borrarInvoiceOk')]
+    public function borrar(int $id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        $this->cerrarShow();
+        $invoice->delete();
+        $this->dispatch('mensaje', 'Factura eliminada');
     }
 }

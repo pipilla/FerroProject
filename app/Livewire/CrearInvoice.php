@@ -86,6 +86,14 @@ class CrearInvoice extends Component
         $this->conceptUpdateForm->formReset();
     }
 
+    public function borrarConcepto(int $id) {
+        $invoice = $this->sform->invoice;
+        $concept = Concept::findOrFail($id);
+        $concept->delete();
+        $this->sform->resetForm();
+        $this->sform->setInvoice($invoice);
+    }
+
     public function cancelar()
     {
         $this->dispatch('facturaSubida')->to(ShowInvoices::class);
