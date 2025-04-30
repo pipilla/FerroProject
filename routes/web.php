@@ -19,5 +19,9 @@ Route::middleware([
     })->name('dashboard');
     Route::get('/tareas', ShowTasks::class)->name('tareas');
     Route::get('/facturas', ShowInvoices::class)->name('facturas');
+
+    Route::get('/chat', function () {
+        return view('chat');
+    })->name('chat');
 });
 Route::get('/galeria', ShowMedia::class)->name('galeria');
