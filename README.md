@@ -18,7 +18,7 @@ La web está construida con **Laravel - Jetstream**, **Tailwind CSS** y **React*
 ### Para los trabajadores:
 - **Chat interno:** Comunicación directa entre los miembros del equipo.
 - **Lista de tareas:** Asignación y seguimiento de tareas para los empleados. >>> Terminado
-- **Generador de facturas:** Herramienta para crear facturas de forma automática.
+- **Generador de facturas:** Herramienta para crear facturas de forma automática. >>> Terminado
 
 ## Info Adicional
 

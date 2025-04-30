@@ -48,7 +48,7 @@ class CrudCategory extends Component
         $this->selectedCategory->update(['name' => $this->name]);
 
         $this->dispatch('mensaje', 'Categoría actualizada');
-        $this->dispatch('contenidoSubido')->to($this->class);
+        $this->dispatch('contenidoSubido')->to(CrudCategory::class);
         $this->dispatch('contenidoSubido')->to(ShowMedia::class);
         $this->resetValidation();
         $this->selectedCategory = null;
