@@ -7,7 +7,6 @@ use App\Models\Concept;
 use App\Models\Invoice;
 use App\Models\Media;
 use App\Models\Task;
-use App\Models\Tax;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -33,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        User::factory(15)->create();
+        User::factory(5)->create();
         Media::factory(4)->create();
         $this->call(PostSeeder::class);
         Comment::factory(50)->create();
@@ -42,5 +41,7 @@ class DatabaseSeeder extends Seeder
         Invoice::factory(20)->create();
         $this->call(TaxSeeder::class);
         Concept::factory(70)->create();
+
+        $this->call(ChatSeeder::class);
     }
 }

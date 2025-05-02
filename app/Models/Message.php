@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Message extends Model
 {
-    /** @use HasFactory<\Database\Factories\ConceptFactory> */
-    use HasFactory;
-
     protected $fillable = ['sender_id', 'chat_id', 'content'];
 
     public function sender(): BelongsTo
