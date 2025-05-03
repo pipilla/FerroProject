@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ShowChat;
 use App\Livewire\ShowInvoices;
 use App\Livewire\ShowMedia;
 use App\Livewire\ShowTasks;
@@ -20,8 +21,6 @@ Route::middleware([
     Route::get('/tareas', ShowTasks::class)->name('tareas');
     Route::get('/facturas', ShowInvoices::class)->name('facturas');
 
-    Route::get('/chat', function () {
-        return view('chat');
-    })->name('chat');
+    Route::get('/chat', ShowChat::class)->name('chat');
 });
 Route::get('/galeria', ShowMedia::class)->name('galeria');
