@@ -69,8 +69,7 @@
                     </div>
 
                     <!-- Interacciones -->
-                    <div class="flex flex-row-reverse gap-2 space-4 text-gray-500 dark:text-gray-400">
-                        <button class="hover:text-blue-600"><i class="fas fa-share"></i></button>
+                    <div class="flex space-4 text-gray-500 dark:text-gray-400">
                         <button class="hover:text-blue-600" wire:click="showComments({{ $post->id }})"><i
                                 class="fas fa-comment"></i></button>
                     </div>
@@ -80,42 +79,73 @@
                 @if ($showPostComments == $post->id)
                     <div class="mt-6 space-y-6">
                         @foreach ($comentariosPadre as $commentPadre)
-                            <div class="bg-gray-300 dark:bg-gray-800 p-2 rounded-xl shadow-sm">
+                            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl shadow-sm">
                                 <!-- Comentario padre -->
                                 <div class="mb-2">
                                     <p class="text-sm text-gray-600 dark:text-gray-400">
-                                        <span
-                                            class="font-semibold text-gray-900 dark:text-white">{{ $commentPadre->user->name }}</span>
-                                        <span class="text-xs text-gray-400">({{ $commentPadre->user->email }})</span>
+                                        <span class="font-semibold text-gray-900 dark:text-white">
+                                            {{ $commentPadre->user->name }}
+                                        </span>
+                                        <span class="text-xs text-gray-400">
+                                            ({{ $commentPadre->user->email }})
+                                        </span>
                                     </p>
-                                    <p class="text-gray-800 dark:text-gray-200 mt-1">{{ $commentPadre->message }}</p>
-                                    <button wire:click="responder({{$commentPadre->id}})">Responder</button>
+                                    <p class="text-gray-800 dark:text-gray-200 mt-1">
+                                        {{ $commentPadre->message }}
+                                    </p>
+                                    @auth
+                                        <button wire:click="responder({{ $commentPadre->id }})"
+                                            class="mt-2 text-blue-600 hover:underline text-sm">
+                                            Responder
+                                        </button>
+                                    @endauth
                                 </div>
 
                                 <!-- Comentarios hijo (respuestas) -->
                                 @foreach ($comentariosHijo[$commentPadre->id] ?? [] as $commentHijo)
                                     <div class="ml-6 mt-4 border-l-2 border-gray-300 dark:border-gray-600 pl-4">
                                         <p class="text-sm text-gray-600 dark:text-gray-400">
-                                            <span
-                                                class="font-semibold text-gray-900 dark:text-white">{{ $commentHijo->user->name }}</span>
-                                            <span
-                                                class="text-xs text-gray-400">({{ $commentHijo->user->email }})</span>
+                                            <span class="font-semibold text-gray-900 dark:text-white">
+                                                {{ $commentHijo->user->name }}
+                                            </span>
+                                            <span class="text-xs text-gray-400">
+                                                ({{ $commentHijo->user->email }})
+                                            </span>
                                         </p>
-                                        <p class="text-gray-700 dark:text-gray-300 mt-1">{{ $commentHijo->message }}
+                                        <p class="text-gray-700 dark:text-gray-300 mt-1">
+                                            {{ $commentHijo->message }}
                                         </p>
                                     </div>
                                 @endforeach
-
-                                @if ($responderComentario == $commentPadre->id)
-                                    <input type="text">
-                                    <button>Enviar</button>
-                                @endif
                             </div>
                         @endforeach
-                        <div>
-                            <input type="text">
-                            <button>Enviar</button>
-                        </div>
+
+                        <!-- Formulario de respuesta -->
+                        @auth
+                            <div class="mt-4">
+                                @if ($responderComentario)
+                                    <button class="flex group relative inline-block" wire:click="cancelarResponder">
+                                        <p class="text-sm text-gray-700 dark:text-gray-300 mb-1">
+                                            Responder a <strong>{{ $responderComentario->user->name }}</strong>
+                                        </p>
+                                        <i class="fas fa-xmark hidden group-hover:inline text-sm ml-2"></i>
+                                    </button>
+                                @endif
+                                <form
+                                    wire:submit.prevent="crearComentario({{ $post->id }}{{ $responderComentario ? ',' . $responderComentario->id : '' }})">
+                                    <div class="flex items-start gap-2">
+                                        <input type="text" wire:model.lazy="ccform.message" id="message"
+                                            class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring focus:ring-blue-200 dark:bg-gray-900 dark:text-white"
+                                            placeholder="Escribe tu comentario...">
+                                        <x-input-error for="ccform.message" />
+                                        <button type="submit"
+                                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+                                            Enviar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        @endauth
                     </div>
                 @endif
 

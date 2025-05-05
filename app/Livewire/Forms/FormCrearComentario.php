@@ -15,20 +15,17 @@ class FormCrearComentario extends Form
     public string $message = "";
 
     public function store(int $post_id, ?int $comment_id = null){
-        $this->validate();
-        $post = Post::findOrFail($post_id);
+        Post::findOrFail($post_id);
         if($comment_id != null) {
-            $commentPadre = Comment::findOrFail($comment_id);
+            Comment::findOrFail($comment_id);
         }
-        $comment = Comment::create([
+        $this->validate();
+        Comment::create([
             'message' => $this->message,
             'comment_id' => ($comment_id != null) ? ($comment_id) : null,
             'post_id' => $post_id,
             'user_id' => Auth::id(),
         ]);
-        if($comment_id != null) {
-            $commentPadre->commentChild->attach($comment);
-        }
 
         $this->reset();
     }
