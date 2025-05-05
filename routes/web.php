@@ -3,6 +3,7 @@
 use App\Livewire\ShowChat;
 use App\Livewire\ShowInvoices;
 use App\Livewire\ShowMedia;
+use App\Livewire\ShowPosts;
 use App\Livewire\ShowTasks;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,4 @@ Route::middleware([
     Route::get('/chat', ShowChat::class)->name('chat');
 });
 Route::get('/galeria', ShowMedia::class)->name('galeria');
+Route::get('/posts', ShowPosts::class)->name('posts');
