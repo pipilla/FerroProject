@@ -47,6 +47,7 @@ class ShowMediaModal extends Component
     public function sendMedia(int $id) {
         Media::findOrFail($id);
         $this->dispatch('addMedia', $id)->to(CrearPost::class);
+        $this->dispatch('addMedia', $id)->to(ShowPosts::class);
         $this->cerrar();
     }
 

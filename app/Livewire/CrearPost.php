@@ -14,7 +14,7 @@ class CrearPost extends Component
 
     public FormCrearPost $cform;
 
-    
+
     public function render()
     {
         $tags = Tag::orderBy('name')->get();
@@ -30,7 +30,15 @@ class CrearPost extends Component
         }
     }
 
-    public function publicar() {
+    public function removeMedia(int $id)
+    {
+        $this->cform->selectedMedia = collect($this->cform->selectedMedia)
+            ->reject(fn($item) => $item['id'] === $id)
+            ->values();
+    }
+
+    public function publicar()
+    {
         $this->cform->store();
         $this->reset();
         $this->dispatch('contenidoSubido')->to(ShowPosts::class);

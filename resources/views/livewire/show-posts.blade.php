@@ -110,7 +110,7 @@
                         @auth
                             @if (Auth::user()->role >= 2 || Auth::id() == $post->user->id)
                                 <button class="hover:text-blue-600 ml-2 hover:scale-110 transition-transform duration-200"
-                                    wire:click="showComments({{ $post->id }})"><i class="fas fa-gear"></i></button>
+                                    wire:click="managePost({{ $post->id }})"><i class="fas fa-gear"></i></button>
                             @endif
                         @endauth
                     </div>
@@ -197,5 +197,89 @@
             {{ $posts->links() }}
         </div>
     </div>
+
+    @if ($openUpdate)
+        <x-dialog-modal wire:model="openUpdate">
+            <x-slot name="title">
+                Crear Post
+            </x-slot>
+            <x-slot name="content">
+                <!-- Título -->
+                <div class="relative mb-4">
+                    <label for="title" class="sr-only">Título</label>
+                    <input type="text" id="titulo" name="title" placeholder="Título del contenido"
+                        wire:model.live="uform.title"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <x-input-error for="uform.title" />
+                </div>
+
+                <!-- Descripcción -->
+                <div class="relative mb-4">
+                    <label for="description" class="sr-only">Descripción</label>
+                    <textarea id="description" name="description" placeholder="Descripción del post..."
+                        wire:model.live="uform.description"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </textarea>
+                    <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <x-input-error for="uform.description" />
+                </div>
+
+                <!-- Media -->
+                <div class="mt-4 w-full text-center">
+                    @livewire('show-media-modal')
+                    <div>
+                        @if (!empty($uform->selectedMedia))
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                @foreach ($uform->selectedMedia as $item)
+                                    <button wire:click="removeMedia({{ $item->id }})">
+                                        @if (str_starts_with($item->file_type, 'image/'))
+                                            <img class="h-full w-full object-cover rounded-lg"
+                                                src="{{ Storage::url($item->src) }}" alt="{{ $item->title }}">
+                                        @elseif(str_starts_with($item->file_type, 'video/'))
+                                            <video class="h-full w-full object-cover rounded-lg">
+                                                <source src="{{ Storage::url($item->src) }}"
+                                                    type="{{ $item->file_type }}">
+                                            </video>
+                                        @endif
+                                    </button>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <x-input-error for="uform.selectedMedia" />
+
+                <!-- Tags -->
+                <div class="relative mb-4">
+                    <label for="tags" class="block text-sm font-medium text-gray-700 mb-2">Etiquetas</label>
+                    <div class="flex flex-wrap gap-2">
+                        @foreach ($tags as $tag)
+                            <label
+                                class="flex items-center space-x-2 text-sm bg-gray-100 px-3 py-1 rounded-full cursor-pointer">
+                                <input type="checkbox" wire:model="uform.tags" value="{{ $tag->id }}"
+                                    class="form-checkbox text-indigo-600">
+                                <span>{{ $tag->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                    <x-input-error for="uform.tags" />
+                </div>
+
+            </x-slot>
+            <x-slot name="footer">
+                <div class="flex flex-row-reverse">
+                    <button type="button" wire:click="update" wire:loading.attr="disabled"
+                        class=" bg-blue-500 text-white font-bold p-3 rounded-lg hover:bg-blue-600 transition duration-300">
+                        <i class="fas fa-paper-plane mr-2"></i>Editar
+                    </button>
+                    <button type="button" wire:click="cancelarUpdate"
+                        class="mr-4 bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
+                        <i class="fas fa-xmark mr-2"></i>Cerrar
+                    </button>
+                </div>
+            </x-slot>
+        </x-dialog-modal>
+    @endif
 
 </x-self.base>

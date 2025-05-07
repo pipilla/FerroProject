@@ -3,7 +3,9 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\FormCrearComentario;
+use App\Livewire\Forms\FormUpdatePost;
 use App\Models\Comment;
+use App\Models\Media;
 use App\Models\Post;
 use App\Models\Tag;
 use Livewire\Attributes\On;
@@ -24,9 +26,13 @@ class ShowPosts extends Component
     public FormCrearComentario $ccform;
     public ?Comment $responderComentario = null;
 
+    public bool $openUpdate = false;
+    public FormUpdatePost $uform;
+
     #[On('contenidoSubido')]
     public function render()
     {
+        $tags = Tag::orderBy('name')->get();
         $posts = Post::orderBy('updated_at', 'desc')
             ->with('media', 'user', 'tags', 'comments')
             ->where(function ($q) {
@@ -48,9 +54,7 @@ class ShowPosts extends Component
 
         $posts = $posts->paginate(15);
 
-        return view('livewire.show-posts', compact('posts'));
-
-        return view('livewire.show-posts', compact('posts'));
+        return view('livewire.show-posts', compact('posts', 'tags'));
     }
 
     #[On('comentarioSubido')]
@@ -107,5 +111,55 @@ class ShowPosts extends Component
     public function cancelarResponder()
     {
         $this->reset('responderComentario');
+    }
+
+    public function managePost(int $id) {
+        Post::findOrFail($id);
+        $this->dispatch('onManagePost', $id);
+    }
+
+    #[On('editOk')]
+    public function edit(int $id){
+        $post = Post::findOrFail($id);
+        $this->authorize('update', $post);
+        $this->uform->setPost($id);
+        $this->openUpdate = true;
+    }
+
+    public function update() {
+        $this->cform->update();
+        $this->openUpdate = false;
+        $this->dispatch('mensaje', "Post actualizado");
+    }
+
+    #[On('addMedia')]
+    public function addMedia(int $id)
+    {
+        $media = Media::findOrFail($id);
+        if (!in_array($media, $this->uform->selectedMedia)) {
+            $this->uform->selectedMedia[] = $media;
+        }
+    }
+
+    public function removeMedia(int $id)
+    {
+        $media = Media::findOrFail($id);
+        $this->uform->selectedMedia = array_filter(
+            $this->uform->selectedMedia,
+            fn($item) => $item->id !== $media->id
+        );
+    }
+
+    public function cancelarUpdate(){
+        $this->uform->formReset();
+        $this->openUpdate = false;
+    }
+
+    #[On('borrarOk')]
+    public function delete(int $id){
+        $post = Post::findOrFail($id);
+        $this->authorize('delete', $post);
+        $post->delete();
+        $this->dispatch('mensaje', "Post eliminado");
     }
 }
