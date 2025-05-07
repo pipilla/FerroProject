@@ -14,12 +14,14 @@
             @foreach ($selectedTags as $tag)
                 <button type="button" wire:click="quitarTag({{ $tag->id }})"
                     class='text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-bold'>{{ $tag->name }}
-                <i class="fas fa-xmark ml-1 "></i>
+                    <i class="fas fa-xmark ml-1 "></i>
                 </button>
             @endforeach
         </div>
 
-        @livewire('crear-post')
+        @auth
+            @livewire('crear-post')
+        @endauth
     </div>
 
 
@@ -98,7 +100,7 @@
 
                     <!-- Interacciones -->
                     <div class="flex space-4 text-gray-500 dark:text-gray-400">
-                        @if (!$showPostComments)
+                        @if (!$showPostComments || $showPostComments != $post->id)
                             <button class="hover:text-blue-600 hover:scale-110 transition-transform duration-200"
                                 wire:click="showComments({{ $post->id }})"><i class="fas fa-comment"></i></button>
                         @elseif($showPostComments == $post->id)
@@ -171,7 +173,7 @@
                                     </button>
                                 @endif
                                 <form
-                                    wire:submit.prevent="crearComentario({{ $post->id }}{{ $responderComentario ? ',' . $responderComentario->id : '' }})">
+                                    wire:submit.lazy="crearComentario({{ $post->id }}{{ $responderComentario ? ',' . $responderComentario->id : '' }})">
                                     <div class="flex items-start gap-2">
                                         <input type="text" wire:model.lazy="ccform.message" id="message"
                                             class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring focus:ring-blue-200 dark:bg-gray-900 dark:text-white"
