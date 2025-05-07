@@ -4,13 +4,41 @@
             class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">Posts</span></h1>
 
     <!-- Buscador -->
-    <div class="pb-2">
-        <input type="text" placeholder="Buscar post..." class="rounded-full" />
+    <div class="pb-4 px-4 md:px-10 flex justify-between">
+        <div>
+            <i class="fas fa-magnifying-glass mr-2"></i>
+            <input type="search" placeholder="Buscar post..." class="rounded-full" wire:model.live="buscar" />
+        </div>
+
+        <div>
+            @foreach ($selectedTags as $tag)
+                <button type="button" wire:click="quitarTag({{ $tag->id }})"
+                    class='text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-bold'>{{ $tag->name }}
+                <i class="fas fa-xmark ml-1 "></i>
+                </button>
+            @endforeach
+        </div>
+
+        @livewire('crear-post')
     </div>
+
 
     <div class="space-y-10 px-4 md:px-10">
         @foreach ($posts as $post)
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 space-y-4">
+
+                <div class="flex justify-between">
+                    <!-- Título -->
+                    <p class="text-black dark:text-white text-xl">
+                        {{ $post->title }}
+                    </p>
+
+                    <!-- Usuario -->
+                    <p class="text-black dark:text-white italic text-sm">
+                        {{ $post->user->name }}
+                    </p>
+
+                </div>
 
                 <!-- Carrusel -->
                 <div id="post-{{ $loop->index }}" class="relative w-full" data-carousel="slide">
@@ -61,8 +89,8 @@
                     <!-- Tags -->
                     <div class="flex flex-wrap gap-2">
                         @foreach ($post->tags as $tag)
-                            <button
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                            <button wire:click="anadirTag({{ $tag->id }})"
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 hover:scale-105 transition-transform duration-200">
                                 #{{ $tag->name }}
                             </button>
                         @endforeach
@@ -70,8 +98,19 @@
 
                     <!-- Interacciones -->
                     <div class="flex space-4 text-gray-500 dark:text-gray-400">
-                        <button class="hover:text-blue-600" wire:click="showComments({{ $post->id }})"><i
-                                class="fas fa-comment"></i></button>
+                        @if (!$showPostComments)
+                            <button class="hover:text-blue-600 hover:scale-110 transition-transform duration-200"
+                                wire:click="showComments({{ $post->id }})"><i class="fas fa-comment"></i></button>
+                        @elseif($showPostComments == $post->id)
+                            <button class="hover:text-blue-600 hover:scale-110 transition-transform duration-200"
+                                wire:click="cerrarComentarios"><i class="fas fa-comment"></i></button>
+                        @endif
+                        @auth
+                            @if (Auth::user()->role >= 2 || Auth::id() == $post->user->id)
+                                <button class="hover:text-blue-600 ml-2 hover:scale-110 transition-transform duration-200"
+                                    wire:click="showComments({{ $post->id }})"><i class="fas fa-gear"></i></button>
+                            @endif
+                        @endauth
                     </div>
                 </div>
 
