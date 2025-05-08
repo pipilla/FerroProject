@@ -45,11 +45,16 @@
                 <!-- Carrusel -->
                 <div id="post-{{ $loop->index }}" class="relative w-full" data-carousel="slide">
                     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                        @foreach ($post->media as $media)
+                        @foreach ($post->media as $item)
                             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="{{ $media->src }}"
-                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
-                                    alt="Media image">
+                                @if (str_starts_with($item->file_type, 'image/'))
+                                    <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                                        src="{{ Storage::url($item->src) }}" alt="{{ $item->title }}">
+                                @elseif(str_starts_with($item->file_type, 'video/'))
+                                    <video class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover">
+                                        <source src="{{ Storage::url($item->src) }}" type="{{ $item->file_type }}">
+                                    </video>
+                                @endif
                             </div>
                         @endforeach
                     </div>
