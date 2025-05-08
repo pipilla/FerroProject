@@ -232,6 +232,9 @@
                         @if (!empty($uform->selectedMedia))
                             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 @foreach ($uform->selectedMedia as $item)
+                                @php
+                                $item = App\Models\Media::findOrFail($item);
+                            @endphp
                                     <button wire:click="removeMedia({{ $item->id }})">
                                         @if (str_starts_with($item->file_type, 'image/'))
                                             <img class="h-full w-full object-cover rounded-lg"

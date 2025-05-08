@@ -24,17 +24,17 @@ class CrearPost extends Component
     #[On('addMedia')]
     public function addMedia(int $id)
     {
-        $media = Media::findOrFail($id);
-        if (!in_array($media, $this->cform->selectedMedia)) {
-            $this->cform->selectedMedia[] = $media;
+        Media::findOrFail($id);
+        if (!in_array($id, $this->cform->selectedMedia)) {
+            $this->cform->selectedMedia[] = $id;
         }
     }
 
     public function removeMedia(int $id)
     {
-        $this->cform->selectedMedia = collect($this->cform->selectedMedia)
-            ->reject(fn($item) => $item['id'] === $id)
-            ->values();
+        $this->cform->selectedMedia = array_values(
+            array_filter($this->cform->selectedMedia, fn($item) => $item !== $id)
+        );
     }
 
     public function publicar()
