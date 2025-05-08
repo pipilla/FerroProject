@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\FormCrearPost;
+use App\Livewire\Forms\FormCrearTag;
 use App\Models\Media;
 use App\Models\Tag;
 use Livewire\Attributes\On;
@@ -14,6 +15,8 @@ class CrearPost extends Component
 
     public FormCrearPost $cform;
 
+    public bool $addTag = false;
+    public FormCrearTag $ftag;
 
     public function render()
     {
@@ -43,6 +46,16 @@ class CrearPost extends Component
         $this->reset();
         $this->dispatch('contenidoSubido')->to(ShowPosts::class);
         $this->dispatch('mensaje', "Post creado");
+    }
+
+    public function nuevaEtiqueta() {
+        $this->addTag = true;
+        $this->ftag->formReset();
+    }
+
+    public function guardarTag() {
+        $this->ftag->store();
+        $this->addTag = false;
     }
 
     public function cancelar()

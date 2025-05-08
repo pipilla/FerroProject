@@ -232,9 +232,9 @@
                         @if (!empty($uform->selectedMedia))
                             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 @foreach ($uform->selectedMedia as $item)
-                                @php
-                                $item = App\Models\Media::findOrFail($item);
-                            @endphp
+                                    @php
+                                        $item = App\Models\Media::findOrFail($item);
+                                    @endphp
                                     <button wire:click="removeMedia({{ $item->id }})">
                                         @if (str_starts_with($item->file_type, 'image/'))
                                             <img class="h-full w-full object-cover rounded-lg"
@@ -265,6 +265,24 @@
                                 <span>{{ $tag->name }}</span>
                             </label>
                         @endforeach
+                        @if (!$addTag)
+                            <label
+                                class="flex items-center space-x-2 text-sm bg-gray-100 px-3 py-1 rounded-full cursor-pointer">
+                                <button wire:click="nuevaEtiqueta" class="text-gray-700 hover:text-gray-900">
+                                    <i class="fas fa-add mr-2"></i>Nueva etiqueta
+                                </button>
+                            </label>
+                        @else
+                            <div class="flex items-center space-x-2 bg-gray-100 px-3 py-1 rounded-full">
+                                <input type="text" wire:model="ftag.name" placeholder="Nueva etiqueta..."
+                                    class="px-2 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <x-input-error for="ftag.name" class="text-red-500 text-xs mt-1" />
+                                <button wire:click="guardarTag"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    Guardar tag
+                                </button>
+                            </div>
+                        @endif
                     </div>
                     <x-input-error for="uform.tags" />
                 </div>

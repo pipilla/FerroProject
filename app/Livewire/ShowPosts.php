@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\FormCrearComentario;
+use App\Livewire\Forms\FormCrearTag;
 use App\Livewire\Forms\FormUpdatePost;
 use App\Models\Comment;
 use App\Models\Media;
@@ -28,6 +29,9 @@ class ShowPosts extends Component
 
     public bool $openUpdate = false;
     public FormUpdatePost $uform;
+
+    public bool $addTag = false;
+    public FormCrearTag $ftag;
 
     #[On('contenidoSubido')]
     public function render()
@@ -151,6 +155,16 @@ class ShowPosts extends Component
     public function cancelarUpdate(){
         $this->uform->formReset();
         $this->openUpdate = false;
+    }
+
+    public function nuevaEtiqueta() {
+        $this->addTag = true;
+        $this->ftag->formReset();
+    }
+
+    public function guardarTag() {
+        $this->ftag->store();
+        $this->addTag = false;
     }
 
     #[On('borrarOk')]
