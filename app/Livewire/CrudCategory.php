@@ -27,6 +27,8 @@ class CrudCategory extends Component
     public function cancelar()
     {
         $this->openModal = false;
+        $this->reset();
+        $this->resetValidation();
     }
 
     public function rules(?int $id = null): array
@@ -38,6 +40,7 @@ class CrudCategory extends Component
 
     public function edit(int $id)
     {
+        $this->reset('openCreate');
         $this->selectedCategory =  Category::findOrFail($id);
     }
 
@@ -57,7 +60,8 @@ class CrudCategory extends Component
 
     public function create()
     {
-        $this->openCreate = true;
+        $this->reset('selectedCategory');
+        $this->openCreate = !$this->openCreate;
     }
 
     public function store()
@@ -74,7 +78,7 @@ class CrudCategory extends Component
 
     public function confirmarBorrar(int $id)
     {
-        $category = Category::findOrFail($id);
+        Category::findOrFail($id);
         $this->dispatch('confirmarBorrarCategoria', $id);
     }
 
