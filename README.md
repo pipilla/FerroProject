@@ -33,3 +33,8 @@ El usuario tiene un campo **rol**, que otorgará diferentes permisos dependiendo
 Las tareas tienen un campo "**priority**", siendo **5** la más importante y **0** la menos. 
 
 También, un campo "**done**", que indicará si la tarea se ha realizado o no.
+
+#
+
+Falta hacer la landing page, el formulario de contacto, solucionar lo de los vídeos y terminar el chat. 
+También queda empezar la documentación.
