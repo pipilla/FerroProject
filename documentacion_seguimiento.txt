@@ -31,3 +31,5 @@ Creo la ruta de descarga de la factura:
 Route::get('/factura/{invoice}/pdf', [FacturasPdfController::class, 'download'])->name('factura.pdf');
 
 Luego creo el archivo pdf/facturas.blade.php, en el que tengo que meter los estilos con css a mano, porque el paquete de pdf no interpreta las clases de tailwind.
+
+Por último, pongo el botón para descargar el pdf de la factura en la parte de mostrar facturas, lo hago con route('factura.pdf', $sform->invoice->id).
