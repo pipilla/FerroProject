@@ -3,7 +3,7 @@
             class="relative inline-flex items-center justify-center p-1 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-2xl group bg-gradient-to-br to-blue-600 from-sky-400 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 hover:scale-105 transition-transform duration-200">
             <span
                 class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-xl group-hover:bg-transparent group-hover:dark:bg-transparent">
-                <i class="fas fa-plus"></i> Nueva Tarea
+                <i class="fas fa-plus"></i> Nueva Factura
             </span>
         </button>
     </div>
