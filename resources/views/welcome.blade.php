@@ -6,10 +6,10 @@
                 <h1 class="text-4xl font-bold mb-4">Bienvenido a Nuestra Página</h1>
                 <p class="text-lg text-gray-700 mb-6">Explora nuestra galería, descubre nuestros posts y contáctanos fácilmente.</p>
                 <div class="flex justify-center space-x-4">
-                    <a class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center">
+                    <a class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center" href="{{route('galeria')}}">
                         <i class="fas fa-images mr-2"></i> Galería
                     </a>
-                    <a class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center">
+                    <a class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center" href="{{route('posts')}}">
                         <i class="fas fa-newspaper mr-2"></i> Posts
                     </a>
                 </div>
@@ -19,26 +19,26 @@
         <!-- Servicios / Enlaces Rápidos -->
         <section class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                <div class="p-6 rounded-lg shadow hover:shadow-md transition">
+                <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{route('galeria')}}">
                     <i class="fas fa-camera-retro text-3xl text-blue-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Galería</h3>
                     <p class="text-gray-600 text-sm">Descubre nuestras imágenes más recientes.</p>
-                </div>
-                <div class="p-6 rounded-lg shadow hover:shadow-md transition">
+                </a>
+                <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{route('posts')}}">
                     <i class="fas fa-blog text-3xl text-green-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Posts</h3>
                     <p class="text-gray-600 text-sm">Lee artículos, noticias y actualizaciones.</p>
-                </div>
-                <div class="p-6 rounded-lg shadow hover:shadow-md transition">
+                </a>
+                <a class="p-6 rounded-lg shadow hover:shadow-md transition">
                     <i class="fas fa-envelope text-3xl text-red-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Formulario de Contacto</h3>
                     <p class="text-gray-600 text-sm">Envíanos tus consultas fácilmente.</p>
-                </div>
-                <div class="p-6 rounded-lg shadow hover:shadow-md transition">
+                </a>
+                <a class="p-6 rounded-lg shadow hover:shadow-md transition">
                     <i class="fas fa-building text-3xl text-yellow-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Datos de la Empresa</h3>
                     <p class="text-gray-600 text-sm">Conoce quiénes somos y qué hacemos.</p>
-                </div>
+                </a>
             </div>
         </section>
 
