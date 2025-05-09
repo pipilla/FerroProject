@@ -14,3 +14,20 @@ Partes que faltan de la base de datos:
 - Otras. A lo largo del proyecto, seguramente será necesario ir modificándola, tanto para implementar cosas nuevas como para mejorarla.
 
 De momento me voy a enfocar en tener lo básico (supongo que será el 50 o 60% del proyecto), y a partir de ahí implementar las funcionalidades más complicadas, diseño y despliegue.
+
+
+-----
+
+Para la descarga de los pdf en las facturas, usaré el paquete de barryvdh/laravel-dompdf.
+
+Creo el controlador para descargar la factura en pdf:
+
+php artisan make:controller FacturasPdfController
+
+Y aquí añado el método para pasar los datos a la vista que crearé más adelante, que se cargará por el método loadview de pdf, y luego se devolverá con el método stream, aunque tambien se puede devolver el método download, que directamente te descarga el pdf.
+
+Creo la ruta de descarga de la factura: 
+
+Route::get('/factura/{invoice}/pdf', [FacturasPdfController::class, 'download'])->name('factura.pdf');
+
+Luego creo el archivo pdf/facturas.blade.php

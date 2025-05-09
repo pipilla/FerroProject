@@ -127,6 +127,10 @@
                                 class="bg-gray-500 text-white font-bold p-3 rounded-lg hover:bg-gray-600 transition duration-300">
                                 <i class="fas fa-xmark mr-2"></i>Cerrar
                             </button>
+                            <a href="{{ route('factura.pdf', $sform->invoice->id) }}"
+                                class="bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition duration-300 mr-2">
+                                Descargar PDF
+                             </a>
                         </div>
                     </div>
                 </x-slot>
