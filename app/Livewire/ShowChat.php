@@ -7,15 +7,19 @@ use App\Models\Chat;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class ShowChat extends Component
 {
     public ?Chat $selectedChat = null;
     public $messages = [];
+
+    /* #[Rule('required', 'string', 'min:1', 'max:2000')] */
     public string $content = "";
 
-    public function render()
+    #[On('chatCreado')]
+    public function render(?int $id = null)
     {
         $chats = Chat::with(['users', 'latestMessage'])
             ->whereHas('users', function ($query) {
@@ -23,6 +27,11 @@ class ShowChat extends Component
             })
             ->get()
             ->sortByDesc(fn($chat) => optional($chat->latestMessage)->created_at);
+
+        if ($id != null) {
+            $this->seleccionarChat($id);
+        }
+
         return view('livewire.show-chat', compact('chats'));
     }
 
@@ -42,6 +51,10 @@ class ShowChat extends Component
 
     public function sendMessage()
     {
+        if (trim($this->content) === '') {
+            return; // No hacer nada si está vacío o solo contiene espacios
+        }
+
         Message::create([
             'sender_id' => Auth::id(),
             'chat_id' => $this->selectedChat->id,
