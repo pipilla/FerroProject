@@ -119,6 +119,34 @@
                 }
             });
         });
+        Livewire.on('onManagePost', (id) => {
+            Swal.fire({
+                title: '¿Qué quieres hacer con este post?',
+                icon: 'question',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: '✏️ Editarlo',
+                denyButtonText: '🗑️ Borrarlo',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('show-posts', 'editOk', id);
+                } else if (result.isDenied) {
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: 'Esta acción no se puede deshacer.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, borrarlo',
+                        cancelButtonText: 'Cancelar',
+                    }).then((confirmResult) => {
+                        if (confirmResult.isConfirmed) {
+                            Livewire.dispatchTo('show-posts', 'borrarOk', id);
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 

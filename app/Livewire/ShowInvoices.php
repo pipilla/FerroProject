@@ -11,9 +11,11 @@ use App\Models\Invoice;
 use App\Models\Tax;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowInvoices extends Component
 {
+    use WithPagination;
     public bool $openShow = false;
     public FormShowInvoices $sform;
 

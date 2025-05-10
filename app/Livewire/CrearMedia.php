@@ -25,6 +25,7 @@ class CrearMedia extends Component
     {
         $this->cform->storeMedia();
         $this->dispatch('contenidoSubido')->to(ShowMedia::class);
+        $this->dispatch('contenidoSubido')->to(ShowMediaModal::class);
         $this->cancelar();
         $this->dispatch('mensaje', 'Contenido Subido');
     }
