@@ -141,7 +141,7 @@
                                 <img src="{{ $uform->src->temporaryUrl() }}"
                                     class="size-full object-cover object-no-repeat object-center">
                             @elseif(str_starts_with($uform->src->getMimeType(), 'video/'))
-                                <video controls>
+                                <video controls class="size-full object-cover object-no-repeat object-center">
                                     <source src="{{ $uform->src->temporaryUrl() }}">
                                     Tu navegador no soporta el video.
                                 </video>
@@ -151,7 +151,7 @@
                                 <img src="{{ Storage::url($uform->media->src) }}"
                                     class="size-full object-cover object-no-repeat object-center">
                             @elseif(str_starts_with($uform->media->file_type, 'video/'))
-                                <video controls>
+                                <video controls class="size-full object-cover object-no-repeat object-center">
                                     <source src="{{ Storage::url($uform->media->src) }}">
                                     Tu navegador no soporta el video.
                                 </video>

@@ -44,7 +44,7 @@
                         <img src="{{ $cform->src->temporaryUrl() }}"
                             class="size-full object-cover object-no-repeat object-center">
                     @elseif(str_starts_with($cform->src->getMimeType(), 'video/'))
-                        <video controls>
+                        <video controls class="size-full object-cover object-no-repeat object-center">
                             <source src="{{ $cform->src->temporaryUrl() }}">
                             Tu navegador no soporta el video.
                         </video>

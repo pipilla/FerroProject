@@ -15,6 +15,8 @@ class ShowChat extends Component
     public ?Chat $selectedChat = null;
     public $messages = [];
 
+    public bool $openEdit = false;
+
     /* #[Rule('required', 'string', 'min:1', 'max:2000')] */
     public string $content = "";
 
