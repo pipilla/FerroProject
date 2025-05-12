@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class ShowMediaModal extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public $openModal = false;
 

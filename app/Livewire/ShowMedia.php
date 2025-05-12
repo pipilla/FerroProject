@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class ShowMedia extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public int $category_id = 0;
     public bool $showAll = true;
@@ -52,6 +54,7 @@ class ShowMedia extends Component
     public function cerrarShow()
     {
         $this->openShow = false;
+        $this->reset('sform');
     }
 
     public function confirmarBorrar(int $id)

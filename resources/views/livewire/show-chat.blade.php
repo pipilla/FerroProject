@@ -36,6 +36,12 @@
                             {{ $selectedChat?->users->firstWhere('id', '!=', Auth::id())?->name }}
                         @endif
                     </h3>
+                    @if ($selectedChat?->is_group)
+                        <button class="text-lg font-semibold hover:scale-110 transition-transform duration-200"
+                            wire:click="editChat({{ $selectedChat->id }})">
+                            <i class="fas fa-gear"></i>
+                        </button>
+                    @endif
                 </div>
                 <div x-data="{
                     init() {
@@ -87,58 +93,41 @@
             @endif
         </div>
     </div>
-    @if ($openEdit)
-        <x-dialog-modal maxWidth="sm" wire:model="openCrear">
+    @if (Auth::user()->role > 1 && $openEdit)
+        <x-dialog-modal maxWidth="sm" wire:model="openEdit">
             <x-slot name="title">
-                Nuevo Chat
+                Editar grupo
             </x-slot>
             <x-slot name="content">
-                @if ($isGroup)
-                    <div class="mt-4">
-                        <input type="text" wire:model="cform.groupName" placeholder="Nombre del grupo" value="r"
-                            class="border rounded p-2 w-full">
-                        <x-input-error for="cform.groupName" />
-                    </div>
-                @endif
-                <!-- Mostrar los usuarios disponibles -->
+
                 <div class="mt-4">
-                    @if ($isGroup)
-                        <h3>Seleccionar Usuarios</h3>
-                    @endif
-                    <ul>
-                        @if ($isGroup)
-                            @foreach ($allUsers as $user)
-                                <li>
-                                    <input type="checkbox" wire:model="cform.selectedUsers" value="{{ $user['id'] }}"
-                                        class="mr-2">
-                                    {{ $user['name'] }}
-                                </li>
-                            @endforeach
-                        @else
-                            @foreach ($users as $user)
-                                <li>
-                                    <!-- Botón cuando no estamos creando un grupo -->
-                                    <button wire:click="createChat({{ $user['id'] }})"
-                                        class="bg-blue-200 text-blue-700 px-4 py-2 rounded mb-2 hover:bg-blue-300">
-                                        {{ $user['name'] }}
-                                    </button>
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                    <x-input-error for="cform.selectedUsers" />
+                    <input type="text" wire:model="uform.groupName" placeholder="Nombre del grupo"
+                        class="border rounded p-2 w-full">
+                    <x-input-error for="uform.groupName" />
                 </div>
 
-                <!-- Botón para crear un grupo -->
-                @if (!$isGroup)
-                    <button wire:click="createGroup" class="bg-blue-500 text-white p-2 rounded">Crear grupo</button>
-                @else
-                    <button wire:click="createChatGroup" class="bg-blue-500 text-white p-2 rounded mt-4">Crear</button>
-                @endif
+                <!-- Mostrar los usuarios disponibles -->
+                <div class="mt-4">
+                    <h3>Usuarios del grupo</h3>
+                    <ul>
+                        @foreach ($uform->users as $user)
+                            <li>
+                                <input type="checkbox" wire:model="uform.groupUsers" value="{{ $user->id }}"
+                                    class="mr-2">
+                                {{ $user->name }}
+                            </li>
+                        @endforeach
+                    </ul>
+                    <x-input-error for="uform.selectedUsers" />
+                </div>
 
             </x-slot>
             <x-slot name="footer">
-                <div class="flex flex-row-reverse gap-2">
+                <div class="flex justify-between gap-2">
+                    <button type="button" wire:click="updateGroup"
+                        class="bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition duration-300">
+                        <i class="fas fa-save mr-2"></i>Actualizar Grupo
+                    </button>
                     <button type="button" wire:click="cancelar"
                         class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
                         <i class="fas fa-xmark mr-2"></i>Cerrar

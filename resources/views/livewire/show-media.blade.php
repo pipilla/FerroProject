@@ -44,7 +44,7 @@
     </div>
 
     {{-- Modal para el show --}}
-    @if ($sform->media != null)
+    @if ($openShow && $sform->media != null)
         <div>
             <x-dialog-modal wire:model="openShow">
                 <x-slot name="title">
@@ -94,7 +94,7 @@
     @endif
 
     {{-- Modal para el update --}}
-    @if ($uform->media != null)
+    @if ($openUpdate && $uform->media != null)
         <div>
             <x-button wire:click="set('openUpdate', true)">
                 <i class="fas fa-add mr-2"></i><span class="font-semibold">Subir contenido</span>

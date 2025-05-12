@@ -20,7 +20,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->unique()->sentence(4),
             'description' => fake()->text(),
-            'user_id' => User::get()->random()->id,
+            'user_id' => User::where('role', '>', 0)->get()->random()->id,
         ];
     }
 }

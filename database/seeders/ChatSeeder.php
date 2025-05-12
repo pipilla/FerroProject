@@ -14,7 +14,7 @@ class ChatSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::all();
+        $users = User::where('role', '>', 0)->get();
         $chats = Chat::factory(30)->create();
 
         foreach ($chats as $chat) {

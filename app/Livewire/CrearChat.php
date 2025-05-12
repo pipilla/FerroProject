@@ -20,7 +20,7 @@ class CrearChat extends Component
 
     public function render()
     {
-        $allUsers = User::where('id', '!=', Auth::id())->get();
+        $allUsers = User::where('id', '!=', Auth::id())->where('role', '>', 0)->get();
         $this->allUsers = $allUsers;
         $existingChats = Auth::user()->chats()->where('is_group', false)->get();
         // Filtrar usuarios que ya estén en un chat no grupal
