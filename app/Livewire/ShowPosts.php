@@ -76,18 +76,20 @@ class ShowPosts extends Component
             }
             $this->showPostComments = $id;
         }
+        $this->ccform->setPost($id);
     }
 
     public function cerrarComentarios()
     {
-        $this->reset('showPostComments', 'comentariosPadre', 'comentariosHijo', 'ccform', 'responderComentario');
+        $this->reset('showPostComments', 'comentariosPadre', 'comentariosHijo', 'responderComentario');
     }
 
-    public function crearComentario(int $post_id, ?int $comment_id = null)
+    public function crearComentario(?int $comment_id = null)
     {
-        $this->ccform->store($post_id, $comment_id);
+        $this->ccform->store($comment_id);
         $this->reset('responderComentario');
-        $this->dispatch('comentarioSubido', $post_id);
+        $this->dispatch('comentarioSubido', $this->ccform->post->id);
+        $this->ccform->formReset();
     }
 
     public function responder(int $id)

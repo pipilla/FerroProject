@@ -51,7 +51,8 @@
                                     <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
                                         src="{{ Storage::url($item->src) }}" alt="{{ $item->title }}">
                                 @elseif(str_starts_with($item->file_type, 'video/'))
-                                    <video class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover">
+                                    <video
+                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover">
                                         <source src="{{ Storage::url($item->src) }}" type="{{ $item->file_type }}">
                                     </video>
                                 @endif
@@ -170,26 +171,24 @@
                         @auth
                             <div class="mt-4">
                                 @if ($responderComentario)
-                                    <button class="flex group relative inline-block" wire:click="cancelarResponder">
+                                    <button class="flex group relative" wire:click="cancelarResponder">
                                         <p class="text-sm text-gray-700 dark:text-gray-300 mb-1">
                                             Responder a <strong>{{ $responderComentario->user->name }}</strong>
                                         </p>
                                         <i class="fas fa-xmark hidden group-hover:inline text-sm ml-2"></i>
                                     </button>
                                 @endif
-                                <form
-                                    wire:submit.lazy="crearComentario({{ $post->id }}{{ $responderComentario ? ',' . $responderComentario->id : '' }})">
-                                    <div class="flex items-start gap-2">
-                                        <input type="text" wire:model.lazy="ccform.message" id="message"
-                                            class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring focus:ring-blue-200 dark:bg-gray-900 dark:text-white"
-                                            placeholder="Escribe tu comentario...">
-                                        <x-input-error for="ccform.message" />
-                                        <button type="submit"
-                                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-                                            Enviar
-                                        </button>
-                                    </div>
-                                </form>
+                                <div class="flex items-start gap-2">
+                                    <input type="text" wire:model.live="ccform.message" id="message" name="message"
+                                        class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:ring focus:ring-blue-200 dark:bg-gray-900 dark:text-white"
+                                        placeholder="Escribe tu comentario...">
+                                    <x-input-error for="ccform.messages.{{ $post->id }}" />
+                                    <button
+                                        wire:click="crearComentario({{ $responderComentario ? $responderComentario->id : '' }})"
+                                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+                                        Enviar
+                                    </button>
+                                </div>
                             </div>
                         @endauth
                     </div>

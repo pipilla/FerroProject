@@ -11,22 +11,34 @@ use Livewire\Form;
 
 class FormCrearComentario extends Form
 {
+    public ?Post $post = null;
+
     #[Rule(['required', 'string', 'min:1', 'max:255'])]
     public string $message = "";
 
-    public function store(int $post_id, ?int $comment_id = null){
-        Post::findOrFail($post_id);
-        if($comment_id != null) {
+    public function setPost(int $id)
+    {
+        $this->post = Post::findOrFail($id);
+    }
+
+    public function store(?int $comment_id = null)
+    {
+        if ($comment_id != null) {
             Comment::findOrFail($comment_id);
         }
         $this->validate();
         Comment::create([
             'message' => $this->message,
             'comment_id' => ($comment_id != null) ? ($comment_id) : null,
-            'post_id' => $post_id,
+            'post_id' => $this->post->id,
             'user_id' => Auth::id(),
         ]);
 
+    }
+
+    public function formReset()
+    {
         $this->reset();
+        $this->resetValidation();
     }
 }
