@@ -38,6 +38,9 @@
                             </x-nav-link>
                         </div>
                     @endif
+                    @if (Auth::user()->role > 2)
+                        @livewire('crud-users')
+                    @endif
                 @endauth
             </div>
 
