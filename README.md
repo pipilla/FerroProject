@@ -9,16 +9,15 @@ La web está construida con **Laravel - Jetstream**, **Tailwind CSS** y **React*
 ## Características
 
 ### Para los usuarios:
-- **Página principal:** Información relevante sobre la empresa.
-- **Datos de contacto:** Dirección, teléfono, correo electrónico y más.
+- **Página principal:** Información relevante sobre la empresa, datos de contacto.
 - **Galería de trabajos realizados:** Visualización de imágenes de proyectos anteriores. >>> Terminado
 - **Blog de noticias y posts:** Sección de publicaciones sobre los últimos proyectos y temas relacionados. >>> Terminado
-- **Formulario de contacto:** Los usuarios podrán ponerse en contacto mediante un formulario. 
+- **Formulario de contacto:** Los usuarios podrán ponerse en contacto mediante un formulario. >>> En progreso (falta lógica y vistas para mostrar el correo)
 
 ### Para los trabajadores:
-- **Chat interno:** Comunicación directa entre los miembros del equipo. >> En progreso (Hay que comprobar que los usuarios con los que podamos a hablar sean trabajadores)
+- **Chat interno:** Comunicación directa entre los miembros del equipo. >> Terminado
 - **Lista de tareas:** Asignación y seguimiento de tareas para los empleados. >>> Terminado
-- **Generador de facturas:** Herramienta para crear facturas de forma automática. >>> Falta poner lo de descargar en pdf!!
+- **Generador de facturas:** Herramienta para crear facturas de forma automática. >>> Terminado
 
 ## Info Adicional
 
@@ -36,5 +35,19 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 
 #
 
-Falta hacer la landing page, el formulario de contacto, solucionar lo de los vídeos y terminar el chat. 
-También queda empezar la documentación.
+Cosas que faltan:
+- Solucionar la **vista de los vídeos** (si es posible)
+- Vista para otorgar **permisos a los usuarios** y editar sus campos (siendo admin)
+- Meter la lógica del **formulario** (probarlo con Mailtrap)
+- Crear un **Footer**
+- Terminar la **Landing Page**
+- Crear un **logotipo** de empresa
+- Añadir **accesibilidad** a la página
+- **Repasar** la página por completo
+- **Desplegar** el proyecto en AWS
+- Comprar un dominio y configurarlo (para los mails)
+- Terminar la **documentación**.
+
+#
+
+Fecha de finalización prevista: **25/05/2025**
