@@ -38,6 +38,11 @@
             </div>
         </section>
 
+        <!-- Banner imagen genérica -->
+        <section>
+            <img src="" alt="">
+        </section>
+
         <!-- Servicios / Enlaces Rápidos -->
         <section class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">

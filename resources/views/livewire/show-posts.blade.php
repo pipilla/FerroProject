@@ -11,7 +11,11 @@
 
             <button type="button" wire:click="changeOrder"
                 class='text-gray-900 border ml-4 border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-bold'>
-                @if($orden!="desc")<i class="fas fa-arrow-down-wide-short mr-2"></i> Más Antiguos @else <i class="fas fa-arrow-up-wide-short mr-2"></i> Últimos @endif
+                @if ($orden != 'desc')
+                    <i class="fas fa-arrow-down-wide-short mr-2"></i> Más Antiguos
+                @else
+                    <i class="fas fa-arrow-up-wide-short mr-2"></i> Últimos
+                @endif
             </button>
         </div>
 
@@ -25,7 +29,9 @@
         </div>
 
         @auth
-            @livewire('crear-post')
+            @if (Auth::user()->role > 1)
+                @livewire('crear-post')
+            @endif
         @endauth
     </div>
 

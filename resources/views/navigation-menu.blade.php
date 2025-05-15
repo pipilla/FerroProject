@@ -1,7 +1,14 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 fixed top-0 left-0 w-full">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+
+            <div class="shrink-0 flex items-center">
+                <a href="{{ route('welcome') }}">
+                    <x-application-mark class="block h-9 w-auto" />
+                </a>
+            </div>
+
             <div class="flex">
 
                 <!-- Navigation Links -->
@@ -27,11 +34,13 @@
                                 {{ __('Tareas') }}
                             </x-nav-link>
                         </div>
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link href="{{ route('facturas') }}" :active="request()->routeIs('facturas')">
-                                {{ __('Facturas') }}
-                            </x-nav-link>
-                        </div>
+                        @if (Auth::user()->role > 1)
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link href="{{ route('facturas') }}" :active="request()->routeIs('facturas')">
+                                    {{ __('Facturas') }}
+                                </x-nav-link>
+                            </div>
+                        @endif
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                             <x-nav-link href="{{ route('chat') }}" :active="request()->routeIs('chat')">
                                 {{ __('Chat') }}
@@ -42,12 +51,6 @@
                         @livewire('crud-users')
                     @endif
                 @endauth
-            </div>
-
-            <div class="shrink-0 flex items-center">
-                <a href="{{ route('welcome') }}">
-                    <x-application-mark class="block h-9 w-auto" />
-                </a>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -114,14 +117,14 @@
                             </div>
                         @else
                             <a href="{{ route('login') }}"
-                                class="inline-block px-5 py-1.5 text-[#1b1b18] border border-transparent hover:border-[#19140035] rounded-sm text-sm leading-normal">
-                                Log in
+                                class="inline-block px-5 py-1.5 text-[#1b1b18] border border-transparent hover:border-[#19140035] rounded-full text-sm leading-normal">
+                                Iniciar Sesión
                             </a>
 
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
-                                    class="inline-block px-5 py-1.5 border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] rounded-sm text-sm leading-normal">
-                                    Register
+                                    class="inline-block px-5 py-1.5 border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] rounded-full text-sm leading-normal">
+                                    Registrarse
                                 </a>
                             @endif
                         @endauth
@@ -154,17 +157,25 @@
             <x-responsive-nav-link href="{{ route('posts') }}" :active="request()->routeIs('posts')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('formulario-contacto') }}" :active="request()->routeIs('formulario-contacto')">
+                {{ __('Contáctanos') }}
+            </x-responsive-nav-link>
             @auth
                 @if (Auth::user()->role > 0)
                     <x-responsive-nav-link href="{{ route('tareas') }}" :active="request()->routeIs('tareas')">
                         {{ __('Tareas') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('facturas') }}" :active="request()->routeIs('facturas')">
-                        {{ __('Facturas') }}
-                    </x-responsive-nav-link>
+                    @if (Auth::user()->role > 1)
+                        <x-responsive-nav-link href="{{ route('facturas') }}" :active="request()->routeIs('facturas')">
+                            {{ __('Facturas') }}
+                        </x-responsive-nav-link>
+                    @endif
                     <x-responsive-nav-link href="{{ route('chat') }}" :active="request()->routeIs('chat')">
                         {{ __('Chat') }}
                     </x-responsive-nav-link>
+                    @if (Auth::user()->role > 2)
+                        @livewire('crud-users')
+                    @endif
                 @endif
             @endauth
         </div>
