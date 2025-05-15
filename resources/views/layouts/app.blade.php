@@ -59,6 +59,21 @@
                 timer: 1500
             });
         })
+        Livewire.on('confirmarBloquearUser', (id) => {
+            Swal.fire({
+                title: "Bloquear usuario?",
+                text: "Se bloqueará su acceso completo a la página",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, bloquearlo"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.dispatchTo('crud-users', 'bloquearUserOk', id);
+                }
+            });
+        });
         Livewire.on('confirmarBorrarMedia', (id) => {
             Swal.fire({
                 title: "¿Borrar elemento?",

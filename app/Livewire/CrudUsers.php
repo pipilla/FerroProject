@@ -58,9 +58,50 @@ class CrudUsers extends Component
         }
     }
 
+    public function blockUser(int $id)
+    {
+        User::findOrFail($id);
+        if (Auth::id() != $id) {
+            $this->dispatch('confirmarBloquearUser', $id);
+        } else {
+            abort(403, "No puedes bloquear tu propio usuario");
+        }
+    }
+
+    #[On('bloquearUserOk')]
+    public function bloquearOk(int $id)
+    {
+        $user = User::findOrFail($id);
+        if (Auth::id() != $id) {
+            if ($user->active) {
+                $user->update(['active' => false]);
+                $this->dispatch('mensaje', 'Usuario bloqueado correctamente');
+            } else {
+                abort(403, "El usuario ya está bloqueado");
+            }
+        } else {
+            abort(403, "No puedes bloquear tu propio usuario");
+        }
+    }
+
+    public function desbloquearUsuario(int $id)
+    {
+        $user = User::findOrFail($id);
+        if (Auth::id() != $id && !$user->active) {
+            if (!$user->active) {
+                $user->update(['active' => true]);
+                $this->dispatch('mensaje', 'Usuario desbloqueado correctamente');
+            } else {
+                abort(403, "El usuario no está bloqueado");
+            }
+        } else {
+            abort(403, "No puedes desbloquear tu propio usuario");
+        }
+    }
+
     public function cancelar()
     {
-        $this->reset();
+        $this->reset('userToEdit');
     }
 
     public function cerrar()

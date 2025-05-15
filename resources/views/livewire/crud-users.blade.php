@@ -58,10 +58,17 @@
                                         class="flex items-center gap-2 text-sm bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-1.5 rounded-lg shadow-sm transition">
                                         <i class="fas fa-edit"></i> Editar
                                     </button>
-                                    <button wire:click="deleteUser({{ $item->id }})"
-                                        class="flex items-center gap-2 text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-lg shadow-sm transition">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                    </button>
+                                    @if ($item->active)
+                                        <button wire:click="blockUser({{ $item->id }})"
+                                            class="flex items-center gap-2 text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-lg shadow-sm transition">
+                                            <i class="fas fa-ban"></i> Bloquear
+                                        </button>
+                                    @else
+                                    <button wire:click="desbloquearUsuario({{ $item->id }})"
+                                            class="flex items-center gap-2 text-sm bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded-lg shadow-sm transition">
+                                            <i class="fas fa-ban"></i> Desbloquear
+                                        </button>
+                                    @endif
                                 @endif
                             @else
                                 <select name="role[{{ $item->id }}]" wire:model="role"
@@ -78,8 +85,8 @@
                                     <i class="fas fa-save"></i> Guardar
                                 </button>
                                 <button wire:click="cancelar"
-                                    class="flex items-center gap-2 text-sm bg-green-600 hover:bg-green-700 text-white px-4 py-1.5 rounded-lg shadow-sm transition">
-                                    <i class="fas fa-x"></i> Cancelar
+                                    class="flex items-center gap-2 text-sm bg-gray-600 hover:bg-gray-700 text-white px-4 py-1.5 rounded-lg shadow-sm transition">
+                                    <i class="fas fa-xmark"></i> Cancelar
                                 </button>
                             @endif
                         </div>
