@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\FacturasPdfController;
 use App\Http\Middleware\IsUserActive;
+use App\Http\Middleware\UserWorker;
+use App\Http\Middleware\UserWorkerPlus;
 use App\Livewire\FormularioContacto;
 use App\Livewire\ShowChat;
 use App\Livewire\ShowInvoices;
@@ -22,14 +24,14 @@ Route::middleware([IsUserActive::class])->group(function () {
         config('jetstream.auth_session'),
         'verified',
     ])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
-        Route::get('/tareas', ShowTasks::class)->name('tareas');
-        Route::get('/facturas', ShowInvoices::class)->name('facturas');
-        Route::get('/factura/{invoice}/pdf', [FacturasPdfController::class, 'download'])->name('factura.pdf');
-
-        Route::get('/chat', ShowChat::class)->name('chat');
+        Route::middleware([UserWorker::class])->group(function () {
+            Route::get('/tareas', ShowTasks::class)->name('tareas');
+            Route::get('/chat', ShowChat::class)->name('chat');
+        });
+        Route::middleware([UserWorkerPlus::class])->group(function () {
+            Route::get('/facturas', ShowInvoices::class)->name('facturas');
+            Route::get('/factura/{invoice}/pdf', [FacturasPdfController::class, 'download'])->name('factura.pdf');
+        });
     });
     Route::get('/galeria', ShowMedia::class)->name('galeria');
     Route::get('/posts', ShowPosts::class)->name('posts');
