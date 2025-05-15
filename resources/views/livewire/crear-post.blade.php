@@ -1,6 +1,6 @@
 <div>
     <x-button wire:click="set('openModal', true)">
-        <i class="fas fa-add mr-2"></i><span class="font-semibold">Crear Post</span>
+        <i class="fas fa-add mr-2 whitespace-nowrap"></i><span class="font-semibold whitespace-nowrap">Crear Post</span>
     </x-button>
     <x-dialog-modal wire:model="openModal">
         <x-slot name="title">

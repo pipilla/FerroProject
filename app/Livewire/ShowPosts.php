@@ -19,6 +19,7 @@ class ShowPosts extends Component
 
     public string $buscar = "";
     public $selectedTags = [];
+    public string $orden = "desc";
 
     public int $showPostComments = 0;
     public $comentariosPadre = [];
@@ -37,7 +38,7 @@ class ShowPosts extends Component
     public function render()
     {
         $tags = Tag::orderBy('name')->get();
-        $posts = Post::orderBy('updated_at', 'desc')
+        $posts = Post::orderBy('updated_at', $this->orden)
             ->with('media', 'user', 'tags', 'comments')
             ->where(function ($q) {
                 $q->where('title', 'like', "%{$this->buscar}%")
@@ -59,6 +60,10 @@ class ShowPosts extends Component
         $posts = $posts->paginate(15);
 
         return view('livewire.show-posts', compact('posts', 'tags'));
+    }
+
+    public function changeOrder() {
+        $this->orden = ($this->orden == "desc") ? "asc" : "desc";
     }
 
     #[On('comentarioSubido')]
@@ -173,7 +178,10 @@ class ShowPosts extends Component
     public function delete(int $id){
         $post = Post::findOrFail($id);
         $this->authorize('delete', $post);
+        $this->cerrarComentarios();
+        $this->ccform->formReset();
         $post->delete();
+        $this->dispatch('contenidoSubido');
         $this->dispatch('mensaje', "Post eliminado");
     }
 }

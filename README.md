@@ -37,7 +37,6 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 
 Cosas que faltan:
 - Solucionar la **vista de los vídeos** (si es posible)
-- Vista para otorgar **permisos a los usuarios** y editar sus campos (siendo admin)
 - Meter la lógica del **formulario** (probarlo con Mailtrap)
 - Crear un **Footer**
 - Terminar la **Landing Page**
