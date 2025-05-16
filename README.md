@@ -36,10 +36,14 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
+- En el Chat, meter administradores de grupo, mensajes leídos, iconos de nuevos mensajes... (Investigar las notificaciones)
+
+- Añadir verificación de correo electrónico.
 - Solucionar la **vista de los vídeos** (si es posible)
 - Terminar la **Landing Page**
 - Crear un **logotipo** de empresa
 - Añadir **accesibilidad** a la página
+- Modo oscuro
 - Revisar el diseño **Responsive**
 - **Repasar** la página por completo
 
@@ -47,7 +51,9 @@ Cosas que faltan:
 - **Desplegar** el proyecto en AWS
 - Meter la lógica del **formulario** (configurar AWS SES)
 - Comprar un dominio y configurarlo
+- Añadir el login con Google
 - Terminar la **documentación**.
+
 
 (Si sobra tiempo, añadir algo más a la página)
 

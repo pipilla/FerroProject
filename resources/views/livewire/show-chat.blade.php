@@ -37,10 +37,16 @@
                         @endif
                     </h3>
                     @if ($selectedChat?->is_group)
-                        <button class="text-lg font-semibold hover:scale-110 transition-transform duration-200"
-                            wire:click="editChat({{ $selectedChat->id }})">
-                            <i class="fas fa-gear"></i>
-                        </button>
+                        @if (Auth::id() == $selectedChat->admin)
+                            <button class="text-lg font-semibold hover:scale-110 transition-transform duration-200"
+                                wire:click="editChat({{ $selectedChat->id }})">
+                                <i class="fas fa-gear"></i>
+                            </button>
+                        @else
+                            <button class="text-lg font-semibold hover:scale-110 transition-transform duration-200"
+                                wire:click="infoChat({{ $selectedChat->id }})">
+                                <i class="fas fa-info"></i>
+                        @endif
                     @endif
                 </div>
                 <div x-data="{
@@ -93,7 +99,7 @@
             @endif
         </div>
     </div>
-    @if (Auth::user()->role > 1 && $openEdit)
+    @if (Auth::id() == $selectedChat->admin && $openEdit)
         <x-dialog-modal maxWidth="sm" wire:model="openEdit">
             <x-slot name="title">
                 Editar grupo
@@ -128,6 +134,35 @@
                         class="bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition duration-300">
                         <i class="fas fa-save mr-2"></i>Actualizar Grupo
                     </button>
+                    <button type="button" wire:click="cancelar"
+                        class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
+                        <i class="fas fa-xmark mr-2"></i>Cerrar
+                    </button>
+                </div>
+            </x-slot>
+        </x-dialog-modal>
+    @endif
+    @if (Auth::user()->role > 1 && $openShow)
+        <x-dialog-modal maxWidth="sm" wire:model="openShow">
+            <x-slot name="title">
+                Usuarios del grupo
+            </x-slot>
+            <x-slot name="content">
+
+                <div class="mt-4">
+                    <ul>
+                        @foreach ($uform->users as $user)
+                            <li>
+                                <input class="mr-2">
+                                {{ $user->name }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+            </x-slot>
+            <x-slot name="footer">
+                <div class="flex justify-between gap-2">
                     <button type="button" wire:click="cancelar"
                         class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
                         <i class="fas fa-xmark mr-2"></i>Cerrar

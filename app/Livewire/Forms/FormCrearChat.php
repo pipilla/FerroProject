@@ -29,6 +29,7 @@ class FormCrearChat extends Form
         $chat = Chat::create([
             'name' =>$this->groupName,
             'is_group' => true,
+            'admin' => Auth::id(),
         ]);
 
         $chat->users()->attach(array_merge($this->selectedUsers, [Auth::id()]));

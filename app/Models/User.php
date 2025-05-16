@@ -69,23 +69,33 @@ class User extends Authenticatable
         ];
     }
 
-    public function posts(): HasMany{
+    public function posts(): HasMany
+    {
         return $this->hasMany(Post::class);
     }
-    
-    public function comments(): HasMany{
+
+    public function comments(): HasMany
+    {
         return $this->hasMany(Comment::class);
     }
-    
-    public function tasks(): HasMany{
+
+    public function tasks(): HasMany
+    {
         return $this->hasMany(Task::class);
     }
 
-    public function chats(): BelongsToMany{
+    public function chats(): BelongsToMany
+    {
         return $this->belongsToMany(Chat::class);
     }
 
-    public function messages(): HasMany{
+    public function messages(): HasMany
+    {
         return $this->hasMany(Message::class, 'sender_id'); //Lo de sender_id sirve para indicar el atributo al que hace referncia el id
+    }
+
+    public function adminChats(): HasMany
+    {
+        return $this->hasMany(Chat::class);
     }
 }

@@ -58,6 +58,8 @@ class ChatSeeder extends Seeder
                         'content' => fake()->sentence(7),
                     ]);
                 }
+
+                $chat->update(['admin' => $user1->id]);
             }
         }
     }

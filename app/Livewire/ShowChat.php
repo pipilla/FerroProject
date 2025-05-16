@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Events\MessageSent;
+use App\Livewire\Forms\FormShowChat;
 use App\Livewire\Forms\FormUpdateChat;
 use App\Models\Chat;
 use App\Models\Message;
@@ -18,6 +19,9 @@ class ShowChat extends Component
 
     public bool $openEdit = false;
     public FormUpdateChat $uform;
+
+    public bool $openShow = false;
+    public FormShowChat $sform;
 
     /* #[Rule('required', 'string', 'min:1', 'max:2000')] */
     public string $content = "";
@@ -67,13 +71,19 @@ class ShowChat extends Component
         $this->dispatch('mensaje', 'Grupo actualizado');
     }
 
+    public function infoChat(int $id)
+    {
+        Chat::findOrFail($id);
+        $this->sform->setChat($id);
+    }
+
     public function sendMessage()
     {
         if (trim($this->content) === '') {
             return;
         }
 
-        if(!$this->selectedChat->users->contains('id', Auth::id())){
+        if (!$this->selectedChat->users->contains('id', Auth::id())) {
             abort(403, "Ya no perteneces a este grupo");
         }
 

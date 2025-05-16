@@ -20,6 +20,7 @@ class ChatFactory extends Factory
         return [
             'name' => ($isGroup) ? fake()->sentence(3) : null,
             'is_group' => $isGroup,
+            'admin' => null,
         ];
     }
 }
