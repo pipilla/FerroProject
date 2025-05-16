@@ -40,6 +40,7 @@ Cosas que faltan:
 - Terminar la **Landing Page**
 - Crear un **logotipo** de empresa
 - Añadir **accesibilidad** a la página
+- Revisar el diseño **Responsive**
 - **Repasar** la página por completo
 
 Último:

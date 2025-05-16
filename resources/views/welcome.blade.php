@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-self.base>
-        <!-- Hero Section -->
+        <!-- Banner Inicial -->
         <section class="bg-gray-100 py-20 text-center">
             <div class="max-w-4xl mx-auto px-4">
                 <h1 class="text-4xl font-bold mb-4">FerroProject</h1>
@@ -18,6 +18,34 @@
                 </div>
             </div>
         </section>
+
+        @auth
+            @if (Auth::user()->role > 0)
+                <!-- Servicios para los trabajadores -->
+                <section class="py-16 bg-white">
+                    <div
+                        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 @if (Auth::user()->role > 1) lg:grid-cols-3 @endif gap-8 text-center">
+                        <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('tareas') }}">
+                            <i class="fas fa-list-check text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="text-lg font-semibold mb-2">Lista de Tareas</h3>
+                            <p class="text-gray-600 text-sm">Consulta tu lista de tareas personal.</p>
+                        </a>
+                        <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('chat') }}">
+                            <i class="fas fa-comment text-3xl text-green-500 mb-4"></i>
+                            <h3 class="text-lg font-semibold mb-2">Chat</h3>
+                            <p class="text-gray-600 text-sm">Acceso al chat de la empresa.</p>
+                        </a>
+                        @if (Auth::user()->role > 1)
+                            <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('facturas') }}">
+                                <i class="fas fa-file-invoice-dollar text-3xl text-red-500 mb-4"></i>
+                                <h3 class="text-lg font-semibold mb-2">Facturas</h3>
+                                <p class="text-gray-600 text-sm">Accede a las facturas de los clientes.</p>
+                            </a>
+                        @endif
+                    </div>
+                </section>
+            @endif
+        @endauth
 
         <!-- Sobre la empresa -->
         <section class="bg-white py-16">
@@ -54,7 +82,8 @@
                 <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('posts') }}">
                     <i class="fas fa-users text-3xl text-green-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Posts</h3>
-                    <p class="text-gray-600 text-sm">Consulta nuestra red social interna con los últimos posts, noticias y trabajos.</p>
+                    <p class="text-gray-600 text-sm">Consulta nuestra red social interna con los últimos posts, noticias
+                        y trabajos.</p>
                 </a>
                 <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('formulario-contacto') }}">
                     <i class="fas fa-envelope text-3xl text-red-500 mb-4"></i>

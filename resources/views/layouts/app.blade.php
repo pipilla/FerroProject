@@ -64,7 +64,7 @@
         })
         Livewire.on('confirmarBloquearUser', (id) => {
             Swal.fire({
-                title: "Bloquear usuario?",
+                title: "¿Bloquear usuario?",
                 text: "Se bloqueará su acceso completo a la página",
                 icon: "warning",
                 showCancelButton: true,
