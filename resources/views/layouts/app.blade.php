@@ -24,10 +24,10 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased">
+<body class="min-h-screen flex flex-col font-sans antialiased">
     <x-banner />
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="flex-grow bg-gray-100">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
@@ -43,7 +43,10 @@
         <main class="pt-16">
             {{ $slot }}
         </main>
+
     </div>
+
+    @include('footer')
 
     @stack('modals')
 

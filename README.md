@@ -37,14 +37,16 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 
 Cosas que faltan:
 - Solucionar la **vista de los vídeos** (si es posible)
-- Meter la lógica del **formulario** (probarlo con Mailtrap)
 - Crear un **Footer**
 - Terminar la **Landing Page**
 - Crear un **logotipo** de empresa
 - Añadir **accesibilidad** a la página
 - **Repasar** la página por completo
+
+Último:
 - **Desplegar** el proyecto en AWS
-- Comprar un dominio y configurarlo (para los mails)
+- Meter la lógica del **formulario** (configurar AWS SES)
+- Comprar un dominio y configurarlo
 - Terminar la **documentación**.
 
 #
