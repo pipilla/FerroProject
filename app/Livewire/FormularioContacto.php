@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Mail\ContactForm;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class FormularioContacto extends Component
@@ -14,14 +16,26 @@ class FormularioContacto extends Component
     public $telefono = '';
     public $email = '';
     public $mensaje = '';
-    
+
     public function render()
     {
         return view('livewire.formulario-contacto');
     }
 
-    public function send() {
+    public function send()
+    {
         $this->validate($this->rules());
+
+        Mail::to('contacto@email.com')->send(new ContactForm(
+            $this->tipoConsulta,
+            $this->tipoTrabajo,
+            $this->otroTrabajo,
+            $this->nombre,
+            $this->direccion,
+            $this->telefono,
+            $this->email,
+            $this->mensaje
+        ));
 
         $this->redirect(route('welcome'));
         $this->dispatch('mensaje', 'Correo enviado');
@@ -37,6 +51,7 @@ class FormularioContacto extends Component
                 'nombre' => 'required|string',
                 'direccion' => 'required|string',
                 'telefono' => 'required|string',
+                'mensaje' => 'required|string',
                 'email' => 'required|email',
             ];
         }

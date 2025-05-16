@@ -7,7 +7,7 @@
     <div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded-xl space-y-4">
         <!-- Tipo de Consulta -->
         <div>
-            <label class="block font-semibold mb-1"><i class="fas fa-question-circle mr-1"></i>Tipo de consulta</label>
+            <label class="block font-semibold mb-1"><i class="fas fa-question-circle mr-2"></i>Tipo de consulta</label>
             <select wire:model.live="tipoConsulta" class="w-full border rounded px-3 py-2">
                 <option value="">Selecciona una opción</option>
                 <option>Encargo de trabajo</option>
@@ -19,7 +19,7 @@
         @if ($tipoConsulta === 'Encargo de trabajo')
             <!-- Tipo de trabajo -->
             <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-tools mr-1"></i>Tipo de trabajo</label>
+                <label class="block font-semibold mb-1"><i class="fas fa-tools mr-2"></i>Tipo de trabajo</label>
                 <select wire:model.live="tipoTrabajo" class="w-full border rounded px-3 py-2">
                     <option value="">Selecciona tipo de trabajo</option>
                     <option value="Puertas">Puertas</option>
@@ -34,7 +34,7 @@
             @if ($tipoTrabajo == 'Otros')
                 <!-- Otro trabajo -->
                 <div>
-                    <label class="block font-semibold mb-1"><i class="fas fa-edit mr-1"></i>Describe el trabajo</label>
+                    <label class="block font-semibold mb-1"><i class="fas fa-edit mr-2"></i>Describe el trabajo</label>
                     <input type="text" wire:model="otroTrabajo" class="w-full border rounded px-3 py-2"
                         placeholder="Especifica el trabajo">
                     <x-input-error for="otroTrabajo" />
@@ -43,7 +43,7 @@
 
             <!-- Nombre y Apellidos -->
             <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-user mr-1"></i>Nombre y Apellidos</label>
+                <label class="block font-semibold mb-1"><i class="fas fa-user mr-2"></i>Nombre y Apellidos</label>
                 <input type="text" wire:model="nombre" class="w-full border rounded px-3 py-2"
                     placeholder="Tu nombre completo">
                 <x-input-error for="nombre" />
@@ -51,7 +51,7 @@
 
             <!-- Dirección -->
             <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-map-marker-alt mr-1"></i>Dirección</label>
+                <label class="block font-semibold mb-1"><i class="fas fa-map-marker-alt mr-2"></i>Dirección</label>
                 <input type="text" wire:model="direccion" class="w-full border rounded px-3 py-2"
                     placeholder="Dirección completa">
                 <x-input-error for="direccion" />
@@ -65,25 +65,9 @@
                 <x-input-error for="telefono" />
             </div>
 
-            <!-- Email -->
-            <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-envelope mr-1"></i>Email</label>
-                <input type="email" wire:model="email" class="w-full border rounded px-3 py-2"
-                    placeholder="correo@ejemplo.com">
-                <x-input-error for="email" />
-            </div>
-        @elseif ($tipoConsulta == 'Consulta')
-            <!-- Nombre -->
-            <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-user mr-1"></i>Nombre y Apellidos</label>
-                <input type="text" wire:model="nombre" class="w-full border rounded px-3 py-2"
-                    placeholder="Tu nombre completo">
-                <x-input-error for="nombre" />
-            </div>
-
             <!-- Mensaje -->
             <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-comment mr-1"></i>Mensaje</label>
+                <label class="block font-semibold mb-1"><i class="fas fa-comment mr-2"></i>Mensaje</label>
                 <textarea wire:model="mensaje" rows="4" class="w-full border rounded px-3 py-2"
                     placeholder="Tu mensaje o consulta"></textarea>
                 <x-input-error for="mensaje" />
@@ -96,12 +80,36 @@
                     placeholder="correo@ejemplo.com">
                 <x-input-error for="email" />
             </div>
+        @elseif ($tipoConsulta == 'Consulta')
+            <!-- Nombre -->
+            <div>
+                <label class="block font-semibold mb-1"><i class="fas fa-user mr-2"></i>Nombre y Apellidos</label>
+                <input type="text" wire:model="nombre" class="w-full border rounded px-3 py-2"
+                    placeholder="Tu nombre completo">
+                <x-input-error for="nombre" />
+            </div>
+
+            <!-- Mensaje -->
+            <div>
+                <label class="block font-semibold mb-1"><i class="fas fa-comment mr-2"></i>Mensaje</label>
+                <textarea wire:model="mensaje" rows="4" class="w-full border rounded px-3 py-2"
+                    placeholder="Tu mensaje o consulta"></textarea>
+                <x-input-error for="mensaje" />
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block font-semibold mb-1"><i class="fas fa-envelope mr-2"></i>Email</label>
+                <input type="email" wire:model="email" class="w-full border rounded px-3 py-2"
+                    placeholder="correo@ejemplo.com">
+                <x-input-error for="email" />
+            </div>
         @endif
 
         <!-- Submit -->
         <div>
             <button wire:click="send" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
-                <i class="fas fa-paper-plane mr-1"></i>Enviar
+                <i class="fas fa-paper-plane mr-2"></i>Enviar
             </button>
         </div>
     </div>

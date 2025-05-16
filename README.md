@@ -37,7 +37,6 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 
 Cosas que faltan:
 - Solucionar la **vista de los vídeos** (si es posible)
-- Crear un **Footer**
 - Terminar la **Landing Page**
 - Crear un **logotipo** de empresa
 - Añadir **accesibilidad** a la página
@@ -48,6 +47,8 @@ Cosas que faltan:
 - Meter la lógica del **formulario** (configurar AWS SES)
 - Comprar un dominio y configurarlo
 - Terminar la **documentación**.
+
+(Si sobra tiempo, añadir algo más a la página)
 
 #
 
