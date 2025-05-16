@@ -99,7 +99,7 @@
             @endif
         </div>
     </div>
-    @if (Auth::id() == $selectedChat->admin && $openEdit)
+    @if (Auth::user()->role > 1 && $openEdit)
         <x-dialog-modal maxWidth="sm" wire:model="openEdit">
             <x-slot name="title">
                 Editar grupo
@@ -151,9 +151,8 @@
 
                 <div class="mt-4">
                     <ul>
-                        @foreach ($uform->users as $user)
+                        @foreach ($selectedChat->users as $user)
                             <li>
-                                <input class="mr-2">
                                 {{ $user->name }}
                             </li>
                         @endforeach

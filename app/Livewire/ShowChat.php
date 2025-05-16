@@ -21,7 +21,6 @@ class ShowChat extends Component
     public FormUpdateChat $uform;
 
     public bool $openShow = false;
-    public FormShowChat $sform;
 
     /* #[Rule('required', 'string', 'min:1', 'max:2000')] */
     public string $content = "";
@@ -74,7 +73,7 @@ class ShowChat extends Component
     public function infoChat(int $id)
     {
         Chat::findOrFail($id);
-        $this->sform->setChat($id);
+        $this->openShow = true;
     }
 
     public function sendMessage()
@@ -100,6 +99,7 @@ class ShowChat extends Component
 
     public function cancelar()
     {
+        $this->openShow = false;
         $this->openEdit = false;
         $this->reset('uform');
     }
