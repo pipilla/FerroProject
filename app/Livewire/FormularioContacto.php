@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Mail\ContactForm;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
@@ -33,7 +34,7 @@ class FormularioContacto extends Component
             $this->nombre,
             $this->direccion,
             $this->telefono,
-            $this->email,
+            (Auth::check()) ? Auth::user()->email : $this->email,
             $this->mensaje
         ));
 
@@ -52,7 +53,7 @@ class FormularioContacto extends Component
                 'direccion' => 'required|string',
                 'telefono' => 'required|string',
                 'mensaje' => 'required|string',
-                'email' => 'required|email',
+                'email' => (Auth::check()) ? 'nullable' : 'required|email',
             ];
         }
 
@@ -60,7 +61,7 @@ class FormularioContacto extends Component
             'tipoConsulta' => 'required',
             'nombre' => 'required|string',
             'mensaje' => 'required|string',
-            'email' => 'required|email',
+            'email' => (Auth::check()) ? 'nullable' : 'required|email',
         ];
     }
 }

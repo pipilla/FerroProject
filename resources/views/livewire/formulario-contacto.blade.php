@@ -73,13 +73,15 @@
                 <x-input-error for="mensaje" />
             </div>
 
-            <!-- Email -->
-            <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-envelope mr-1"></i>Email</label>
-                <input type="email" wire:model="email" class="w-full border rounded px-3 py-2"
-                    placeholder="correo@ejemplo.com">
-                <x-input-error for="email" />
-            </div>
+            @guest
+                <!-- Email -->
+                <div>
+                    <label class="block font-semibold mb-1"><i class="fas fa-envelope mr-2"></i>Email</label>
+                    <input type="email" wire:model="email" class="w-full border rounded px-3 py-2"
+                        placeholder="correo@ejemplo.com">
+                    <x-input-error for="email" />
+                </div>
+            @endguest
         @elseif ($tipoConsulta == 'Consulta')
             <!-- Nombre -->
             <div>
@@ -97,13 +99,15 @@
                 <x-input-error for="mensaje" />
             </div>
 
-            <!-- Email -->
-            <div>
-                <label class="block font-semibold mb-1"><i class="fas fa-envelope mr-2"></i>Email</label>
-                <input type="email" wire:model="email" class="w-full border rounded px-3 py-2"
-                    placeholder="correo@ejemplo.com">
-                <x-input-error for="email" />
-            </div>
+            @guest
+                <!-- Email -->
+                <div>
+                    <label class="block font-semibold mb-1"><i class="fas fa-envelope mr-2"></i>Email</label>
+                    <input type="email" wire:model="email" class="w-full border rounded px-3 py-2"
+                        placeholder="correo@ejemplo.com">
+                    <x-input-error for="email" />
+                </div>
+            @endguest
         @endif
 
         <!-- Submit -->
