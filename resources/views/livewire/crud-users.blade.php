@@ -2,7 +2,7 @@
     <x-nav-link wire:click="set('openModal', true)">
         <button>Users Admin</button>
     </x-nav-link>
-    <x-dialog-modal maxWidth="4xl" wire:model="openModal">
+    <x-dialog-modal maxWidth="4xl" wire:model="openModal" class="fixed inset-0 z-[9999]" style="position: fixed !important; z-index: 9999 !important;">
         <x-slot name="title">
             Administrar usuarios
         </x-slot>
