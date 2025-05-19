@@ -4,7 +4,7 @@ El proyecto consiste en la página web de una carpintería metálica.
 
 Esta proporciona información clave sobre la empresa, sus trabajadores y sus servicios. Además, contará con funcionalidades para la gestión interna de la empresa, como un chat para los trabajadores, una lista de tareas y un generador de facturas.
 
-La web está construida con **Laravel - Jetstream**, **Tailwind CSS** y **React**.
+La web está construida con **Laravel - Jetstream** y **Tailwind CSS**.
 
 ## Características
 
@@ -36,7 +36,8 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
-- En el Chat, meter administradores de grupo, mensajes leídos, iconos de nuevos mensajes... (Investigar las notificaciones)
+- En el Chat, meter mensajes leídos, iconos de nuevos mensajes... (Investigar las notificaciones)
+- Mejora para la galería, los que no puedan editar los archivos, tendrán una vista diferente de los mismos.
 
 - Añadir verificación de correo electrónico.
 - Solucionar la **vista de los vídeos** (si es posible)
