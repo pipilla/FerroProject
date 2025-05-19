@@ -2,7 +2,8 @@
     <x-nav-link wire:click="set('openModal', true)">
         <button>Users Admin</button>
     </x-nav-link>
-    <x-dialog-modal maxWidth="4xl" wire:model="openModal" class="fixed inset-0 z-[9999]" style="position: fixed !important; z-index: 9999 !important;">
+    <x-dialog-modal maxWidth="4xl" wire:model="openModal" class="fixed inset-0 z-[9999]"
+        style="position: fixed !important; z-index: 9999 !important;">
         <x-slot name="title">
             Administrar usuarios
         </x-slot>
@@ -64,7 +65,7 @@
                                             <i class="fas fa-ban"></i> Bloquear
                                         </button>
                                     @else
-                                    <button wire:click="desbloquearUsuario({{ $item->id }})"
+                                        <button wire:click="desbloquearUsuario({{ $item->id }})"
                                             class="flex items-center gap-2 text-sm bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded-lg shadow-sm transition">
                                             <i class="fas fa-ban"></i> Desbloquear
                                         </button>

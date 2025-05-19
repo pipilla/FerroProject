@@ -73,12 +73,8 @@ class CrudUsers extends Component
     {
         $user = User::findOrFail($id);
         if (Auth::id() != $id) {
-            if ($user->active) {
-                $user->update(['active' => false]);
-                $this->dispatch('mensaje', 'Usuario bloqueado correctamente');
-            } else {
-                abort(403, "El usuario ya está bloqueado");
-            }
+            $user->update(['active' => false]);
+            $this->dispatch('mensaje', 'Usuario bloqueado correctamente');
         } else {
             abort(403, "No puedes bloquear tu propio usuario");
         }
@@ -89,8 +85,8 @@ class CrudUsers extends Component
         $user = User::findOrFail($id);
         if (Auth::id() != $id && !$user->active) {
             if (!$user->active) {
-                $user->update(['active' => true]);
                 $this->dispatch('mensaje', 'Usuario desbloqueado correctamente');
+                $user->update(['active' => true]);
             } else {
                 abort(403, "El usuario no está bloqueado");
             }
