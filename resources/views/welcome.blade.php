@@ -99,7 +99,7 @@
                 <h2 class="text-3xl font-bold mb-6">¿Tienes alguna pregunta?</h2>
                 <p class="text-gray-700 mb-6">Ponte en contacto con nosotros a través del formulario o visítanos en
                     nuestras redes.</p>
-                <a
+                <a href="{{ route('formulario-contacto') }}"
                     class="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center">
                     <i class="fas fa-paper-plane mr-2"></i> Ir al Formulario
                 </a>

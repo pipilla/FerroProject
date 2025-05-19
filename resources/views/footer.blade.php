@@ -2,9 +2,9 @@
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
         <div>
             <h4 class="font-bold mb-2">Empresa</h4>
-            <p>CreativeVision S.A.</p>
-            <p>Calle Ficticia 123</p>
-            <p>Madrid, España</p>
+            <p>FerroProject S.L.</p>
+            <p>Avda América, S/N</p>
+            <p>Almería, España</p>
         </div>
         <div>
             <h4 class="font-bold mb-2">Contacto</h4>
@@ -19,6 +19,6 @@
         </div>
     </div>
     <div class="text-center mt-6 text-gray-400 text-xs">
-        &copy; {{ date('Y') }} CreativeVision. Todos los derechos reservados.
+        <a href="https://creativecommons.org">FerroProject</a> by <a href="https://creativecommons.org">Juan Miguel Mena Sáez</a> is marked <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/zero.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">
     </div>
 </footer>
