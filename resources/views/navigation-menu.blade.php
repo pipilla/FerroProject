@@ -46,6 +46,11 @@
                                 {{ __('Chat') }}
                             </x-nav-link>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link href="{{ route('designer') }}" :active="request()->routeIs('designer')">
+                                {{ __('Bocetos') }}
+                            </x-nav-link>
+                        </div>
                     @endif
                     @if (Auth::user()->role > 2)
                         @livewire('crud-users')
@@ -172,6 +177,9 @@
                     @endif
                     <x-responsive-nav-link href="{{ route('chat') }}" :active="request()->routeIs('chat')">
                         {{ __('Chat') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('designer') }}" :active="request()->routeIs('designer')">
+                        {{ __('Bocetos') }}
                     </x-responsive-nav-link>
                     @if (Auth::user()->role > 2)
                         @livewire('crud-users')

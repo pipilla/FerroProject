@@ -28,6 +28,7 @@ Route::middleware([IsUserActive::class])->group(function () {
         Route::middleware([UserWorker::class])->group(function () {
             Route::get('/tareas', ShowTasks::class)->name('tareas');
             Route::get('/chat', ShowChat::class)->name('chat');
+            Route::get('/designer', [DesignerController::class, 'index'])->name('designer');
         });
         Route::middleware([UserWorkerPlus::class])->group(function () {
             Route::get('/facturas', ShowInvoices::class)->name('facturas');
@@ -37,5 +38,4 @@ Route::middleware([IsUserActive::class])->group(function () {
     Route::get('/galeria', ShowMedia::class)->name('galeria');
     Route::get('/posts', ShowPosts::class)->name('posts');
     Route::get('/formulario-contacto', FormularioContacto::class)->name('formulario-contacto');
-    Route::get('/designer', [DesignerController::class, 'index'])->name('designer');
 });
