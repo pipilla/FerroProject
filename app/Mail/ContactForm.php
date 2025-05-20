@@ -17,14 +17,14 @@ class ContactForm extends Mailable
      * Create a new message instance.
      */
 
-    public $tipoConsulta;
-    public $tipoTrabajo;
-    public $otroTrabajo;
-    public $nombre;
-    public $direccion;
-    public $telefono;
-    public $email;
-    public $mensaje;
+    public string $tipoConsulta;
+    public string $tipoTrabajo;
+    public string $otroTrabajo;
+    public string $nombre;
+    public string $direccion;
+    public string $telefono;
+    public string $email;
+    public string $mensaje;
 
 
     public function __construct($tipoConsulta, $tipoTrabajo, $otroTrabajo, $nombre, $direccion, $telefono, $email, $mensaje)

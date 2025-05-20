@@ -9,14 +9,14 @@ use Livewire\Component;
 
 class FormularioContacto extends Component
 {
-    public $tipoConsulta = '';
-    public $tipoTrabajo = '';
-    public $otroTrabajo = '';
-    public $nombre = '';
-    public $direccion = '';
-    public $telefono = '';
-    public $email = '';
-    public $mensaje = '';
+    public string $tipoConsulta = '';
+    public string $tipoTrabajo = '';
+    public string $otroTrabajo = '';
+    public string $nombre = '';
+    public string $direccion = '';
+    public string $telefono = '';
+    public string $email = '';
+    public string $mensaje = '';
 
     public function render()
     {
@@ -46,19 +46,23 @@ class FormularioContacto extends Component
     {
         if ($this->tipoConsulta === 'Encargo de trabajo') {
             return [
-                'tipoConsulta' => 'required',
-                'tipoTrabajo' => 'required',
+                'tipoConsulta' => 'required|string',
+                'tipoTrabajo' => 'required|string',
                 'otroTrabajo' => $this->tipoTrabajo == 'Otros' ? 'required|string' : 'nullable',
-                'nombre' => 'required|string',
+                'nombre' => 'required|string|min:3|max:50',
                 'direccion' => 'required|string',
-                'telefono' => 'required|string',
-                'mensaje' => 'required|string',
+                'telefono' => [
+                    'required',
+                    'string',
+                    'regex:/^(?:(?:\+34|0034)?\s?)?(6\d{8}|7\d{8}|9\d{8})$/'
+                ],
+                'mensaje' => 'required|string|min:10|max:500',
                 'email' => (Auth::check()) ? 'nullable' : 'required|email',
             ];
         }
 
         return [
-            'tipoConsulta' => 'required',
+            'tipoConsulta' => 'required|string',
             'nombre' => 'required|string',
             'mensaje' => 'required|string',
             'email' => (Auth::check()) ? 'nullable' : 'required|email',

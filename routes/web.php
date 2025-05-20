@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DesignerController;
 use App\Http\Controllers\FacturasPdfController;
 use App\Http\Middleware\IsUserActive;
 use App\Http\Middleware\UserWorker;
@@ -36,4 +37,5 @@ Route::middleware([IsUserActive::class])->group(function () {
     Route::get('/galeria', ShowMedia::class)->name('galeria');
     Route::get('/posts', ShowPosts::class)->name('posts');
     Route::get('/formulario-contacto', FormularioContacto::class)->name('formulario-contacto');
+    Route::get('/designer', [DesignerController::class, 'index'])->name('designer');
 });

@@ -12,7 +12,7 @@ La web está construida con **Laravel - Jetstream** y **Tailwind CSS**.
 - **Página principal:** Información relevante sobre la empresa, datos de contacto.
 - **Galería de trabajos realizados:** Visualización de imágenes de proyectos anteriores. >>> Terminado
 - **Blog de noticias y posts:** Sección de publicaciones sobre los últimos proyectos y temas relacionados. >>> Terminado
-- **Formulario de contacto:** Los usuarios podrán ponerse en contacto mediante un formulario. >>> En progreso (falta lógica y vistas para mostrar el correo)
+- **Formulario de contacto:** Los usuarios podrán ponerse en contacto mediante un formulario. >>> En progreso (faltan los datos para que funcione)
 
 ### Para los trabajadores:
 - **Chat interno:** Comunicación directa entre los miembros del equipo. >> Terminado
@@ -60,4 +60,4 @@ Cosas que faltan:
 
 #
 
-Fecha de finalización prevista: **25/05/2025**
+Fecha de finalización prevista: **01/06/2025**
