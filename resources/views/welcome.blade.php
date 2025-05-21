@@ -24,7 +24,7 @@
                 <!-- Servicios para los trabajadores -->
                 <section class="py-16 bg-white">
                     <div
-                        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 @if (Auth::user()->role > 1) lg:grid-cols-3 @endif gap-8 text-center">
+                        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
                         <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('tareas') }}">
                             <i class="fas fa-list-check text-3xl text-blue-500 mb-4"></i>
                             <h3 class="text-lg font-semibold mb-2">Lista de Tareas</h3>
@@ -40,6 +40,12 @@
                                 <i class="fas fa-file-invoice-dollar text-3xl text-red-500 mb-4"></i>
                                 <h3 class="text-lg font-semibold mb-2">Facturas</h3>
                                 <p class="text-gray-600 text-sm">Accede a las facturas de los clientes.</p>
+                            </a>
+                        @else
+                            <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('designer') }}">
+                                <i class="fas fa-pencil text-3xl text-red-500 mb-4"></i>
+                                <h3 class="text-lg font-semibold mb-2">Cuaderno</h3>
+                                <p class="text-gray-600 text-sm">Accede a tu cuaderno de diseño personal.</p>
                             </a>
                         @endif
                     </div>
