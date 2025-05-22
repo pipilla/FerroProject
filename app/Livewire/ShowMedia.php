@@ -17,6 +17,8 @@ class ShowMedia extends Component
     use WithFileUploads;
     use WithPagination;
 
+    public array $mediaIds = [];
+
     public int $category_id = 0;
     public bool $showAll = true;
 
@@ -35,6 +37,7 @@ class ShowMedia extends Component
             $mediaQuery->where('category_id', $this->category_id);
         }
         $media = $mediaQuery->paginate(12);
+        $this->mediaIds = $mediaQuery->pluck('id')->toArray();
         return view('livewire.show-media', compact('media', 'categories'));
     }
 
@@ -97,5 +100,31 @@ class ShowMedia extends Component
     {
         $this->openUpdate = false;;
         $this->uform->formReset();
+    }
+
+    public function siguiente()
+    {
+        if (!$this->sform || !$this->sform->media) return;
+
+        $currentId = $this->sform->media->id;
+        $index = array_search($currentId, $this->mediaIds);
+        $nextId = $this->mediaIds[$index + 1] ?? null;
+
+        if ($nextId) {
+            $this->show($nextId);
+        }
+    }
+
+    public function anterior()
+    {
+        if (!$this->sform || !$this->sform->media) return;
+
+        $currentId = $this->sform->media->id;
+        $index = array_search($currentId, $this->mediaIds);
+        $prevId = $this->mediaIds[$index - 1] ?? null;
+
+        if ($prevId) {
+            $this->show($prevId);
+        }
     }
 }

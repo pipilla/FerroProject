@@ -19,7 +19,6 @@
 
             {{-- Botón crear media --}}
             @livewire('crear-media')
-
         @endif
     </div>
 
@@ -45,51 +44,60 @@
 
     {{-- Modal para el show --}}
     @if ($openShow && $sform->media != null)
-        <div>
-            <x-dialog-modal wire:model="openShow">
-                <x-slot name="title">
-                    {{ $sform->title }}
-                </x-slot>
-                <x-slot name="content">
+        <div class="fixed inset-0 z-50 bg-black bg-opacity-90 flex flex-col items-center justify-center p-4">
+            {{-- Botón cerrar --}}
+            <button type="button" wire:click="cerrarShow"
+                class="absolute top-4 right-4 text-white rounded-full p-2 px-4 text-xl focus:outline-none transition hover:text-gray-400">
+                <i class="fas fa-times"></i> Cerrar
+            </button>
 
-                    @if (str_starts_with($sform->file_type, 'image/'))
-                        <img class="h-full w-full object-cover rounded-lg" src="{{ Storage::url($sform->src) }}"
-                            alt="{{ $sform->title }}">
-                    @elseif(str_starts_with($sform->file_type, 'video/'))
-                        <video class="h-full w-full object-cover rounded-lg" controls>
-                            <source src="{{ Storage::url($sform->src) }}" type="{{ $sform->file_type }}">
-                            Tu navegador no soporta el video.
-                        </video>
+            {{-- Contenido multimedia --}}
+            <div class="max-w-5xl w-full text-white flex flex-col items-center gap-4">
+                <h2 class="text-2xl font-bold mb-2 text-center">{{ $sform->title }}</h2>
+
+                @if (str_starts_with($sform->file_type, 'image/'))
+                    <img class="max-h-[70vh] w-auto object-contain rounded-lg mx-auto"
+                        src="{{ Storage::url($sform->src) }}" alt="{{ $sform->title }}">
+                @elseif(str_starts_with($sform->file_type, 'video/'))
+                    <video class="max-h-[70vh] w-auto object-contain rounded-lg mx-auto" controls>
+                        <source src="{{ Storage::url($sform->src) }}" type="{{ $sform->file_type }}">
+                        Tu navegador no soporta el video.
+                    </video>
+                @endif
+
+                {{-- Botones de categoría y acciones --}}
+                <div class="flex justify-between items-center w-full px-4 mt-4">
+                    <button type="button" wire:click="buscar({{ $sform->category_id }})"
+                        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center dark:text-white dark:focus:ring-gray-800 font-bold">
+                        {{ $sform->category_name }}
+                    </button>
+
+                    @if (Auth::user() && Auth::user()->role >= 2)
+                        <div class="flex gap-4 text-white">
+                            <button class="hover:scale-125 transition-transform duration-200 text-green-400"
+                                wire:click="edit({{ $sform->media->id }})">
+                                <i class="fas fa-edit text-xl"></i>
+                            </button>
+                            <button class="hover:scale-125 transition-transform duration-200 text-red-400"
+                                wire:click="confirmarBorrar({{ $sform->media->id }})">
+                                <i class="fas fa-trash text-xl"></i>
+                            </button>
+                        </div>
                     @endif
+                </div>
 
-                    <div class="flex justify-between text-center mt-4">
-                        <button type="button" wire:click="buscar({{ $sform->category_id }})"
-                            class='text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center me-3 dark:text-white dark:focus:ring-gray-800 font-bold'>{{ $sform->category_name }}</button>
-
-                        @if (Auth::user() && Auth::user()->role >= 2)
-                            <div class="flex gap-2">
-                                <button class="hover:scale-125 transition-transform duration-200 text-green-900"
-                                    wire:click="edit({{ $sform->media->id }})">
-                                    <i class="fas fa-edit text-xl"></i>
-                                </button>
-                                <button class="hover:scale-125 transition-transform duration-200 text-red-900"
-                                    wire:click="confirmarBorrar({{ $sform->media->id }})">
-                                    <i class="fas fa-trash text-xl"></i>
-                                </button>
-                            </div>
-                        @endif
-
-                    </div>
-                </x-slot>
-                <x-slot name="footer">
-                    <div class="flex flex-row-reverse">
-                        <button type="button" wire:click="cerrarShow"
-                            class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
-                            <i class="fas fa-xmark mr-2"></i>Cerrar
-                        </button>
-                    </div>
-                </x-slot>
-            </x-dialog-modal>
+                {{-- Navegación --}}
+                <div class="flex justify-between items-center w-full mt-6 px-4">
+                    <button type="button" wire:click="anterior"
+                        class="text-white hover:text-gray-300 font-bold text-xl hover:scale-110 transition">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button type="button" wire:click="siguiente"
+                        class="text-white hover:text-gray-300 font-bold text-xl hover:scale-110 transition">
+                        Siguiente <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     @endif
 
