@@ -9,7 +9,7 @@
                 </a>
             </div>
 
-            <div class="flex">
+            <div class="flex overflow-x-auto whitespace-nowrap scroll-smooth" style="scrollbar-width: none;">
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -181,9 +181,6 @@
                     <x-responsive-nav-link href="{{ route('designer') }}" :active="request()->routeIs('designer')">
                         {{ __('Bocetos') }}
                     </x-responsive-nav-link>
-                    @if (Auth::user()->role > 2)
-                        @livewire('crud-users')
-                    @endif
                 @endif
             @endauth
         </div>

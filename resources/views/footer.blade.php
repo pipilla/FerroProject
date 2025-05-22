@@ -19,6 +19,16 @@
         </div>
     </div>
     <div class="text-center mt-6 text-gray-400 text-xs">
-        <a href="https://creativecommons.org">FerroProject</a> by <a href="https://creativecommons.org">Juan Miguel Mena Sáez</a> is marked <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/zero.svg" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+        <div class="inline-flex items-center space-x-1 whitespace-nowrap">
+            <a href="https://creativecommons.org">FerroProject</a>
+            <span>by</span>
+            <a href="https://creativecommons.org">Juan Miguel Mena Sáez</a>
+            <span>is marked</span>
+            <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" class="w-4 h-4 ml-1 inline"
+                alt="cc" />
+            <img src="https://mirrors.creativecommons.org/presskit/icons/zero.svg" class="w-4 h-4 ml-1 inline"
+                alt="zero" />
+        </div>
     </div>
 </footer>

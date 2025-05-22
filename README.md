@@ -55,9 +55,6 @@ Cosas que faltan:
 - Añadir el login con Google
 - Terminar la **documentación**.
 
-
-(Si sobra tiempo, añadir algo más a la página)
-
 #
 
 Fecha de finalización prevista: **01/06/2025**

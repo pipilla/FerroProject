@@ -3,18 +3,20 @@
     <h1 class="mb-4 text-3xl text-center font-extrabold text-gray-900 md:text-5xl lg:text-6xl"><span
             class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">Posts</span></h1>
 
-    <!-- Buscador -->
-    <div class="pb-4 px-4 md:px-10 flex justify-between">
-        <div class="whitespace-nowrap">
+    <div class="pb-4 px-4 md:px-10 flex flex-wrap gap-y-4 justify-center md:justify-between items-center text-center">
+
+        <div class="flex flex-wrap gap-y-4 justify-center items-center">
             <i class="fas fa-magnifying-glass mr-2"></i>
             <input type="search" placeholder="Buscar post..." class="rounded-full" wire:model.live="buscar" />
 
             <button type="button" wire:click="changeOrder"
-                class='text-gray-900 border ml-4 border-white hover:border-gray-200 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center me-3 mb-3 font-bold'>
+                class='text-gray-900 border ml-4 border-white hover:border-gray-200 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base px-5 py-2.5 text-center me-3 mb-3 font-bold items-center'>
                 @if ($orden != 'desc')
-                    <i class="fas fa-arrow-down-wide-short mr-2"></i> Más Antiguos
+                    <i class="fas fa-arrow-down-wide-short mr-2"></i>
+                    <span class="hidden md:inline">Más Antiguos</span>
                 @else
-                    <i class="fas fa-arrow-up-wide-short mr-2"></i> Últimos
+                    <i class="fas fa-arrow-up-wide-short mr-2"></i>
+                    <span class="hidden md:inline">Últimos</span>
                 @endif
             </button>
         </div>

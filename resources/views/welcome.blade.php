@@ -36,13 +36,13 @@
                             <p class="text-gray-600 text-sm">Acceso al chat de la empresa.</p>
                         </a>
                         @if (Auth::user()->role > 1)
-                            <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('facturas') }}">
+                            <a class="p-6 rounded-lg shadow hover:shadow-md transition md:col-span-2 lg:col-span-1" href="{{ route('facturas') }}">
                                 <i class="fas fa-file-invoice-dollar text-3xl text-red-500 mb-4"></i>
                                 <h3 class="text-lg font-semibold mb-2">Facturas</h3>
                                 <p class="text-gray-600 text-sm">Accede a las facturas de los clientes.</p>
                             </a>
                         @else
-                            <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('designer') }}">
+                            <a class="p-6 rounded-lg shadow hover:shadow-md transition md:col-span-2 lg:col-span-1" href="{{ route('designer') }}">
                                 <i class="fas fa-pencil text-3xl text-red-500 mb-4"></i>
                                 <h3 class="text-lg font-semibold mb-2">Cuaderno</h3>
                                 <p class="text-gray-600 text-sm">Accede a tu cuaderno de diseño personal.</p>
@@ -91,7 +91,7 @@
                     <p class="text-gray-600 text-sm">Consulta nuestra red social interna con los últimos posts, noticias
                         y trabajos.</p>
                 </a>
-                <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('formulario-contacto') }}">
+                <a class="p-6 rounded-lg shadow hover:shadow-md transition md:col-span-2 lg:col-span-1" href="{{ route('formulario-contacto') }}">
                     <i class="fas fa-envelope text-3xl text-red-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Contáctanos</h3>
                     <p class="text-gray-600 text-sm">Envíanos tus consultas y trabajos a través de un formulario.</p>
