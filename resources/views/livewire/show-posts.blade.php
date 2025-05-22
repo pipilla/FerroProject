@@ -8,11 +8,11 @@
         <div class="flex flex-wrap gap-y-4 justify-center items-center">
             <i class="fas fa-magnifying-glass mr-2 text-gray-900 dark:text-gray-300"></i>
             <input type="search" placeholder="Buscar post..."
-                class="rounded-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                class="rounded-full dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 wire:model.live="buscar" />
 
             <button type="button" wire:click="changeOrder"
-                class='text-gray-900 dark:text-white border ml-4 border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 bg-white dark:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-600 rounded-full text-base px-5 py-2.5 text-center me-3 mb-3 font-bold items-center'>
+                class='text-gray-900 dark:text-white border ml-4 border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 bg-white dark:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-600 rounded-full text-base px-5 py-2.5 text-center me-3 mb-3 font-bold items-center'>
                 @if ($orden != 'desc')
                     <i class="fas fa-arrow-down-wide-short mr-2"></i>
                     <span class="hidden md:inline">Más Antiguos</span>
