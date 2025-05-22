@@ -9,15 +9,16 @@ La web está construida con **Laravel - Jetstream** y **Tailwind CSS**.
 ## Características
 
 ### Para los usuarios:
-- **Página principal:** Información relevante sobre la empresa, datos de contacto.
-- **Galería de trabajos realizados:** Visualización de imágenes de proyectos anteriores. >>> Terminado
-- **Blog de noticias y posts:** Sección de publicaciones sobre los últimos proyectos y temas relacionados. >>> Terminado
-- **Formulario de contacto:** Los usuarios podrán ponerse en contacto mediante un formulario. >>> En progreso (faltan los datos para que funcione)
+- **Página principal:** Información relevante sobre la empresa.
+- **Galería de trabajos realizados:** Visualización de imágenes de proyectos anteriores.
+- **Blog de noticias y posts:** Sección de publicaciones sobre los últimos proyectos y temas relacionados.
+- **Formulario de contacto:** Los usuarios podrán ponerse en contacto mediante un formulario.
 
 ### Para los trabajadores:
-- **Chat interno:** Comunicación directa entre los miembros del equipo. >> Terminado
-- **Lista de tareas:** Asignación y seguimiento de tareas para los empleados. >>> Terminado
-- **Generador de facturas:** Herramienta para crear facturas de forma automática. >>> Terminado
+- **Chat interno:** Comunicación directa entre los miembros del equipo.
+- **Lista de tareas:** Asignación y seguimiento de tareas para los empleados.
+- **Generador de facturas:** Herramienta para crear facturas de forma automática.
+- **Creador de bocetos:** Pizarra o cuaderno donde poder hacer bocetos.
 
 ## Info Adicional
 
@@ -36,16 +37,13 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
-- En el Chat, arreglar lo de editar grupo.
-- Mejora para la galería, los que no puedan editar los archivos, tendrán una vista diferente de los mismos.
+- Parte para personalizar las plantillas de las facturas.
 
 - Añadir verificación de correo electrónico.
 - Solucionar la **vista de los vídeos** (si es posible)
 - Terminar la **Landing Page**
 - Crear un **logotipo** de empresa
-- Añadir **accesibilidad** a la página
-- Modo oscuro
-- Revisar el diseño **Responsive**
+- Añadir **accesibilidad** a la página 
 - **Repasar** la página por completo
 
 Último:
@@ -53,6 +51,7 @@ Cosas que faltan:
 - Meter la lógica del **formulario** (configurar AWS SES)
 - Comprar un dominio y configurarlo
 - Añadir el login con Google
+- Añadir datos "reales"
 - Terminar la **documentación**.
 
 #

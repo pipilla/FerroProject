@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Factura #{{ $invoice->id }}</title>
+    <title>Factura{{ $invoice->id }}_{{ $invoice->to }}_{{ $invoice->date }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,21 +13,18 @@
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #313131;
         }
 
         .logo {
             max-height: 60px;
-        }
-
-        .invoice-title {
-            font-size: 24px;
-            font-weight: bold;
         }
 
         .info {
@@ -78,11 +75,15 @@
             margin-bottom: 4px;
         }
 
-        .footer {
-            margin-top: 60px;
-            font-size: 12px;
+        footer {
+            position: fixed;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            height: 50px;
             text-align: center;
-            color: #999;
+            font-size: 12px;
+            color: #888;
         }
     </style>
 </head>
@@ -90,20 +91,37 @@
 <body>
 
     <header>
-        {{-- Aquí se puede poner el logo de la empresa --}}
         <div class="invoice-title">Factura #{{ $invoice->id }}</div>
     </header>
 
-    <div class="info">
+    <section>
+        {{-- Info de empresa a la izquierda --}}
         <div style="float: left; width: 45%;">
-            <h2>De: {{ $invoice->from }}</h2>
+            <h1 style="margin: 0;">FerroProject S.L.</h1>
+            <p style="margin: 2px 0;">Avda América, S/N</p>
+            <p style="margin: 2px 0;">Almería, España - 04005</p>
+        </div>
+
+        {{-- Logo a la derecha --}}
+        <div style="float: right; width: 45%; text-align: right;">
+            <img src="{{ public_path('storage/media/logo.svg') }}" alt="Logo" style="max-height: 100px;">
+        </div>
+
+        <div style="clear: both;"></div>
+
+        <div style="border-bottom: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px;"></div>
+    </section>
+
+
+    <section class="info">
+        <div style="float: left; width: 45%;">
+            <h2>Destinatario: {{ $invoice->to }}</h2>
         </div>
         <div style="float: right; width: 45%; text-align: right;">
-            <h2>Para: {{ $invoice->to }}</h2>
             <p><strong>Fecha:</strong> {{ $invoice->date }}</p>
         </div>
         <div style="clear: both;"></div>
-    </div>
+    </section>
 
     <table>
         <thead>
@@ -154,9 +172,9 @@
         </div>
     @endif
 
-    <div class="footer">
+    <footer>
         Esta factura ha sido generada automáticamente. Para más información, contacte con nosotros.
-    </div>
+    </footer>
 
 </body>
 
