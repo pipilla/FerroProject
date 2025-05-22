@@ -8,7 +8,7 @@
     <div class="grid w-full gap-6 md:grid-cols-3">
         @foreach ($invoices as $item)
             <div wire:click="show({{ $item->id }})"
-                class="items-center w-full text-black p-5 border-2 border-gray-200 rounded-lg cursor-pointer dark:border-gray-700 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 hover:scale-105 transition-transform duration-200">
+                class="items-center w-full text-black dark:text-white dark:bg-gray-800 hover:bg-gray-700 p-5 border-2 border-gray-200 rounded-lg cursor-pointer dark:border-gray-500 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 hover:scale-105 transition-transform duration-200">
                 <div class="inline-flex justify-between w-full mb-2">
                     <h1 class="text-xl font-bold">{{ $item->to }}</h1>
                     <h3>{{ $item->date }}</h3>

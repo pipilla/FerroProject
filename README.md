@@ -36,7 +36,7 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
-- En el Chat, meter mensajes leídos, iconos de nuevos mensajes... (Investigar las notificaciones) Arreglar lo de editar grupo.
+- En el Chat, arreglar lo de editar grupo.
 - Mejora para la galería, los que no puedan editar los archivos, tendrán una vista diferente de los mismos.
 
 - Añadir verificación de correo electrónico.

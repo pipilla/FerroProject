@@ -1,5 +1,5 @@
 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-    <x-nav-link wire:click="set('openModal', true)">
+    <x-nav-link wire:click="set('openModal', true)" class="dark:text-gray-200 dark:hover:text-white">
         <button>Users Admin</button>
     </x-nav-link>
     <x-dialog-modal maxWidth="4xl" wire:model="openModal" class="fixed inset-0 z-[9999]"

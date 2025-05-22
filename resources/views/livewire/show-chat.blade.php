@@ -1,9 +1,9 @@
 <x-self.base>
-    <div class="flex h-[80vh] bg-gray-100 rounded-lg ">
+    <div class="flex h-[80vh] bg-gray-100 rounded-lg dark:bg-gray-900">
         <!-- Sidebar: Lista de Chats -->
-        <div class="relative w-1/4 bg-white border-r p-4 rounded-l-lg">
+        <div class="relative w-1/4 bg-white border-r p-4 rounded-l-lg dark:bg-gray-800 dark:border-gray-700">
             @livewire('crear-chat')
-            <h2 class="text-lg font-semibold mb-4">Tus chats</h2>
+            <h2 class="text-lg font-semibold mb-4 dark:text-gray-200">Tus chats</h2>
             <div class="overflow-y-auto h-[70vh]">
                 @foreach ($chats as $chat)
                     @php
@@ -11,7 +11,8 @@
                     @endphp
                     <button wire:click="seleccionarChat({{ $chat->id }})"
                         class="relative block w-full text-left px-4 py-2 mb-2 rounded-xl transition-colors duration-200
-                    {{ $selectedChat != null && $selectedChat->id === $chat->id ? 'bg-blue-100 hover:bg-blue-300' : 'hover:bg-gray-100' }}">
+                        {{ $selectedChat != null && $selectedChat->id === $chat->id ? 'bg-blue-100 hover:bg-blue-300 dark:bg-blue-700 dark:hover:bg-blue-600' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }}
+                        text-black dark:text-gray-200">
                         <p class="hover:scale-105 transition-transform duration-200">
                             @if ($chat->is_group)
                                 {{ $chat->name }}
@@ -39,8 +40,9 @@
                     {{-- Lista de mensajes actualizados cada 5 segundos --}}
                 </div>
                 <!-- Encabezado del Chat -->
-                <div class="bg-white px-6 py-4 border-b flex items-center justify-between rounded-tr-lg">
-                    <h3 class="text-lg font-semibold">
+                <div
+                    class="bg-white px-6 py-4 border-b flex items-center justify-between rounded-tr-lg dark:bg-gray-800 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold dark:text-gray-200">
                         @if ($selectedChat?->is_group)
                             {{ $selectedChat->name }}
                         @else
@@ -49,14 +51,17 @@
                     </h3>
                     @if ($selectedChat?->is_group)
                         @if (Auth::id() == $selectedChat->admin)
-                            <button class="text-lg font-semibold hover:scale-110 transition-transform duration-200"
+                            <button
+                                class="text-lg font-semibold hover:scale-110 transition-transform duration-200 dark:text-gray-200"
                                 wire:click="editChat({{ $selectedChat->id }})">
                                 <i class="fas fa-gear"></i>
                             </button>
                         @else
-                            <button class="text-lg font-semibold hover:scale-110 transition-transform duration-200"
+                            <button
+                                class="text-lg font-semibold hover:scale-110 transition-transform duration-200 dark:text-gray-200"
                                 wire:click="infoChat({{ $selectedChat->id }})">
                                 <i class="fas fa-info"></i>
+                            </button>
                         @endif
                     @endif
                 </div>
@@ -73,20 +78,20 @@
                             });
                         }
                 }" x-init="init" x-ref="scrollBox"
-                    class="flex-1 overflow-y-auto p-6 space-y-4">
+                    class="flex-1 overflow-y-auto p-6 space-y-4 bg-white dark:bg-gray-900">
                     @foreach ($messages as $message)
                         <div @if ($loop->last) x-ref="ultimoMensaje" @endif
                             class="flex flex-col {{ $message->sender_id == Auth::id() ? 'items-end' : 'items-start' }}">
                             @if ($message->sender_id != Auth::id())
-                                <p class="text-xs text-gray-600 mb-1">
+                                <p class="text-xs text-gray-600 mb-1 dark:text-gray-400">
                                     {{ $message->sender->name ?? 'Usuario' }}
                                 </p>
                             @endif
 
                             <div
-                                class="bg-{{ $message->sender_id == Auth::id() ? 'blue' : 'gray' }}-200 px-4 py-2 rounded-lg max-w-xs">
-                                <p class="text-sm text-gray-800">{{ $message->content }}</p>
-                                <p class="text-xs text-gray-500 text-right mt-1">
+                                class="px-4 py-2 rounded-lg max-w-xs {{ $message->sender_id == Auth::id() ? 'bg-blue-200 dark:bg-blue-700' : 'bg-gray-200 dark:bg-gray-700' }}">
+                                <p class="text-sm text-gray-800 dark:text-gray-100">{{ $message->content }}</p>
+                                <p class="text-xs text-gray-500 text-right mt-1 dark:text-gray-400">
                                     {{ $message->created_at->format('H:i') }}
                                 </p>
                             </div>
@@ -96,21 +101,22 @@
 
                 <!-- Formulario -->
                 <form wire:submit.prevent="sendMessage"
-                    class="p-4 bg-white border-t flex items-center gap-2 rounded-br-lg">
+                    class="p-4 bg-white border-t flex items-center gap-2 rounded-br-lg dark:bg-gray-800 dark:border-gray-700">
                     <input type="text" wire:model.defer="content"
-                        class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring"
+                        class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring bg-gray-100 dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600"
                         placeholder="Escribe un mensaje..." />
-                    <button type="submit"
-                        class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">Enviar</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
+                        Enviar
+                    </button>
                 </form>
             @else
-                <div class="flex-1 flex items-center justify-center text-gray-500">
+                <div class="flex-1 flex items-center justify-center text-gray-500 dark:text-gray-400">
                     Selecciona un chat para comenzar
                 </div>
             @endif
         </div>
     </div>
-    @if (Auth::user()->role > 1 && $openEdit)
+    @if ($openEdit)
         <x-dialog-modal maxWidth="sm" wire:model="openEdit">
             <x-slot name="title">
                 Editar grupo
@@ -119,7 +125,7 @@
 
                 <div class="mt-4">
                     <input type="text" wire:model="uform.groupName" placeholder="Nombre del grupo"
-                        class="border rounded p-2 w-full">
+                        class="border rounded p-2 w-full bg-white  border-gray-300 ">
                     <x-input-error for="uform.groupName" />
                 </div>
 
@@ -143,20 +149,20 @@
                 <div class="flex justify-between gap-2">
                     <button type="button" wire:click="updateGroup"
                         class="bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition duration-300">
-                        <i class="fas fa-save mr-2"></i>Actualizar Grupo
+                        <i class="fas fa-save mr-2"></i><span>Actualizar Grupo</span>
                     </button>
                     <button type="button" wire:click="cancelar"
                         class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
-                        <i class="fas fa-xmark mr-2"></i>Cerrar
+                        <i class="fas fa-xmark mr-2"></i><span>Cerrar</span>
                     </button>
                 </div>
             </x-slot>
         </x-dialog-modal>
     @endif
-    @if (Auth::user()->role > 1 && $openShow)
+    @if ($openShow)
         <x-dialog-modal maxWidth="sm" wire:model="openShow">
             <x-slot name="title">
-                Usuarios del grupo
+                Usuarios del Grupo
             </x-slot>
             <x-slot name="content">
 
@@ -175,7 +181,7 @@
                 <div class="flex justify-between gap-2">
                     <button type="button" wire:click="cancelar"
                         class="bg-red-500 text-white font-bold p-3 rounded-lg hover:bg-red-600 transition duration-300">
-                        <i class="fas fa-xmark mr-2"></i>Cerrar
+                        <i class="fas fa-xmark mr-2"></i><span>Cerrar</span>
                     </button>
                 </div>
             </x-slot>

@@ -7,31 +7,46 @@
         <ul class="grid w-full gap-6 md:grid-cols-3">
             @foreach ($tasks as $item)
                 @if ($uform->task != null && $uform->task->id == $item->id)
-                    <li class="">
+                    <li>
                         <div
-                            class="items-center w-full text-black p-5 border-2 border-gray-200 rounded-lg cursor-pointer dark:border-gray-700 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 hover:scale-105 transition-transform duration-200">
-                            <label>Título:</label>
-                            <input type="text" class="w-full rounded-lg" wire:model="uform.title" value="{{$item->title}}">
+                            class="items-center w-full p-5 border-2 border-gray-200 rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105
+               text-black bg-white dark:text-gray-100 dark:bg-gray-800 dark:border-gray-700 peer-checked:border-blue-600 dark:peer-checked:border-blue-600">
+
+                            <label class="block mb-1 font-semibold">Título:</label>
+                            <input type="text"
+                                class="w-full rounded-lg px-3 py-2 bg-gray-100 text-black dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600"
+                                wire:model="uform.title" value="{{ $item->title }}">
                             <x-input-error for="uform.title" />
-                            <hr class='my-2'>
-                            <label>Descripción:</label>
+
+                            <hr class="my-2 border-gray-300 dark:border-gray-600">
+
+                            <label class="block mb-1 font-semibold">Descripción:</label>
                             <div class="w-full text-sm">
-                                <textarea class="w-full rounded-lg" wire:model="uform.description">{{$item->description}}</textarea>
+                                <textarea
+                                    class="w-full rounded-lg px-3 py-2 bg-gray-100 text-black dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600"
+                                    wire:model="uform.description">{{ $item->description }}</textarea>
                                 <x-input-error for="uform.description" />
                             </div>
-                            <hr class='my-2'>
+
+                            <hr class="my-2 border-gray-300 dark:border-gray-600">
+
                             <div>
-                                <label>Prioridad: {{ $uform->priority }}</label>
+                                <label class="block mb-1 font-semibold">Prioridad: {{ $uform->priority }}</label>
                                 <input id="minmax-range" type="range" min="0" max="5"
                                     wire:model.live="uform.priority"
                                     class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                                 <x-input-error for="uform.priority" />
                             </div>
-                            <div class="text-center itemd-center mt-4">
+
+                            <div class="text-center items-center mt-4 space-x-2">
                                 <button type="button" wire:click="descartarUpdate"
-                                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Descartar</button>
-                                <button type="button" wire:click="update({{$item->id}})"
-                                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Guardar</button>
+                                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Descartar
+                                </button>
+                                <button type="button" wire:click="update({{ $item->id }})"
+                                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Guardar
+                                </button>
                             </div>
                         </div>
                     </li>
@@ -79,11 +94,11 @@
                                 <div class="w-full text-sm">{{ $item->description }}</div>
                                 <div class="text-center items-center">
                                     <div class="flex justify-end gap-3">
-                                        <button wire:click="edit({{$item->id}})"
+                                        <button wire:click="edit({{ $item->id }})"
                                             class="hover:scale-125 transition-transform duration-200 text-gray-600 hover:text-black">
                                             <i class="fas fa-edit text-xl"></i>
                                         </button>
-                                        <button wire:click="confirmarBorrar({{$item->id}})"
+                                        <button wire:click="confirmarBorrar({{ $item->id }})"
                                             class="hover:scale-125 transition-transform duration-200 text-gray-600 hover:text-black">
                                             <i class="fas fa-trash text-xl"></i>
                                         </button>
@@ -95,35 +110,51 @@
                 @endif
             @endforeach
             @if ($nuevaTarea)
-                <li class="">
+                <li>
                     <div
-                        class="items-center w-full text-black p-5 border-2 border-gray-200 rounded-lg cursor-pointer dark:border-gray-700 peer-checked:border-blue-600 dark:peer-checked:border-blue-600 hover:scale-105 transition-transform duration-200">
-                        <label>Título:</label>
-                        <input type="text" class="w-full rounded-lg" wire:model="cform.title">
+                        class="items-center w-full p-5 border-2 border-gray-200 rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105
+                   text-black bg-white dark:text-gray-100 dark:bg-gray-800 dark:border-gray-700 peer-checked:border-blue-600 dark:peer-checked:border-blue-600">
+
+                        <label class="block mb-1 font-semibold">Título:</label>
+                        <input type="text"
+                            class="w-full rounded-lg px-3 py-2 bg-gray-100 text-black dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600"
+                            wire:model="cform.title">
                         <x-input-error for="cform.title" />
-                        <hr class='my-2'>
-                        <label>Descripción:</label>
+
+                        <hr class="my-2 border-gray-300 dark:border-gray-600">
+
+                        <label class="block mb-1 font-semibold">Descripción:</label>
                         <div class="w-full text-sm">
-                            <textarea class="w-full rounded-lg" wire:model="cform.description"></textarea>
+                            <textarea
+                                class="w-full rounded-lg px-3 py-2 bg-gray-100 text-black dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600"
+                                wire:model="cform.description"></textarea>
                             <x-input-error for="cform.description" />
                         </div>
-                        <hr class='my-2'>
+
+                        <hr class="my-2 border-gray-300 dark:border-gray-600">
+
                         <div>
-                            <label>Prioridad: {{ $cform->priority }}</label>
+                            <label class="block mb-1 font-semibold">Prioridad: {{ $cform->priority }}</label>
                             <input id="minmax-range" type="range" min="0" max="5" value="0"
                                 wire:model.live="cform.priority"
                                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                             <x-input-error for="cform.priority" />
                         </div>
-                        <div class="text-center itemd-center mt-4">
+
+                        <div class="text-center items-center mt-4 space-x-2">
                             <button type="button" wire:click="descartar"
-                                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Descartar</button>
+                                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Descartar
+                            </button>
                             <button type="button" wire:click="create"
-                                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Guardar</button>
+                                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                Guardar
+                            </button>
                         </div>
                     </div>
                 </li>
             @endif
+
         </ul>
         @if (!$nuevaTarea)
             <div class="text-center items-center my-4"><button wire:click="set('nuevaTarea', true)"

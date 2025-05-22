@@ -1,119 +1,124 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 fixed top-0 left-0 z-50 w-full">
+<nav x-data="{ open: false }"
+    class="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 fixed top-0 left-0 z-50 w-full">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
 
+            <!-- Logo -->
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('welcome') }}">
                     <x-application-mark class="block h-9 w-auto" />
                 </a>
             </div>
 
+            <!-- Links -->
             <div class="flex overflow-x-auto whitespace-nowrap scroll-smooth" style="scrollbar-width: none;">
-
-                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('galeria') }}" :active="request()->routeIs('galeria')">
+                    <x-nav-link class="dark:text-gray-200 dark:hover:text-white" href="{{ route('galeria') }}"
+                        :active="request()->routeIs('galeria')">
                         {{ __('Galería') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('posts') }}" :active="request()->routeIs('posts')">
+                    <x-nav-link class="dark:text-gray-200 dark:hover:text-white" href="{{ route('posts') }}"
+                        :active="request()->routeIs('posts')">
                         {{ __('Posts') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('formulario-contacto') }}" :active="request()->routeIs('formulario-contacto')">
+                    <x-nav-link class="dark:text-gray-200 dark:hover:text-white"
+                        href="{{ route('formulario-contacto') }}" :active="request()->routeIs('formulario-contacto')">
                         {{ __('Contáctanos') }}
                     </x-nav-link>
                 </div>
+
                 @auth
                     @if (Auth::user()->role > 0)
+                        <!-- Más links según el rol -->
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link href="{{ route('tareas') }}" :active="request()->routeIs('tareas')">
+                            <x-nav-link class="dark:text-gray-200 dark:hover:text-white" href="{{ route('tareas') }}"
+                                :active="request()->routeIs('tareas')">
                                 {{ __('Tareas') }}
                             </x-nav-link>
                         </div>
                         @if (Auth::user()->role > 1)
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link href="{{ route('facturas') }}" :active="request()->routeIs('facturas')">
+                                <x-nav-link class="dark:text-gray-200 dark:hover:text-white" href="{{ route('facturas') }}"
+                                    :active="request()->routeIs('facturas')">
                                     {{ __('Facturas') }}
                                 </x-nav-link>
                             </div>
                         @endif
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link href="{{ route('chat') }}" :active="request()->routeIs('chat')">
+                            <x-nav-link class="dark:text-gray-200 dark:hover:text-white" href="{{ route('chat') }}"
+                                :active="request()->routeIs('chat')">
                                 {{ __('Chat') }}
                             </x-nav-link>
                         </div>
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link href="{{ route('designer') }}" :active="request()->routeIs('designer')">
+                            <x-nav-link class="dark:text-gray-200 dark:hover:text-white" href="{{ route('designer') }}"
+                                :active="request()->routeIs('designer')">
                                 {{ __('Bocetos') }}
                             </x-nav-link>
                         </div>
-                    @endif
-                    @if (Auth::user()->role > 2)
-                        @livewire('crud-users')
+                        @if (Auth::user()->role > 2)
+                            @livewire('crud-users')
+                        @endif
                     @endif
                 @endauth
             </div>
 
+            <!-- Botones login / usuario -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-
                 @if (Route::has('login'))
                     <nav class="flex items-center justify-end gap-4">
                         @auth
-                            <!-- Settings Dropdown -->
                             <div class="ms-3 relative">
                                 <x-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                             <button
-                                                class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                                class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 dark:focus:border-gray-600 transition">
                                                 <img class="size-8 rounded-full object-cover"
                                                     src="{{ Auth::user()->profile_photo_url }}"
                                                     alt="{{ Auth::user()->name }}" />
                                             </button>
                                         @else
-                                            <span class="inline-flex rounded-md">
-                                                <button type="button"
-                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                                    {{ Auth::user()->name }}
-
-                                                    <svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                                        stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                    </svg>
-                                                </button>
-                                            </span>
+                                            <button type="button"
+                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-200 dark:hover:text-white bg-white dark:bg-gray-800 hover:text-gray-700 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700 transition ease-in-out duration-150">
+                                                {{ Auth::user()->name }}
+                                                <svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            </button>
                                         @endif
                                     </x-slot>
 
                                     <x-slot name="content">
-                                        <!-- Account Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                        <div class="block px-4 py-2 text-xs text-gray-400 dark:text-gray-500">
                                             {{ __('Manage Account') }}
                                         </div>
 
-                                        <x-dropdown-link href="{{ route('profile.show') }}">
+                                        <x-dropdown-link class="dark:text-gray-300" href="{{ route('profile.show') }}">
                                             {{ __('Profile') }}
                                         </x-dropdown-link>
 
                                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                            <x-dropdown-link href="{{ route('api-tokens.index') }}">
+                                            <x-dropdown-link class="dark:text-gray-300"
+                                                href="{{ route('api-tokens.index') }}">
                                                 {{ __('API Tokens') }}
                                             </x-dropdown-link>
                                         @endif
 
-                                        <div class="border-t border-gray-200"></div>
+                                        <div class="border-t border-gray-200 dark:border-gray-700"></div>
 
-                                        <!-- Authentication -->
                                         <form method="POST" action="{{ route('logout') }}" x-data>
                                             @csrf
-
-                                            <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                            <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();"
+                                                class="dark:text-gray-300">
                                                 {{ __('Log Out') }}
                                             </x-dropdown-link>
                                         </form>
@@ -122,13 +127,13 @@
                             </div>
                         @else
                             <a href="{{ route('login') }}"
-                                class="inline-block px-5 py-1.5 text-[#1b1b18] border border-transparent hover:border-[#19140035] rounded-full text-sm leading-normal">
+                                class="inline-block px-5 py-1.5 text-[#1b1b18] dark:text-gray-200 border border-transparent hover:border-gray-300 dark:hover:border-gray-600 rounded-full text-sm leading-normal">
                                 Iniciar Sesión
                             </a>
 
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}"
-                                    class="inline-block px-5 py-1.5 border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] rounded-full text-sm leading-normal">
+                                    class="inline-block px-5 py-1.5 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 border text-[#1b1b18] dark:text-gray-200 rounded-full text-sm leading-normal">
                                     Registrarse
                                 </a>
                             @endif
@@ -137,10 +142,10 @@
                 @endif
             </div>
 
-            <!-- Hamburger -->
+            <!-- Botón hamburguesa -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-200 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700 transition duration-150 ease-in-out">
                     <svg class="size-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -154,7 +159,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden dark:bg-gray-900 dark:text-white">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('galeria') }}" :active="request()->routeIs('galeria')">
                 {{ __('Galería') }}

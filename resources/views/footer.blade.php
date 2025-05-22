@@ -1,4 +1,4 @@
-<footer class="bg-gray-800 text-white py-8 w-full">
+<footer class="bg-gray-800 dark:bg-black text-white py-8 w-full">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
         <div>
             <h4 class="font-bold mb-2">Empresa</h4>
