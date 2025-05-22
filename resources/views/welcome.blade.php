@@ -81,12 +81,12 @@
         <section class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
                 <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('galeria') }}">
-                    <i class="fas fa-photo-film text-3xl text-blue-500 mb-4"></i>
+                    <i class="fas fa-images text-3xl text-blue-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Galería</h3>
                     <p class="text-gray-600 text-sm">Descubre las imágenes y vídeos de nuestros últimos trabajos.</p>
                 </a>
                 <a class="p-6 rounded-lg shadow hover:shadow-md transition" href="{{ route('posts') }}">
-                    <i class="fas fa-users text-3xl text-green-500 mb-4"></i>
+                    <i class="fas fa-newspaper text-3xl text-green-500 mb-4"></i>
                     <h3 class="text-lg font-semibold mb-2">Posts</h3>
                     <p class="text-gray-600 text-sm">Consulta nuestra red social interna con los últimos posts, noticias
                         y trabajos.</p>
@@ -103,8 +103,7 @@
         <section class="bg-gray-50 py-16">
             <div class="max-w-3xl mx-auto px-4 text-center">
                 <h2 class="text-3xl font-bold mb-6">¿Tienes alguna pregunta?</h2>
-                <p class="text-gray-700 mb-6">Ponte en contacto con nosotros a través del formulario o visítanos en
-                    nuestras redes.</p>
+                <p class="text-gray-700 mb-6">Ponte en contacto con nosotros a través del formulario.</p>
                 <a href="{{ route('formulario-contacto') }}"
                     class="bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-lg inline-flex items-center">
                     <i class="fas fa-paper-plane mr-2"></i> Ir al Formulario

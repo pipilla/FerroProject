@@ -49,6 +49,7 @@ class ShowChat extends Component
 
         $this->messages = $chat->messages()->get() ?? [];
         $this->dispatch('scrollToBottom');
+        $this->markMessagesAsRead($chat);
     }
 
     public function updateMessages()
@@ -102,5 +103,13 @@ class ShowChat extends Component
         $this->openShow = false;
         $this->openEdit = false;
         $this->reset('uform');
+    }
+
+    public function markMessagesAsRead(Chat $chat)
+    {
+        $chat->messages()
+            ->where('is_read', false)
+            ->where('sender_id', '!=', Auth::id())
+            ->update(['is_read' => true]);
     }
 }

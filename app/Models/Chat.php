@@ -35,4 +35,11 @@ class Chat extends Model
     {
         return $this->hasOne(Message::class)->latestOfMany();
     }
+
+    public function unreadMessagesForUser($userId)
+    {
+        return $this->messages()
+            ->where('is_read', false)
+            ->where('sender_id', '!=', $userId);
+    }
 }

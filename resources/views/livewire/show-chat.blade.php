@@ -6,8 +6,12 @@
             <h2 class="text-lg font-semibold mb-4">Tus chats</h2>
             <div class="overflow-y-auto h-[70vh]">
                 @foreach ($chats as $chat)
+                    @php
+                        $unreadCount = $chat->unreadMessagesForUser(Auth::id())->count();
+                    @endphp
                     <button wire:click="seleccionarChat({{ $chat->id }})"
-                        class="block w-full text-left px-4 py-2 mb-2 rounded-xl {{ $selectedChat != null && $selectedChat->id === $chat->id ? 'bg-blue-100 hover:bg-blue-300' : 'hover:bg-gray-100' }}">
+                        class="relative block w-full text-left px-4 py-2 mb-2 rounded-xl transition-colors duration-200
+                    {{ $selectedChat != null && $selectedChat->id === $chat->id ? 'bg-blue-100 hover:bg-blue-300' : 'hover:bg-gray-100' }}">
                         <p class="hover:scale-105 transition-transform duration-200">
                             @if ($chat->is_group)
                                 {{ $chat->name }}
@@ -15,6 +19,13 @@
                                 {{ $chat->users->firstWhere('id', '!=', Auth::id())->name }}
                             @endif
                         </p>
+
+                        @if ($unreadCount > 0)
+                            <div
+                                class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow">
+                                {{ $unreadCount }}
+                            </div>
+                        @endif
                     </button>
                 @endforeach
             </div>
