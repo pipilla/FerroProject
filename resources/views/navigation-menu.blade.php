@@ -97,8 +97,8 @@
                                         @endif
                                     </x-slot>
 
-                                    <x-slot name="content">
-                                        <div class="block px-4 py-2 text-xs text-gray-400 dark:text-gray-500">
+                                    <x-slot name="content" class="dark:bg-black">
+                                        <div class="block px-4 py-2 text-xs text-gray-400 dark:text-gray-200">
                                             {{ __('Gestionar cuenta') }}
                                         </div>
 

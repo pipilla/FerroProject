@@ -37,8 +37,6 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
-- Parte para personalizar las plantillas de las facturas.
-
 - Añadir verificación de correo electrónico.
 - Solucionar la **vista de los vídeos** (si es posible)
 - Terminar la **Landing Page**
