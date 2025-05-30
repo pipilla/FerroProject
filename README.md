@@ -37,6 +37,7 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
+- Hacer el chat responsive
 - Añadir verificación de correo electrónico.
 - Terminar la **Landing Page** (añadir imágenes)
 - Añadir datos "reales" (Galería y Posts)
