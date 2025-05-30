@@ -38,18 +38,13 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 
 Cosas que faltan:
 - Añadir verificación de correo electrónico.
-- Solucionar la **vista de los vídeos** (si es posible)
-- Terminar la **Landing Page**
+- Terminar la **Landing Page** (añadir imágenes)
+- Añadir datos "reales" (Galería y Posts)
 - Crear un **logotipo** de empresa
 - Añadir **accesibilidad** a la página 
-- **Repasar** la página por completo
-
-Último:
-- **Desplegar** el proyecto en AWS
-- Meter la lógica del **formulario** (configurar AWS SES)
+- Meter la lógica del **formulario** para configurarlo con AWS SES
 - Comprar un dominio y configurarlo
-- Añadir el login con Google
-- Añadir datos "reales"
+- Añadir el login con Google (si da tiempo)
 - Terminar la **documentación**.
 
 #
