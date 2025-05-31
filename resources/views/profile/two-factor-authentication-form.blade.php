@@ -1,28 +1,28 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Autenticación de Doble Factor') }}
+        <p class="dark:text-white">Autenticación de Doble Factor</p>
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Añade seguridad adicional a tu cuenta mediante la autenticación de doble factor.') }}
+        <p class="dark:text-gray-300">Añade seguridad adicional a tu cuenta mediante la autenticación de doble factor.</p>
     </x-slot>
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
                 @if ($showingConfirmation)
-                    {{ __('Termine de habilitar la autenticación de doble factor.') }}
+                    <p class="dark:text-white">Termine de habilitar la autenticación de doble factor.</p>
                 @else
-                    {{ __('Ha activado la autenticación de doble factor.') }}
+                    <p class="dark:text-white">Ha activado la autenticación de doble factor.</p>
                 @endif
             @else
-                {{ __('No ha activado la autenticación de doble factor.') }}
+                <p class="dark:text-white">No ha activado la autenticación de doble factor.</p>
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-gray-600">
             <p>
-                {{ __('Cuando la autenticación de doble factor está activada, se le pedirá un token seguro y aleatorio durante la autenticación. Puede recuperar este token desde la aplicación Google Authenticator de su teléfono.') }}
+                <p class="dark:text-gray-300">Cuando la autenticación de doble factor está activada, se le pedirá un token seguro y aleatorio durante la autenticación. Puede recuperar este token desde la aplicación Google Authenticator de su teléfono.</p>
             </p>
         </div>
 
@@ -31,9 +31,9 @@
                 <div class="mt-4 max-w-xl text-sm text-gray-600">
                     <p class="font-semibold">
                         @if ($showingConfirmation)
-                            {{ __('Para terminar de activar la autenticación de doble factor, escanea el siguiente código QR utilizando la aplicación de autenticación de tu teléfono o introduce la clave de configuración y proporciona el código OTP generado.') }}
+                            <p class="dark:text-gray-300">Para terminar de activar la autenticación de doble factor, escanea el siguiente código QR utilizando la aplicación de autenticación de tu teléfono o introduce la clave de configuración y proporciona el código OTP generado.</p>
                         @else
-                            {{ __('La autenticación de doble factor ya está activada. Escanea el siguiente código QR con la aplicación de autenticación de tu teléfono o introduce la clave de configuración.') }}
+                            <p class="dark:text-gray-300">La autenticación de doble factor ya está activada. Escanea el siguiente código QR con la aplicación de autenticación de tu teléfono o introduce la clave de configuración.</p>
                         @endif
                     </p>
                 </div>

@@ -2,29 +2,29 @@
     # Nuevo/a {{ $tipoConsulta }}
 
     @if ($tipoConsulta == 'Encargo de trabajo')
-        **Tipo de trabajo:** {{ $tipoTrabajo }}
+**Tipo de trabajo:** {{ $tipoTrabajo }}
 
         @if ($tipoTrabajo == 'Otros')
-            **Descripción del trabajo:** {{ $otroTrabajo }}
+**Descripción del trabajo:** {{ $otroTrabajo }}
         @endif
 
-        **{{ $nombre }}**
+**{{ $nombre }}**
 
-        **Dirección:** {{ $direccion }}
+**Dirección:** {{ $direccion }}
 
-        **Teléfono:** {{ $telefono }}
+**Teléfono:** {{ $telefono }}
 
-        **Email:** {{ $email }}
+**Email:** {{ $email }}
 
-        **Mensaje:**
+**Mensaje:**
 
         {{ $mensaje }}
     @else
-        **{{ $nombre }}**
+**{{ $nombre }}**
         
-        **Email:** {{ $email }}
+**Email:** {{ $email }}
 
-        **Mensaje:**
+**Mensaje:**
 
         {{ $mensaje }}
     @endif

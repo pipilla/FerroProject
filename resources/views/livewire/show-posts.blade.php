@@ -77,15 +77,6 @@
                         @endforeach
                     </div>
 
-                    <!-- Indicadores -->
-                    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                        @foreach ($post->media as $media)
-                            <button type="button" class="w-3 h-3 rounded-full bg-white/70 dark:bg-gray-700/70"
-                                aria-current="true" aria-label="Slide {{ $loop->iteration }}"
-                                data-carousel-slide-to="{{ $loop->index }}"></button>
-                        @endforeach
-                    </div>
-
                     <!-- Controles -->
                     <button type="button"
                         class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"

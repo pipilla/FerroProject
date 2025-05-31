@@ -43,6 +43,7 @@ class ShowMedia extends Component
 
     public function buscar(int $id)
     {
+        $this->resetPage();
         $this->category_id = $id;
         $this->showAll = ($id <= 0);
     }

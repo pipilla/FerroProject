@@ -38,8 +38,8 @@ class FormularioContacto extends Component
             $this->mensaje
         ));
 
-        $this->redirect(route('welcome'));
         $this->dispatch('mensaje', 'Correo enviado');
+        $this->redirect(route('welcome'));
     }
 
     protected function rules()

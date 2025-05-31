@@ -1,5 +1,7 @@
 # FerroProject - Página Web
 
+[ferroproject.com](https://ferroproject.com/)
+
 El proyecto consiste en la página web de una carpintería metálica.
 
 Esta proporciona información clave sobre la empresa, sus trabajadores y sus servicios. Además, contará con funcionalidades para la gestión interna de la empresa, como un chat para los trabajadores, una lista de tareas y un generador de facturas.
@@ -37,19 +39,14 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
+- Hacer el chat responsive
 - Añadir verificación de correo electrónico.
-- Solucionar la **vista de los vídeos** (si es posible)
-- Terminar la **Landing Page**
+- Terminar la **Landing Page** (añadir imágenes)
+- Añadir datos "reales" (Galería y Posts)
 - Crear un **logotipo** de empresa
 - Añadir **accesibilidad** a la página 
-- **Repasar** la página por completo
-
-Último:
-- **Desplegar** el proyecto en AWS
-- Meter la lógica del **formulario** (configurar AWS SES)
-- Comprar un dominio y configurarlo
-- Añadir el login con Google
-- Añadir datos "reales"
+- Meter la lógica del **formulario** para configurarlo con AWS SES
+- Añadir el login con Google (si da tiempo)
 - Terminar la **documentación**.
 
 #
