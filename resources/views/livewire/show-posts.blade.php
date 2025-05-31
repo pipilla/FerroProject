@@ -78,22 +78,24 @@
                     </div>
 
                     <!-- Controles -->
-                    <button type="button"
-                        class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-prev>
-                        <span
-                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-700/30 group-hover:bg-white/50 dark:group-hover:bg-gray-700/50 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-700">
-                            <i class="fas fa-chevron-left text-white dark:text-gray-300"></i>
-                        </span>
-                    </button>
-                    <button type="button"
-                        class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-next>
-                        <span
-                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-700/30 group-hover:bg-white/50 dark:group-hover:bg-gray-700/50 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-700">
-                            <i class="fas fa-chevron-right text-white dark:text-gray-300"></i>
-                        </span>
-                    </button>
+                    @if ($post->media && $post->media->count() > 1)
+                        <button type="button"
+                            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                            data-carousel-prev>
+                            <span
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-700/30 group-hover:bg-white/50 dark:group-hover:bg-gray-700/50 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-700">
+                                <i class="fas fa-chevron-left text-white dark:text-gray-300"></i>
+                            </span>
+                        </button>
+                        <button type="button"
+                            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                            data-carousel-next>
+                            <span
+                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-700/30 group-hover:bg-white/50 dark:group-hover:bg-gray-700/50 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-700">
+                                <i class="fas fa-chevron-right text-white dark:text-gray-300"></i>
+                            </span>
+                        </button>
+                    @endif
                 </div>
 
                 <!-- Descripción -->
@@ -224,8 +226,7 @@
                     <input type="text" id="titulo" name="title" placeholder="Título del contenido"
                         wire:model.live="uform.title"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <i
-                        class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     <x-input-error for="uform.title" />
                 </div>
 
@@ -236,8 +237,7 @@
                         wire:model.live="uform.description"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </textarea>
-                    <i
-                        class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     <x-input-error for="uform.description" />
                 </div>
 
@@ -271,8 +271,7 @@
 
                 <!-- Tags -->
                 <div class="relative mb-4">
-                    <label for="tags"
-                        class="block text-sm font-medium text-gray-700 mb-2">Etiquetas</label>
+                    <label for="tags" class="block text-sm font-medium text-gray-700 mb-2">Etiquetas</label>
                     <div class="flex flex-wrap gap-2">
                         @foreach ($tags as $tag)
                             <label
@@ -285,14 +284,12 @@
                         @if (!$addTag)
                             <label
                                 class="flex items-center space-x-2 text-sm bg-gray-100 px-3 py-1 rounded-full cursor-pointer">
-                                <button wire:click="nuevaEtiqueta"
-                                    class="text-gray-700 hover:text-gray-900">
+                                <button wire:click="nuevaEtiqueta" class="text-gray-700 hover:text-gray-900">
                                     <i class="fas fa-add mr-2"></i>Nueva etiqueta
                                 </button>
                             </label>
                         @else
-                            <div
-                                class="flex items-center space-x-2 bg-gray-100 px-3 py-1 rounded-full">
+                            <div class="flex items-center space-x-2 bg-gray-100 px-3 py-1 rounded-full">
                                 <input type="text" wire:model="ftag.name" placeholder="Nueva etiqueta..."
                                     class="px-2 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <x-input-error for="ftag.name" class="text-red-500 text-xs mt-1" />

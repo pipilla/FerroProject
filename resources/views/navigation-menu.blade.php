@@ -204,8 +204,8 @@
                             @endif
 
                             <div>
-                                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+                                <div class="font-medium text-sm text-gray-500 dark:text-gray-400">{{ Auth::user()->email }}</div>
                             </div>
                         </div>
 
@@ -233,17 +233,19 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}"
-                        class="inline-block px-5 py-1.5 text-[#1b1b18] border border-transparent hover:border-[#19140035] rounded-sm text-sm leading-normal">
-                        Iniciar Sesión
-                    </a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="inline-block px-5 py-1.5 border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] rounded-sm text-sm leading-normal">
-                            Registrarse
+                    <div class="mb-3">
+                        <a href="{{ route('login') }}"
+                            class="inline-block px-5 py-1.5 text-[#1b1b18] dark:text-gray-200 border border-transparent hover:border-[#19140035] dark:hover:border-gray-200 rounded-sm text-sm leading-normal">
+                            Iniciar Sesión
                         </a>
-                    @endif
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="inline-block px-5 py-1.5 border-[#19140035] dark:border-gray-200 hover:border-[#1915014a] dark:hover:border-white border text-[#1b1b18] dark:text-gray-200 rounded-sm text-sm leading-normal">
+                                Registrarse
+                            </a>
+                        @endif
+                    </div>
                 @endauth
             </nav>
         @endif
