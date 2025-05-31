@@ -46,7 +46,6 @@ Cosas que faltan:
 - Crear un **logotipo** de empresa
 - Añadir **accesibilidad** a la página 
 - Meter la lógica del **formulario** para configurarlo con AWS SES
-- Comprar un dominio y configurarlo
 - Añadir el login con Google (si da tiempo)
 - Terminar la **documentación**.
 
