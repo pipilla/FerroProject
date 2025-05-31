@@ -1,15 +1,15 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Eliminar Cuenta') }}
+        <p class="dark:text-white">Eliminar Cuenta</p>
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Borrar cuenta de forma permanente.') }}
+        <p class="dark:text-gray-300">Borrar cuenta de forma permanente.</p>
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
-            {{ __('Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Antes de eliminar su cuenta, descargue los datos o la información que desee conservar.') }}
+            <p class="dark:text-gray-300">Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Antes de eliminar su cuenta, descargue los datos o la información que desee conservar.</p>
         </div>
 
         <div class="mt-5">
