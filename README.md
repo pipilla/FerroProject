@@ -39,12 +39,10 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
-- Añadir verificación de correo electrónico.
 - Terminar la **Landing Page** (añadir imágenes)
 - Añadir datos "reales" (Galería y Posts)
 - Crear un **logotipo** de empresa
-- Añadir **accesibilidad** a la página 
-- Meter la lógica del **formulario** para configurarlo con un servicio de correo, o dejarlo con Mailtrap
+- Añadir más **accesibilidad** a la página 
 - Añadir el login con Google (si da tiempo)
 
 - Terminar la **documentación**.
