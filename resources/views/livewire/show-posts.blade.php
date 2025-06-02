@@ -80,23 +80,6 @@
                     <!-- Controles -->
                     @if ($post->media && $post->media->count() > 1)
                         <button type="button"
-<<<<<<< HEAD
-                        class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-prev>
-                        <span
-                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-700/30 group-hover:bg-white/50 dark:group-hover:bg-gray-700/50 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-700">
-                            <i class="fas fa-chevron-left text-white dark:text-gray-300"></i>
-                        </span>
-                    </button>
-                    <button type="button"
-                        class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                        data-carousel-next>
-                        <span
-                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-700/30 group-hover:bg-white/50 dark:group-hover:bg-gray-700/50 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-700">
-                            <i class="fas fa-chevron-right text-white dark:text-gray-300"></i>
-                        </span>
-                    </button>
-=======
                             class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                             data-carousel-prev>
                             <span
@@ -112,7 +95,6 @@
                                 <i class="fas fa-chevron-right text-white dark:text-gray-300"></i>
                             </span>
                         </button>
->>>>>>> c36839d81042be1e5b270346cd9ecd87865035d6
                     @endif
                 </div>
 
