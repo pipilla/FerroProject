@@ -6,7 +6,7 @@
 
         <!-- Sidebar: Lista de Chats -->
         <div :class="openSidebar ? 'translate-x-0 mt-16' : '-translate-x-full'"
-            class="fixed md:relative md:translate-x-0 top-0 left-0 z-40 w-3/4 md:w-1/4 h-full md:h-auto bg-white border-r p-4 rounded-none md:rounded-l-lg dark:bg-gray-800 dark:border-gray-700 transform transition-transform duration-300 ease-in-out">
+            class="fixed md:relative md:translate-x-0 top-0 left-0 z-40 w-3/4 md:mt-0 md:w-1/4 h-full md:h-auto bg-white border-r p-4 rounded-none md:rounded-l-lg dark:bg-gray-800 dark:border-gray-700 transform transition-transform duration-300 ease-in-out">
             @livewire('crear-chat')
             <div class="flex">
                 <!-- Botón hamburguesa para móviles -->
