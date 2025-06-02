@@ -78,7 +78,8 @@
                     </div>
 
                     <!-- Controles -->
-                    <button type="button"
+                    @if ($post->media && $post->media->count() > 1)
+                        <button type="button"
                         class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                         data-carousel-prev>
                         <span
@@ -94,6 +95,7 @@
                             <i class="fas fa-chevron-right text-white dark:text-gray-300"></i>
                         </span>
                     </button>
+                    @endif
                 </div>
 
                 <!-- Descripción -->
