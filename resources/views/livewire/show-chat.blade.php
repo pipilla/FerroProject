@@ -1,15 +1,29 @@
 <x-self.base>
-    <div class="flex h-[80vh] bg-gray-100 rounded-lg dark:bg-gray-900">
+    <div x-data="{ openSidebar: true }" class="flex h-[80vh] bg-gray-100 rounded-lg dark:bg-gray-900 relative">
+        <!-- Overlay oscuro -->
+        <div x-show="openSidebar" @click="openSidebar = false" class="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden">
+        </div>
+
         <!-- Sidebar: Lista de Chats -->
-        <div class="relative w-1/4 bg-white border-r p-4 rounded-l-lg dark:bg-gray-800 dark:border-gray-700">
+        <div :class="openSidebar ? 'translate-x-0 mt-16' : '-translate-x-full'"
+            class="fixed md:relative md:translate-x-0 top-0 left-0 z-40 w-3/4 md:w-1/4 h-full md:h-auto bg-white border-r p-4 rounded-none md:rounded-l-lg dark:bg-gray-800 dark:border-gray-700 transform transition-transform duration-300 ease-in-out">
             @livewire('crear-chat')
-            <h2 class="text-lg font-semibold mb-4 dark:text-gray-200">Tus chats</h2>
+            <div class="flex">
+                <!-- Botón hamburguesa para móviles -->
+                <button @click="openSidebar = !openSidebar" class="md:hidden mb-4 mr-2">
+                    <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <h2 class="text-lg font-semibold mb-4 dark:text-gray-200">Tus chats</h2>
+            </div>
             <div class="overflow-y-auto h-[70vh]">
                 @foreach ($chats as $chat)
                     @php
                         $unreadCount = $chat->unreadMessagesForUser(Auth::id())->count();
                     @endphp
-                    <button wire:click="seleccionarChat({{ $chat->id }})"
+                    <button wire:click="seleccionarChat({{ $chat->id }})" :class="openSidebar ? 'mt-2' : ''"
                         class="relative block w-full text-left px-4 py-2 mb-2 rounded-xl transition-colors duration-200
                         {{ $selectedChat != null && $selectedChat->id === $chat->id ? 'bg-blue-100 hover:bg-blue-300 dark:bg-blue-700 dark:hover:bg-blue-600' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }}
                         text-black dark:text-gray-200">
@@ -34,7 +48,7 @@
         </div>
 
         <!-- Chat Window -->
-        <div class="flex-1 flex flex-col rounded-r-lg">
+        <div class="flex-1 flex flex-col rounded-r-lg overflow-hidden z-10 md:z-auto">
             @if ($selectedChat != null)
                 <div wire:poll.5000ms="updateMessages">
                     {{-- Lista de mensajes actualizados cada 5 segundos --}}
@@ -42,6 +56,13 @@
                 <!-- Encabezado del Chat -->
                 <div
                     class="bg-white px-6 py-4 border-b flex items-center justify-between rounded-tr-lg dark:bg-gray-800 dark:border-gray-700">
+                    <!-- Botón hamburguesa para móviles -->
+                    <button @click="openSidebar = !openSidebar" class="md:hidden mr-2">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                     <h3 class="text-lg font-semibold dark:text-gray-200">
                         @if ($selectedChat?->is_group)
                             {{ $selectedChat->name }}
@@ -110,8 +131,16 @@
                     </button>
                 </form>
             @else
-                <div class="flex-1 flex items-center justify-center text-gray-500 dark:text-gray-400">
-                    Selecciona un chat para comenzar
+                <div class="flex-1 flex items-center justify-center">
+                    <button @click="openSidebar = !openSidebar" class="md:hidden mr-2">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <div class="text-gray-500 dark:text-gray-400">
+                        Selecciona un chat para comenzar
+                    </div>
                 </div>
             @endif
         </div>

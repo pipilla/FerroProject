@@ -140,6 +140,7 @@ class ShowPosts extends Component
     public function update() {
         $this->uform->update();
         $this->openUpdate = false;
+        return redirect()->route('posts');
         $this->dispatch('mensaje', "Post actualizado");
     }
 
