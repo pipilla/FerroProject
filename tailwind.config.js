@@ -10,14 +10,16 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                brand: '#122c50',
+                dbrand: '#a7b9d1',
+            },
         },
     },
-
     plugins: [forms, typography],
 };
