@@ -39,16 +39,14 @@ También, un campo "**done**", que indicará si la tarea se ha realizado o no.
 #
 
 Cosas que faltan:
-- Hacer el chat responsive
-- Añadir verificación de correo electrónico.
 - Terminar la **Landing Page** (añadir imágenes)
 - Añadir datos "reales" (Galería y Posts)
 - Crear un **logotipo** de empresa
-- Añadir **accesibilidad** a la página 
-- Meter la lógica del **formulario** para configurarlo con AWS SES
+- Añadir más **accesibilidad** a la página 
 - Añadir el login con Google (si da tiempo)
+
 - Terminar la **documentación**.
 
 #
 
-Fecha de finalización prevista: **01/06/2025**
+Fecha de finalización prevista: **08/06/2025**
