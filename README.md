@@ -35,18 +35,3 @@ El usuario tiene un campo **rol**, que otorgará diferentes permisos dependiendo
 Las tareas tienen un campo "**priority**", siendo **5** la más importante y **0** la menos. 
 
 También, un campo "**done**", que indicará si la tarea se ha realizado o no.
-
-#
-
-Cosas que faltan:
-- Terminar la **Landing Page** (añadir imágenes)
-- Añadir datos "reales" (Galería y Posts)
-- Crear un **logotipo** de empresa
-- Añadir más **accesibilidad** a la página 
-- Añadir el login con Google (si da tiempo)
-
-- Terminar la **documentación**.
-
-#
-
-Fecha de finalización prevista: **08/06/2025**
