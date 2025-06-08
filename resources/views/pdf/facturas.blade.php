@@ -103,13 +103,14 @@
         </div>
 
         {{-- Logo a la derecha --}}
-        <div style="float: right; width: 45%; text-align: right;">
-            <img src="{{ public_path('storage/media/logo.svg') }}" alt="Logo" style="max-height: 100px;">
+        <div style="float: right; width: 50%; max-height: 90px; text-align: right; margin-left: auto;">
+            <img src="{{ public_path('storage/assets/logo.svg') }}" alt="Logo"
+                style="height: 160px; max-width: 160px; display: block; margin-left: auto; margin-right: 0px;">
         </div>
 
         <div style="clear: both;"></div>
 
-        <div style="border-bottom: 1px solid #ccc; margin-top: 20px; margin-bottom: 20px;"></div>
+        <div style="border-bottom: 1px solid #ccc; margin-top: -200px; margin-bottom: 20px;"></div>
     </section>
 
 

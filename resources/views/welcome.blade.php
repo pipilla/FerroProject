@@ -1,10 +1,16 @@
 <x-app-layout>
     <x-self.base>
         <!-- Banner Inicial -->
-        <section class="bg-gray-100 dark:bg-gray-800 py-20 text-center">
-            <div class="max-w-4xl mx-auto px-4">
-                <h1 class="text-4xl font-bold mb-4 text-gray-900 dark:text-white">FerroProject</h1>
-                <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+        <section class="relative bg-gray-800 py-20 text-center overflow-hidden">
+            <!-- Fondo con opacidad -->
+            <div class="absolute inset-0 bg-cover bg-center"
+                style="background-image: url('{{ Storage::url('assets/1.jpg') }}'); opacity: 0.3;">
+            </div>
+
+            <!-- Contenido por encima -->
+            <div class="relative z-10 max-w-4xl mx-auto px-4">
+                <h1 class="text-4xl font-bold mb-4 text-white">FerroProject</h1>
+                <p class="text-lg text-gray-300 mb-6">
                     Explora nuestra galería, descubre nuestros posts y contáctanos fácilmente.
                 </p>
                 <div class="flex justify-center space-x-4">
@@ -41,13 +47,8 @@
             </section>
         @endguest
 
-        <!-- Banner imagen genérica -->
-        <section>
-            <img src="" alt="">
-        </section>
-
         <!-- Servicios / Enlaces Rápidos -->
-        <section class="py-16 bg-white dark:bg-gray-900">
+        <section class="py-16 bg-gray-200 dark:bg-gray-900">
             <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
                 <a class="p-6 rounded-lg shadow hover:shadow-md transition bg-white dark:bg-gray-800 dark:hover:bg-gray-700"
                     href="{{ route('galeria') }}">

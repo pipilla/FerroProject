@@ -27,7 +27,7 @@ class FormularioContacto extends Component
     {
         $this->validate($this->rules());
 
-        Mail::to('contacto@email.com')->send(new ContactForm(
+        Mail::to('contacto@ferroproject.com')->send(new ContactForm(
             $this->tipoConsulta,
             $this->tipoTrabajo,
             $this->otroTrabajo,

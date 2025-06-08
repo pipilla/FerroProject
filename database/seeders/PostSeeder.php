@@ -15,7 +15,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $posts = Post::factory(30)->create();
+        $posts = Post::factory(4)->create();
         $media = Media::all()->pluck('id')->toArray();
         $tags = Tag::all()->pluck('id')->toArray();
         foreach($posts as $post){
