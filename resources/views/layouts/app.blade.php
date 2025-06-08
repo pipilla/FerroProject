@@ -6,9 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Etiquetas SEO -->
+    <meta name="description"
+        content="FerroProject S.L. ofrece servicios de carpintería metálica en Almería, Granada y toda Andalucía. Rejas, barandas, escaleras, puertas, tejados, panel sándwich y más.">
+    <meta name="keywords"
+        content="carpintería metálica Almería, carpintería metálica Granada, rejas, barandas, puertas metálicas, escaleras de hierro, tejados, panel sándwich, soldadores profesionales, FerroProject">
+    <meta name="author" content="FerroProject S.L.">
+
+    <meta property="og:title" content="FerroProject S.L. | Carpintería Metálica en Almería y Granada">
+    <meta property="og:description"
+        content="Expertos en rejas, puertas, tejados, panel sándwich y más. Visita nuestra galería de trabajos y artículos.">
+    <meta property="og:image" content="{{ Storage::url('storage/assets/logo.svg') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />

@@ -9,7 +9,7 @@
 
             <!-- Contenido por encima -->
             <div class="relative z-10 max-w-4xl mx-auto px-4">
-                <h1 class="text-4xl font-bold mb-4 text-white">FerroProject</h1>
+                <h1 class="text-4xl font-bold mb-4 text-white">FerroProject S.L. | Carpintería Metálica en Almería</h1>
                 <p class="text-lg text-gray-300 mb-6">
                     Explora nuestra galería, descubre nuestros posts y contáctanos fácilmente.
                 </p>
