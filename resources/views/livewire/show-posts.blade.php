@@ -64,11 +64,11 @@
                             <div class="@if(!$loop->first) hidden @endif absolute inset-0 transition-transform transform translate-x-0"
                                 @if($loop->first) data-carousel-item="active" @else data-carousel-item @endif>
                                 @if (str_starts_with($item->file_type, 'image/'))
-                                    <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                    <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover"
                                         src="{{ Storage::url($item->src) }}" alt="{{ $item->title }}">
                                 @elseif(str_starts_with($item->file_type, 'video/'))
                                     <video
-                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover"
                                         autoplay muted loop>
                                         <source src="{{ Storage::url($item->src) }}" type="{{ $item->file_type }}">
                                     </video>
