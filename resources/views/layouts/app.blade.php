@@ -180,6 +180,11 @@
                 }
             });
         });
+        Livewire.on('redirect-delay', () => {
+            setTimeout(() => {
+                window.location.href = "{{ route('welcome') }}";
+            }, 1500);
+        });
     </script>
 </body>
 

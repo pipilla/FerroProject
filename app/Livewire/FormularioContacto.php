@@ -39,7 +39,7 @@ class FormularioContacto extends Component
         ));
 
         $this->dispatch('mensaje', 'Correo enviado');
-        $this->redirect(route('welcome'));
+        $this->dispatch('redirect-delay');
     }
 
     protected function rules()
