@@ -117,16 +117,19 @@
                     <!-- Interacciones -->
                     <div class="flex space-4 text-gray-500 dark:text-gray-400">
                         @if (!$showPostComments || $showPostComments != $post->id)
-                            <button
-                                class="hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transition-transform duration-200"
-                                wire:click="showComments({{ $post->id }})"><i class="fas fa-comment"></i></button>
+                            @if ($post->comments->count() > 0 || Auth::check())
+                                <button
+                                    class="hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transition-transform duration-200"
+                                    wire:click="showComments({{ $post->id }})"><i
+                                        class="fas fa-comment"></i></button>
+                            @endif
                         @elseif($showPostComments == $post->id)
                             <button
                                 class="hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transition-transform duration-200"
                                 wire:click="cerrarComentarios"><i class="fas fa-comment"></i></button>
                         @endif
                         @auth
-                            @if (Auth::user()->role >= 2 || Auth::id() == $post->user->id)
+                            @if (Auth::user()->role > 2 || Auth::id() == $post->user->id)
                                 <button
                                     class="hover:text-blue-600 dark:hover:text-blue-400 ml-2 hover:scale-110 transition-transform duration-200"
                                     wire:click="managePost({{ $post->id }})"><i class="fas fa-gear"></i></button>
