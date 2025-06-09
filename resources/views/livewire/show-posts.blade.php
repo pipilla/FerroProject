@@ -61,14 +61,14 @@
                 <div id="post-{{ $loop->index }}" class="relative w-full" data-carousel="static">
                     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                         @foreach ($post->media as $item)
-                            <div class="{{ $loop->first ? 'duration-700 ease-in-out' : 'hidden duration-700 ease-in-out' }}"
-                                data-carousel-item>
+                            <div class="@if(!$loop->first) hidden @endif absolute inset-0 transition-transform transform translate-x-0"
+                                @if($loop->first) data-carousel-item="active" @else data-carousel-item @endif>
                                 @if (str_starts_with($item->file_type, 'image/'))
-                                    <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                                    <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                         src="{{ Storage::url($item->src) }}" alt="{{ $item->title }}">
                                 @elseif(str_starts_with($item->file_type, 'video/'))
                                     <video
-                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                         autoplay muted loop>
                                         <source src="{{ Storage::url($item->src) }}" type="{{ $item->file_type }}">
                                     </video>

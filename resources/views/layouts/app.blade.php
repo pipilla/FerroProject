@@ -33,10 +33,11 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.jsx'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
     <!-- Styles -->
     @livewireStyles
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </head>
 
 <body class="min-h-screen flex flex-col font-sans antialiased">
@@ -184,6 +185,12 @@
             setTimeout(() => {
                 window.location.href = "{{ route('welcome') }}";
             }, 1500);
+        });
+        document.addEventListener('livewire:navigated', () => {
+            window.initFlowbite?.();
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            window.initFlowbite?.();
         });
     </script>
 </body>
